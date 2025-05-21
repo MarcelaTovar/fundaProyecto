@@ -6,6 +6,7 @@
 package com.mycompany.fundamentoproyecto;
 
 import java.sql.Connection;
+import javax.swing.JFrame;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        setSize(957, 548);
         SQLManagement sql = new SQLManagement();
         Connection conn = sql.conect();
     }
@@ -31,25 +33,57 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        PanelPrincipal = new javax.swing.JPanel();
+        Button_IniciarSesion = new javax.swing.JButton();
+        PaginaInicio = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
+        PanelPrincipal.setLayout(PanelPrincipalLayout);
+        PanelPrincipalLayout.setHorizontalGroup(
+            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        PanelPrincipalLayout.setVerticalGroup(
+            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("jframe");
+        getContentPane().setLayout(null);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PaginaInicio.png"))); // NOI18N
+        Button_IniciarSesion.setBackground(new java.awt.Color(255, 255, 255));
+        Button_IniciarSesion.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        Button_IniciarSesion.setText("Iniciar Sesion");
+        Button_IniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Button_IniciarSesionMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Button_IniciarSesion);
+        Button_IniciarSesion.setBounds(220, 430, 200, 50);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        PaginaInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bienvenido.png"))); // NOI18N
+        getContentPane().add(PaginaInicio);
+        PaginaInicio.setBounds(0, 0, 957, 548);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Button_IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_IniciarSesionMouseClicked
+        this.setVisible(false);
+        PanelPrincipal.setLayout(null);
+        PanelPrincipal.setSize(957, 548); 
+
+        JFrame ventana = new JFrame("Panel dentro de JFrame");
+        ventana.setSize(957, 548);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setLocationRelativeTo(null);
+        ventana.setLayout(null);
+        ventana.add(PanelPrincipal);
+        PanelPrincipal.setBounds(0, 0, 400, 300);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_Button_IniciarSesionMouseClicked
 
     /**
      * @param args the command line arguments
@@ -87,6 +121,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton Button_IniciarSesion;
+    private javax.swing.JLabel PaginaInicio;
+    private javax.swing.JPanel PanelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class SQLManagement {
     
     
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=master";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=Ferco2011";
     private static final String USER = "marcela";
     private static final String PASSWORD = "sqlserver";
 
