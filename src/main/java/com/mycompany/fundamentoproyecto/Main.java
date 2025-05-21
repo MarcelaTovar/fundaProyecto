@@ -60,7 +60,7 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTable_ImpresionVendedores = new javax.swing.JTable();
         JLabel_Buscar = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JText_BuscarVendedor = new javax.swing.JTextField();
         JLable_ImpresionVendedores = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Button_IniciarSesion = new javax.swing.JButton();
@@ -249,10 +249,15 @@ public class Main extends javax.swing.JFrame {
 
         JLabel_Buscar.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         JLabel_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JLabel_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JLabel_BuscarMouseClicked(evt);
+            }
+        });
         JPanel_VendedoresImpresion.add(JLabel_Buscar);
         JLabel_Buscar.setBounds(600, 40, 30, 30);
-        JPanel_VendedoresImpresion.add(jTextField1);
-        jTextField1.setBounds(640, 40, 230, 30);
+        JPanel_VendedoresImpresion.add(JText_BuscarVendedor);
+        JText_BuscarVendedor.setBounds(640, 40, 230, 30);
 
         JLable_ImpresionVendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vendedores.png"))); // NOI18N
         JPanel_VendedoresImpresion.add(JLable_ImpresionVendedores);
@@ -362,6 +367,11 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JMenu_FichaMouseClicked
 
+    private void JLabel_BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarMouseClicked
+        // TODO add your handling code here:
+        sql.buscarEnTabla(conn, JTable_ImpresionVendedores, JText_BuscarVendedor.getText());
+    }//GEN-LAST:event_JLabel_BuscarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -414,6 +424,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane JTabPane_Vendedores;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTextField JText_Base;
+    private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
@@ -429,7 +440,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
     SQLManagement sql = new SQLManagement();
