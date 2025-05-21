@@ -20,8 +20,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setSize(957, 548);
-        SQLManagement sql = new SQLManagement();
-        Connection conn = sql.conect();
+
     }
 
     /**
@@ -33,19 +32,166 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        JFrame_PaginaPrincipal = new javax.swing.JFrame();
         PanelPrincipal = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        JMenuBar_PaginaPrincipal = new javax.swing.JMenuBar();
+        JMenu_Base = new javax.swing.JMenu();
+        JMenu_Ficha = new javax.swing.JMenu();
+        JFrame_Base = new javax.swing.JFrame();
+        JPanel_Base = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        JText_Usuario = new javax.swing.JTextField();
+        JText_Contraseña = new javax.swing.JTextField();
+        JText_Puerto = new javax.swing.JTextField();
+        JText_Base = new javax.swing.JTextField();
+        JText_Servidor = new javax.swing.JTextField();
+        JButton_Conexion = new javax.swing.JButton();
+        JLabel_Base = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout PanelPrincipalLayout = new javax.swing.GroupLayout(PanelPrincipal);
-        PanelPrincipal.setLayout(PanelPrincipalLayout);
-        PanelPrincipalLayout.setHorizontalGroup(
-            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        JFrame_PaginaPrincipal.setMinimumSize(new java.awt.Dimension(957, 569));
+
+        PanelPrincipal.setMaximumSize(new java.awt.Dimension(957, 548));
+        PanelPrincipal.setMinimumSize(new java.awt.Dimension(957, 548));
+        PanelPrincipal.setPreferredSize(new java.awt.Dimension(957, 548));
+        PanelPrincipal.setVerifyInputWhenFocusTarget(false);
+        PanelPrincipal.setLayout(null);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PaginaPrincipal2.png"))); // NOI18N
+        PanelPrincipal.add(jLabel7);
+        jLabel7.setBounds(0, 0, 960, 550);
+
+        JMenu_Base.setText("Conectar a Base");
+        JMenu_Base.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JMenu_BaseMouseClicked(evt);
+            }
+        });
+        JMenuBar_PaginaPrincipal.add(JMenu_Base);
+
+        JMenu_Ficha.setText("Ficha de Vendedores");
+        JMenuBar_PaginaPrincipal.add(JMenu_Ficha);
+
+        JFrame_PaginaPrincipal.setJMenuBar(JMenuBar_PaginaPrincipal);
+
+        javax.swing.GroupLayout JFrame_PaginaPrincipalLayout = new javax.swing.GroupLayout(JFrame_PaginaPrincipal.getContentPane());
+        JFrame_PaginaPrincipal.getContentPane().setLayout(JFrame_PaginaPrincipalLayout);
+        JFrame_PaginaPrincipalLayout.setHorizontalGroup(
+            JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 957, Short.MAX_VALUE)
+            .addGroup(JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_PaginaPrincipalLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        PanelPrincipalLayout.setVerticalGroup(
-            PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        JFrame_PaginaPrincipalLayout.setVerticalGroup(
+            JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+            .addGroup(JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_PaginaPrincipalLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        JFrame_Base.setMaximumSize(new java.awt.Dimension(734, 394));
+
+        JPanel_Base.setMaximumSize(new java.awt.Dimension(734, 394));
+        JPanel_Base.setMinimumSize(new java.awt.Dimension(734, 394));
+        JPanel_Base.setLayout(null);
+
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel3.setText("Contraseña de la base:");
+        JPanel_Base.add(jLabel3);
+        jLabel3.setBounds(140, 210, 140, 19);
+
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel2.setText("Usuario de la base:");
+        JPanel_Base.add(jLabel2);
+        jLabel2.setBounds(140, 160, 130, 20);
+
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel4.setText("Nombre de la base:");
+        JPanel_Base.add(jLabel4);
+        jLabel4.setBounds(140, 250, 130, 19);
+
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 36)); // NOI18N
+        jLabel1.setText("Conexion a la Base de Datos");
+        JPanel_Base.add(jLabel1);
+        jLabel1.setBounds(120, 80, 530, 70);
+
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel5.setText("Puerto:");
+        JPanel_Base.add(jLabel5);
+        jLabel5.setBounds(140, 330, 41, 19);
+
+        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel6.setText("Servidor:");
+        JPanel_Base.add(jLabel6);
+        jLabel6.setBounds(140, 290, 51, 19);
+
+        JText_Usuario.setForeground(new java.awt.Color(204, 204, 204));
+        JPanel_Base.add(JText_Usuario);
+        JText_Usuario.setBounds(310, 160, 270, 30);
+
+        JText_Contraseña.setForeground(new java.awt.Color(204, 204, 204));
+        JPanel_Base.add(JText_Contraseña);
+        JText_Contraseña.setBounds(310, 200, 270, 30);
+
+        JText_Puerto.setForeground(new java.awt.Color(204, 204, 204));
+        JPanel_Base.add(JText_Puerto);
+        JText_Puerto.setBounds(310, 330, 270, 30);
+
+        JText_Base.setForeground(new java.awt.Color(204, 204, 204));
+        JPanel_Base.add(JText_Base);
+        JText_Base.setBounds(310, 250, 270, 30);
+
+        JText_Servidor.setForeground(new java.awt.Color(204, 204, 204));
+        JPanel_Base.add(JText_Servidor);
+        JText_Servidor.setBounds(310, 290, 270, 30);
+
+        JButton_Conexion.setBackground(new java.awt.Color(255, 255, 255));
+        JButton_Conexion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        JButton_Conexion.setText("Conectar Base");
+        JButton_Conexion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_ConexionMouseClicked(evt);
+            }
+        });
+        JPanel_Base.add(JButton_Conexion);
+        JButton_Conexion.setBounds(140, 380, 120, 25);
+
+        JLabel_Base.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bases.jpg"))); // NOI18N
+        JPanel_Base.add(JLabel_Base);
+        JLabel_Base.setBounds(-4, 0, 740, 479);
+
+        javax.swing.GroupLayout JFrame_BaseLayout = new javax.swing.GroupLayout(JFrame_Base.getContentPane());
+        JFrame_Base.getContentPane().setLayout(JFrame_BaseLayout);
+        JFrame_BaseLayout.setHorizontalGroup(
+            JFrame_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(JFrame_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_BaseLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(JPanel_Base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        JFrame_BaseLayout.setVerticalGroup(
+            JFrame_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(JFrame_BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_BaseLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(JPanel_Base, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,17 +219,51 @@ public class Main extends javax.swing.JFrame {
     private void Button_IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_IniciarSesionMouseClicked
         this.setVisible(false);
         PanelPrincipal.setLayout(null);
-        PanelPrincipal.setSize(957, 548); 
+        PanelPrincipal.setSize(957, 548);
 
-        JFrame ventana = new JFrame("Panel dentro de JFrame");
-        ventana.setSize(957, 548);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setLocationRelativeTo(null);
-        ventana.setLayout(null);
-        ventana.add(PanelPrincipal);
-        PanelPrincipal.setBounds(0, 0, 400, 300);
-        ventana.setVisible(true);
+        JFrame_PaginaPrincipal.setSize(957, 548);
+        JFrame_PaginaPrincipal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame_PaginaPrincipal.setLocationRelativeTo(null);
+        JFrame_PaginaPrincipal.setLayout(null);
+
+        JFrame_PaginaPrincipal.add(PanelPrincipal);
+// PanelPrincipal.setBounds(...) → ¡ya no es necesario!
+        JFrame_PaginaPrincipal.setVisible(true);
+
     }//GEN-LAST:event_Button_IniciarSesionMouseClicked
+
+    private void JButton_ConexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_ConexionMouseClicked
+        // TODO add your handling code here:
+        String nombre = JText_Usuario.getText();
+        String contraseña = JText_Contraseña.getText();
+        String base = JText_Base.getText();
+        String servidor = JText_Servidor.getText();
+        String puerto = JText_Puerto.getText();
+        SQLManagement sql = new SQLManagement();
+        
+        sql.setNombreBase(base);
+        sql.setPASSWORD(contraseña);
+        sql.setUSER(nombre);
+        sql.setServidor(servidor);
+        sql.setPuerto(puerto);
+        
+        Connection conn = sql.conect();
+        
+    }//GEN-LAST:event_JButton_ConexionMouseClicked
+
+    private void JMenu_BaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_BaseMouseClicked
+        // TODO add your handling code here:
+        JPanel_Base.setLayout(null);
+        JPanel_Base.setSize(736, 479);
+
+        JFrame_Base.setSize(736, 479);
+        JFrame_Base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame_Base.setLocationRelativeTo(null);
+        JFrame_Base.setLayout(null);
+        JFrame_Base.add(JPanel_Base); // ← Asegúrate de que aquí estás agregando el JPanel correcto
+        JFrame_Base.setVisible(true);
+
+    }//GEN-LAST:event_JMenu_BaseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,7 +302,27 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_IniciarSesion;
+    private javax.swing.JButton JButton_Conexion;
+    private javax.swing.JFrame JFrame_Base;
+    private javax.swing.JFrame JFrame_PaginaPrincipal;
+    private javax.swing.JLabel JLabel_Base;
+    private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
+    private javax.swing.JMenu JMenu_Base;
+    private javax.swing.JMenu JMenu_Ficha;
+    private javax.swing.JPanel JPanel_Base;
+    private javax.swing.JTextField JText_Base;
+    private javax.swing.JTextField JText_Contraseña;
+    private javax.swing.JTextField JText_Puerto;
+    private javax.swing.JTextField JText_Servidor;
+    private javax.swing.JTextField JText_Usuario;
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
