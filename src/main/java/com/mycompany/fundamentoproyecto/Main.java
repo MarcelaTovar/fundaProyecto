@@ -20,6 +20,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setSize(957, 548);
+        
 
     }
 
@@ -53,6 +54,15 @@ public class Main extends javax.swing.JFrame {
         JText_Servidor = new javax.swing.JTextField();
         JButton_Conexion = new javax.swing.JButton();
         JLabel_Base = new javax.swing.JLabel();
+        JFrame_Ficha = new javax.swing.JFrame();
+        JTabPane_Vendedores = new javax.swing.JTabbedPane();
+        JPanel_VendedoresImpresion = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTable_ImpresionVendedores = new javax.swing.JTable();
+        JLabel_Buscar = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        JLable_ImpresionVendedores = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
@@ -77,6 +87,11 @@ public class Main extends javax.swing.JFrame {
         JMenuBar_PaginaPrincipal.add(JMenu_Base);
 
         JMenu_Ficha.setText("Ficha de Vendedores");
+        JMenu_Ficha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JMenu_FichaMouseClicked(evt);
+            }
+        });
         JMenuBar_PaginaPrincipal.add(JMenu_Ficha);
 
         JFrame_PaginaPrincipal.setJMenuBar(JMenuBar_PaginaPrincipal);
@@ -194,6 +209,73 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        JFrame_Ficha.setMaximumSize(new java.awt.Dimension(957, 569));
+        JFrame_Ficha.setMinimumSize(new java.awt.Dimension(957, 569));
+        JFrame_Ficha.setPreferredSize(new java.awt.Dimension(957, 569));
+        JFrame_Ficha.getContentPane().setLayout(null);
+
+        JTabPane_Vendedores.setMaximumSize(new java.awt.Dimension(957, 569));
+        JTabPane_Vendedores.setMinimumSize(new java.awt.Dimension(957, 569));
+        JTabPane_Vendedores.setPreferredSize(new java.awt.Dimension(957, 569));
+
+        JPanel_VendedoresImpresion.setMaximumSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setMinimumSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setPreferredSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setLayout(null);
+
+        JTable_ImpresionVendedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Comision"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(JTable_ImpresionVendedores);
+
+        JPanel_VendedoresImpresion.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 40, 540, 390);
+
+        JLabel_Buscar.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        JLabel_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JPanel_VendedoresImpresion.add(JLabel_Buscar);
+        JLabel_Buscar.setBounds(600, 40, 30, 30);
+        JPanel_VendedoresImpresion.add(jTextField1);
+        jTextField1.setBounds(640, 40, 230, 30);
+
+        JLable_ImpresionVendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vendedores.png"))); // NOI18N
+        JPanel_VendedoresImpresion.add(JLable_ImpresionVendedores);
+        JLable_ImpresionVendedores.setBounds(0, 0, 957, 548);
+
+        JTabPane_Vendedores.addTab("Vendedores", JPanel_VendedoresImpresion);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 957, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+
+        JTabPane_Vendedores.addTab("Ficha Por Vendedor", jPanel2);
+
+        JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
+        JTabPane_Vendedores.setBounds(0, 0, 957, 569);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jframe");
         getContentPane().setLayout(null);
@@ -239,7 +321,6 @@ public class Main extends javax.swing.JFrame {
         String base = JText_Base.getText();
         String servidor = JText_Servidor.getText();
         String puerto = JText_Puerto.getText();
-        SQLManagement sql = new SQLManagement();
         
         sql.setNombreBase(base);
         sql.setPASSWORD(contraseña);
@@ -247,7 +328,7 @@ public class Main extends javax.swing.JFrame {
         sql.setServidor(servidor);
         sql.setPuerto(puerto);
         
-        Connection conn = sql.conect();
+         conn = sql.conect();
         
     }//GEN-LAST:event_JButton_ConexionMouseClicked
 
@@ -264,6 +345,22 @@ public class Main extends javax.swing.JFrame {
         JFrame_Base.setVisible(true);
 
     }//GEN-LAST:event_JMenu_BaseMouseClicked
+
+    private void JMenu_FichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseClicked
+        // TODO add your handling code here:
+        sql.llenarTabla(conn, JTable_ImpresionVendedores);
+        
+        JPanel_VendedoresImpresion.setLayout(null);
+        JPanel_VendedoresImpresion.setSize(736, 479);
+
+        JFrame_Ficha.setSize(736, 479);
+        JFrame_Ficha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame_Ficha.setLocationRelativeTo(null);
+        JFrame_Ficha.setLayout(null);
+        JFrame_Ficha.add(JTabPane_Vendedores); // ← Asegúrate de que aquí estás agregando el JPanel correcto
+        JFrame_Ficha.setVisible(true);
+
+    }//GEN-LAST:event_JMenu_FichaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -304,12 +401,18 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Button_IniciarSesion;
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JFrame JFrame_Base;
+    private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
     private javax.swing.JLabel JLabel_Base;
+    private javax.swing.JLabel JLabel_Buscar;
+    private javax.swing.JLabel JLable_ImpresionVendedores;
     private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
     private javax.swing.JMenu JMenu_Base;
     private javax.swing.JMenu JMenu_Ficha;
     private javax.swing.JPanel JPanel_Base;
+    private javax.swing.JPanel JPanel_VendedoresImpresion;
+    private javax.swing.JTabbedPane JTabPane_Vendedores;
+    private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Puerto;
@@ -324,5 +427,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    //Variables Globales
+    SQLManagement sql = new SQLManagement();
+    Connection conn = null;
+
 }

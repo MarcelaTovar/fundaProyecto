@@ -7,21 +7,22 @@ package com.mycompany.fundamentoproyecto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
-
-
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class SQLManagement {
-    
-    
-   //String URL = "jdbc:sqlserver://"+"localhost:1433;databaseName=Ferco2011";
+
+    //String URL = "jdbc:sqlserver://"+"localhost:1433;databaseName=Ferco2011";
     String URL = "";
-   String nombreBase = "";
-   String puerto = "";
-      String servidor = "";
-      String USER = "";
-      String PASSWORD = "";
+    String nombreBase = "";
+    String puerto = "";
+    String servidor = "";
+    String USER = "";
+    String PASSWORD = "";
 
     public SQLManagement() {
     }
@@ -73,12 +74,11 @@ public class SQLManagement {
     public void setPASSWORD(String PASSWORD) {
         this.PASSWORD = PASSWORD;
     }
-    
-    
+
     public Connection conect() {
         Connection conn = null;
         try {
-            URL = "jdbc:sqlserver://"+servidor+":"+puerto+";databaseName="+nombreBase;
+            URL = "jdbc:sqlserver://" + servidor + ":" + puerto + ";databaseName=" + nombreBase;
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             JOptionPane.showMessageDialog(null, "✅ Conexión exitosa a la base de datos", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
@@ -87,5 +87,28 @@ public class SQLManagement {
         }
         return conn;
     }
-}
 
+    public void llenarTabla(Connection conn, JTable tabla) {
+        String[] columnas = {"Nombre", "Comision"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT SlpName, Commission FROM OSLP");
+
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getString("SlpName"),
+                    rs.getString("Commission")
+                };
+                modelo.addRow(fila);
+            }
+
+            tabla.setModel(modelo);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "❌ Error al llenar la tabla:\n" + e.getMessage());
+        }
+    }
+
+}
