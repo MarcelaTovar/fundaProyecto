@@ -5,14 +5,16 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Osmin Tovar
  */
-public class Vendedor {
+public class Vendedor implements Serializable  {
     String id;
+    String nombre;
     ArrayList <Comision> comisiones;
     ArrayList <Meta> metas;
     ArrayList <Venta> ventas;
@@ -21,13 +23,31 @@ public class Vendedor {
     public Vendedor() {
     }
 
-    public Vendedor(String id, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor) {
+    public Vendedor(String id, String nombre) {
         this.id = id;
+        this.nombre = nombre;
+    }
+    
+    
+
+    public Vendedor(String id, String nombre, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor) {
+        this.id = id;
+        this.nombre = nombre;
         this.comisiones = comisiones;
         this.metas = metas;
         this.ventas = ventas;
         this.firmaVendedor = firmaVendedor;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
 
     public String getId() {
         return id;
@@ -71,8 +91,10 @@ public class Vendedor {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "id=" + id + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + '}';
+        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + '}';
     }
+
+    
 
     
     

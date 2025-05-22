@@ -5,8 +5,12 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.File;
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +24,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setSize(957, 548);
-        
 
     }
 
@@ -62,6 +65,23 @@ public class Main extends javax.swing.JFrame {
         JLabel_Buscar = new javax.swing.JLabel();
         JText_BuscarVendedor = new javax.swing.JTextField();
         JLable_ImpresionVendedores = new javax.swing.JLabel();
+        JTabPane_FichaPorVendedor = new javax.swing.JPanel();
+        JLabel_FichaVendedor = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        JText_BuscarFicha = new javax.swing.JTextField();
+        JLabel_BuscarFicha = new javax.swing.JLabel();
+        JLabel_TipoFicha = new javax.swing.JLabel();
+        JLabel_Metas = new javax.swing.JLabel();
+        JLabel_Bono = new javax.swing.JLabel();
+        JLabel_Porcentajes = new javax.swing.JLabel();
+        JLabel_FirmaPago = new javax.swing.JLabel();
+        JText_TipoVendedor = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        JArea_MetasFicha = new javax.swing.JTextArea();
+        JText_Bono = new javax.swing.JTextField();
+        JText_Porcentaje = new javax.swing.JTextField();
+        JText_Firma = new javax.swing.JTextField();
+        JLabel_Ficha = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
@@ -265,6 +285,86 @@ public class Main extends javax.swing.JFrame {
 
         JTabPane_Vendedores.addTab("Vendedores", JPanel_VendedoresImpresion);
 
+        JTabPane_FichaPorVendedor.setLayout(null);
+
+        JLabel_FichaVendedor.setFont(new java.awt.Font("Sylfaen", 0, 36)); // NOI18N
+        JLabel_FichaVendedor.setText("Ficha de Vendedor");
+        JTabPane_FichaPorVendedor.add(JLabel_FichaVendedor);
+        JLabel_FichaVendedor.setBounds(330, 40, 340, 48);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        JText_BuscarFicha.setBorder(null);
+
+        JLabel_BuscarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JLabel_BuscarFicha))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLabel_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        JTabPane_FichaPorVendedor.add(jPanel1);
+        jPanel1.setBounds(260, 90, 400, 30);
+
+        JLabel_TipoFicha.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_TipoFicha.setText("Tipo de Vendedor");
+        JTabPane_FichaPorVendedor.add(JLabel_TipoFicha);
+        JLabel_TipoFicha.setBounds(80, 170, 140, 19);
+
+        JLabel_Metas.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_Metas.setText("Metas del Vendedor");
+        JTabPane_FichaPorVendedor.add(JLabel_Metas);
+        JLabel_Metas.setBounds(80, 220, 114, 19);
+
+        JLabel_Bono.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_Bono.setText("Bonos por cumplimiento");
+        JTabPane_FichaPorVendedor.add(JLabel_Bono);
+        JLabel_Bono.setBounds(550, 170, 150, 19);
+
+        JLabel_Porcentajes.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_Porcentajes.setText("Porcentajes");
+        JTabPane_FichaPorVendedor.add(JLabel_Porcentajes);
+        JLabel_Porcentajes.setBounds(550, 230, 100, 14);
+
+        JLabel_FirmaPago.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_FirmaPago.setText("Firma de Autorizacion de Pago");
+        JTabPane_FichaPorVendedor.add(JLabel_FirmaPago);
+        JLabel_FirmaPago.setBounds(550, 280, 180, 19);
+        JTabPane_FichaPorVendedor.add(JText_TipoVendedor);
+        JText_TipoVendedor.setBounds(220, 170, 220, 30);
+
+        JArea_MetasFicha.setColumns(20);
+        JArea_MetasFicha.setRows(5);
+        jScrollPane2.setViewportView(JArea_MetasFicha);
+
+        JTabPane_FichaPorVendedor.add(jScrollPane2);
+        jScrollPane2.setBounds(80, 260, 370, 170);
+        JTabPane_FichaPorVendedor.add(JText_Bono);
+        JText_Bono.setBounds(710, 170, 200, 30);
+        JTabPane_FichaPorVendedor.add(JText_Porcentaje);
+        JText_Porcentaje.setBounds(710, 220, 200, 30);
+        JTabPane_FichaPorVendedor.add(JText_Firma);
+        JText_Firma.setBounds(750, 280, 160, 30);
+
+        JLabel_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ficha.png"))); // NOI18N
+        JTabPane_FichaPorVendedor.add(JLabel_Ficha);
+        JLabel_Ficha.setBounds(0, 0, 957, 548);
+
+        JTabPane_Vendedores.addTab("Ficha Por Vendedor", JTabPane_FichaPorVendedor);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -276,7 +376,7 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 548, Short.MAX_VALUE)
         );
 
-        JTabPane_Vendedores.addTab("Ficha Por Vendedor", jPanel2);
+        JTabPane_Vendedores.addTab("Editar Vendedor", jPanel2);
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
@@ -326,15 +426,29 @@ public class Main extends javax.swing.JFrame {
         String base = JText_Base.getText();
         String servidor = JText_Servidor.getText();
         String puerto = JText_Puerto.getText();
-        
+
         sql.setNombreBase(base);
         sql.setPASSWORD(contraseña);
         sql.setUSER(nombre);
         sql.setServidor(servidor);
         sql.setPuerto(puerto);
-        
-         conn = sql.conect();
-        
+
+        conn = sql.conect();
+
+        //Cargar vendedor
+        HashMap<String, Vendedor> vendedores = sql.cargarVendedores(conn);
+        File archivo = new File("vendedores.bin");
+        if (!archivo.exists()) {
+            binario.escribirArchivo(vendedores);
+        } else {
+            int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                binario.escribirArchivo(vendedores);
+                System.out.println("✅ Archivo sobrescrito.");
+            } else {
+                System.out.println("❌ No se modificó el archivo.");
+            }
+        }
     }//GEN-LAST:event_JButton_ConexionMouseClicked
 
     private void JMenu_BaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_BaseMouseClicked
@@ -354,7 +468,7 @@ public class Main extends javax.swing.JFrame {
     private void JMenu_FichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseClicked
         // TODO add your handling code here:
         sql.llenarTabla(conn, JTable_ImpresionVendedores);
-        
+
         JPanel_VendedoresImpresion.setLayout(null);
         JPanel_VendedoresImpresion.setSize(736, 479);
 
@@ -409,25 +523,40 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_IniciarSesion;
+    private javax.swing.JTextArea JArea_MetasFicha;
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
     private javax.swing.JLabel JLabel_Base;
+    private javax.swing.JLabel JLabel_Bono;
     private javax.swing.JLabel JLabel_Buscar;
+    private javax.swing.JLabel JLabel_BuscarFicha;
+    private javax.swing.JLabel JLabel_Ficha;
+    private javax.swing.JLabel JLabel_FichaVendedor;
+    private javax.swing.JLabel JLabel_FirmaPago;
+    private javax.swing.JLabel JLabel_Metas;
+    private javax.swing.JLabel JLabel_Porcentajes;
+    private javax.swing.JLabel JLabel_TipoFicha;
     private javax.swing.JLabel JLable_ImpresionVendedores;
     private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
     private javax.swing.JMenu JMenu_Base;
     private javax.swing.JMenu JMenu_Ficha;
     private javax.swing.JPanel JPanel_Base;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
+    private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTextField JText_Base;
+    private javax.swing.JTextField JText_Bono;
+    private javax.swing.JTextField JText_BuscarFicha;
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_Contraseña;
+    private javax.swing.JTextField JText_Firma;
+    private javax.swing.JTextField JText_Porcentaje;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
+    private javax.swing.JTextField JText_TipoVendedor;
     private javax.swing.JTextField JText_Usuario;
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
@@ -438,11 +567,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
     SQLManagement sql = new SQLManagement();
     Connection conn = null;
 
+    ManejarArchivos binario = new ManejarArchivos("vendedores.bin");
 }

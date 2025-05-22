@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -133,6 +135,29 @@ public class SQLManagement {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "❌ Error al llenar la tabla:\n" + e.getMessage());
         }
+    }
+    
+    public HashMap<String, Vendedor> cargarVendedores(Connection conn) {
+        HashMap<String, Vendedor> vendedores = new HashMap<>();
+
+        String sql = "SELECT SlpCode, SlpName FROM OSLP";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                String id = rs.getString("SlpCode");
+                String nombre = rs.getString("SlpName");
+
+                Vendedor vendedor = new Vendedor(id, nombre);
+                vendedores.put(id, vendedor);  // Guardas en el HashMap con el id como clave
+            }
+
+        } catch (SQLException e) {
+            System.out.println("❌ Error al cargar usuarios: " + e.getMessage());
+        }
+
+        return vendedores;
     }
 
 }
