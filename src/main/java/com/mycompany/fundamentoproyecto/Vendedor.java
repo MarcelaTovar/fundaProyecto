@@ -19,6 +19,8 @@ public class Vendedor implements Serializable  {
     ArrayList <Meta> metas;
     ArrayList <Venta> ventas;
     String firmaVendedor;
+    ArrayList <String> tipo;
+    ArrayList <String> Sucursal;
 
     public Vendedor() {
     }
@@ -27,17 +29,19 @@ public class Vendedor implements Serializable  {
         this.id = id;
         this.nombre = nombre;
     }
-    
-    
 
-    public Vendedor(String id, String nombre, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor) {
+    public Vendedor(String id, String nombre, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor, ArrayList<String> tipo, ArrayList<String> Sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.comisiones = comisiones;
         this.metas = metas;
         this.ventas = ventas;
         this.firmaVendedor = firmaVendedor;
+        this.tipo = tipo;
+        this.Sucursal = Sucursal;
     }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -91,8 +95,10 @@ public class Vendedor implements Serializable  {
 
     @Override
     public String toString() {
-        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + '}';
+        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + '}';
     }
+
+    
 
     
 
