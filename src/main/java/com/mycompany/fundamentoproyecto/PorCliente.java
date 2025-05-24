@@ -12,12 +12,24 @@ import java.io.Serializable;
  * @author Osmin Tovar
  */
 public class PorCliente extends Comision{
-
+    String tipoCliente;
+    
     public PorCliente() {
     }
 
-    public PorCliente(int sucursal, double porcentaje) {
+    public PorCliente(String tipoCliente, int sucursal, double porcentaje) {
         super(sucursal, porcentaje);
+        this.tipoCliente = tipoCliente;
     }
+
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(String tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    
     
 }

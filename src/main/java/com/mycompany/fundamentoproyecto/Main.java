@@ -107,6 +107,10 @@ public class Main extends javax.swing.JFrame {
         JText_ComisionEditar2 = new javax.swing.JTextField();
         JText_ComisionEditar3 = new javax.swing.JTextField();
         JLabel_EditarVendedor = new javax.swing.JLabel();
+        JFrame_NuevaCom = new javax.swing.JFrame();
+        JPanel_NuevaCom = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        JLabel_NuevaCom = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
@@ -463,6 +467,11 @@ public class Main extends javax.swing.JFrame {
         JText_ComisionEditar.setBounds(580, 380, 120, 30);
 
         JButton_AgregarComision.setText("Agregar Tipo de Comision");
+        JButton_AgregarComision.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_AgregarComisionMouseClicked(evt);
+            }
+        });
         JPanel_EditarVendedor.add(JButton_AgregarComision);
         JButton_AgregarComision.setBounds(450, 450, 155, 40);
 
@@ -516,6 +525,42 @@ public class Main extends javax.swing.JFrame {
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
+
+        JFrame_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
+
+        JPanel_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
+        JPanel_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 394));
+        JPanel_NuevaCom.setLayout(null);
+
+        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        jLabel8.setText("Agregar Comision Especial");
+        JPanel_NuevaCom.add(jLabel8);
+        jLabel8.setBounds(250, 30, 290, 60);
+
+        JLabel_NuevaCom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diferetnesComisiones.png"))); // NOI18N
+        JPanel_NuevaCom.add(JLabel_NuevaCom);
+        JLabel_NuevaCom.setBounds(-4, 0, 740, 479);
+
+        javax.swing.GroupLayout JFrame_NuevaComLayout = new javax.swing.GroupLayout(JFrame_NuevaCom.getContentPane());
+        JFrame_NuevaCom.getContentPane().setLayout(JFrame_NuevaComLayout);
+        JFrame_NuevaComLayout.setHorizontalGroup(
+            JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_NuevaComLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(JPanel_NuevaCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        JFrame_NuevaComLayout.setVerticalGroup(
+            JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JFrame_NuevaComLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(JPanel_NuevaCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jframe");
@@ -595,7 +640,7 @@ public class Main extends javax.swing.JFrame {
         JFrame_Base.setSize(736, 479);
         JFrame_Base.setLocationRelativeTo(null);
         JFrame_Base.setLayout(null);
-        JFrame_Base.add(JPanel_Base); // ← Asegúrate de que aquí estás agregando el JPanel correcto
+        JFrame_Base.add(JPanel_Base);
         JFrame_Base.setVisible(true);
 
     }//GEN-LAST:event_JMenu_BaseMouseClicked
@@ -610,7 +655,7 @@ public class Main extends javax.swing.JFrame {
         JFrame_Ficha.setSize(736, 479);
         JFrame_Ficha.setLocationRelativeTo(null);
         JFrame_Ficha.setLayout(null);
-        JFrame_Ficha.add(JTabPane_Vendedores); // ← Asegúrate de que aquí estás agregando el JPanel correcto
+        JFrame_Ficha.add(JTabPane_Vendedores); 
         JFrame_Ficha.setVisible(true);
 
     }//GEN-LAST:event_JMenu_FichaMouseClicked
@@ -670,6 +715,18 @@ public class Main extends javax.swing.JFrame {
         binario.editarTabla(JTable_ImpresionVendedores);
     }//GEN-LAST:event_JTabPane_VendedoresMouseClicked
 
+    private void JButton_AgregarComisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_AgregarComisionMouseClicked
+        // TODO add your handling code here:
+        JPanel_NuevaCom.setLayout(null);
+        JPanel_NuevaCom.setSize(736, 479);
+
+        JFrame_NuevaCom.setSize(736, 479);
+        JFrame_NuevaCom.setLocationRelativeTo(null);
+        JFrame_NuevaCom.setLayout(null);
+        JFrame_NuevaCom.add(JPanel_NuevaCom);
+        JFrame_NuevaCom.setVisible(true);
+    }//GEN-LAST:event_JButton_AgregarComisionMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -721,6 +778,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JComboBox_TipoEditar3;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
+    private javax.swing.JFrame JFrame_NuevaCom;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
     private javax.swing.JLabel JLabel_Base;
     private javax.swing.JLabel JLabel_Bono;
@@ -734,6 +792,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel_FichaVendedor;
     private javax.swing.JLabel JLabel_FirmaPago;
     private javax.swing.JLabel JLabel_Metas;
+    private javax.swing.JLabel JLabel_NuevaCom;
     private javax.swing.JLabel JLabel_Porcentajes;
     private javax.swing.JLabel JLabel_SucursalEditar;
     private javax.swing.JLabel JLabel_TipoEditar;
@@ -746,6 +805,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel JPanel_BuscarFicha;
     private javax.swing.JPanel JPanel_BuscarFicha1;
     private javax.swing.JPanel JPanel_EditarVendedor;
+    private javax.swing.JPanel JPanel_NuevaCom;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
     private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
@@ -775,6 +835,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

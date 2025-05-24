@@ -12,12 +12,26 @@ import java.io.Serializable;
  * @author Osmin Tovar
  */
 public class PorIndirecta extends Comision{
+    Vendedor vendedorDelQueRecibe = new Vendedor();
 
     public PorIndirecta() {
     }
 
-    public PorIndirecta(int sucursal, double porcentaje) {
+    public PorIndirecta(Vendedor vendedorDelQueRecibe, int sucursal, double porcentaje) {
         super(sucursal, porcentaje);
+        this.vendedorDelQueRecibe = vendedorDelQueRecibe;
     }
+
+    public Vendedor getVendedorDelQueRecibe() {
+        return vendedorDelQueRecibe;
+    }
+
+    public void setVendedorDelQueRecibe(Vendedor vendedorDelQueRecibe) {
+        this.vendedorDelQueRecibe = vendedorDelQueRecibe;
+    }
+
+    
+    
+    
     
 }
