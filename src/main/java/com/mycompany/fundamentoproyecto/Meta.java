@@ -5,11 +5,13 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osmin Tovar
  */
-public class Meta {
+public class Meta implements Serializable{
     int bono;
     String meta;
     boolean completado;

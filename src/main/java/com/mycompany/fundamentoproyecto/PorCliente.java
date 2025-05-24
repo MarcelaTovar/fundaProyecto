@@ -5,6 +5,8 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osmin Tovar

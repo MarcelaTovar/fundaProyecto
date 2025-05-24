@@ -5,12 +5,15 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osmin Tovar
  */
-public class PorProducto extends Comision {
-
+public class PorProducto extends Comision implements Serializable {
+     private static final long serialVersionUID = 1L;
+     
     public PorProducto() {
     }
 

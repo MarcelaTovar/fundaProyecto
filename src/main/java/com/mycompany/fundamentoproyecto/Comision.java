@@ -5,13 +5,16 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osmin Tovar
  */
-public class Comision {
+public class Comision implements Serializable {
     int sucursal;
     double porcentaje;
+     private static final long serialVersionUID = 1L;
 
     public Comision() {
     }

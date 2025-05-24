@@ -265,6 +265,11 @@ public class Main extends javax.swing.JFrame {
         JTabPane_Vendedores.setMaximumSize(new java.awt.Dimension(957, 569));
         JTabPane_Vendedores.setMinimumSize(new java.awt.Dimension(957, 569));
         JTabPane_Vendedores.setPreferredSize(new java.awt.Dimension(957, 569));
+        JTabPane_Vendedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTabPane_VendedoresMouseClicked(evt);
+            }
+        });
 
         JPanel_VendedoresImpresion.setMaximumSize(new java.awt.Dimension(957, 569));
         JPanel_VendedoresImpresion.setMinimumSize(new java.awt.Dimension(957, 569));
@@ -609,7 +614,7 @@ public class Main extends javax.swing.JFrame {
 
     private void JMenu_FichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseClicked
         // TODO add your handling code here:
-        sql.llenarTabla(conn, JTable_ImpresionVendedores);
+        binario.editarTabla(JTable_ImpresionVendedores);
 
         JPanel_VendedoresImpresion.setLayout(null);
         JPanel_VendedoresImpresion.setSize(736, 479);
@@ -643,22 +648,27 @@ public class Main extends javax.swing.JFrame {
                     "Sin resultados",
                     JOptionPane.WARNING_MESSAGE);
         }
+
     }//GEN-LAST:event_JLabel_BuscarFicha1MouseClicked
 
     private void JButton_EditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_EditarMouseClicked
         // TODO add your handling code here:
-        if (JCheckBox_Sucursal1.isSelected()) {
+        if (!JText_ComisionEditar1.getText().trim().isEmpty()) {
             editarVendedor(JComboBox_SucursalEditar1, JText_ComisionEditar1, JComboBox_TipoEditar1);
         }
-        if (JCheckBox_Sucursal2.isSelected()) {
+
+        if (!JText_ComisionEditar2.getText().trim().isEmpty()) {
             editarVendedor(JComboBox_SucursalEditar2, JText_ComisionEditar2, JComboBox_TipoEditar2);
         }
-        if (JCheckBox_Sucursal3.isSelected()) {
+
+        if (!JText_ComisionEditar3.getText().trim().isEmpty()) {
             editarVendedor(JComboBox_SucursalEditar3, JText_ComisionEditar3, JComboBox_TipoEditar3);
         }
-        if (JCheckBox_Sucursal4.isSelected()) {
+
+        if (!JText_ComisionEditar.getText().trim().isEmpty()) {
             editarVendedor(JComboBox_SucursalEditar, JText_ComisionEditar, JComboBox_TipoEditar);
         }
+
         if (vendedorActivo != null) {
             binario.actualizarArchivo(vendedorActivo);
             JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
@@ -666,6 +676,11 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_JButton_EditarMouseClicked
+
+    private void JTabPane_VendedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTabPane_VendedoresMouseClicked
+        // TODO add your handling code here:
+        binario.editarTabla(JTable_ImpresionVendedores);
+    }//GEN-LAST:event_JTabPane_VendedoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -791,7 +806,7 @@ public class Main extends javax.swing.JFrame {
         Object sucursal = comboSucursal.getSelectedItem();
         Object tipo = combotipo.getSelectedItem();
         String comisionCategoria = text.getText();
-        if (sucursal.equals("Kenedy")) {
+        if (sucursal.equals("Kennedy")) {
             PorProducto comision = new PorProducto(1, Double.parseDouble(comisionCategoria));
             vendedorActivo.getSucursal().add("1");
             vendedorActivo.getTipo().add((String) tipo);

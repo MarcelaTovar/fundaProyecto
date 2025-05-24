@@ -5,13 +5,14 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Osmin Tovar
  */
-public class Venta {
+public class Venta implements Serializable{
     ArrayList <Producto> productos;
     String fecha;
     boolean propia;

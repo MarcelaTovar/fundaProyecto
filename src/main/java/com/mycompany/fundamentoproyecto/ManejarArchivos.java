@@ -3,6 +3,9 @@ package com.mycompany.fundamentoproyecto;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class ManejarArchivos {
 
@@ -28,11 +31,17 @@ public class ManejarArchivos {
         Map<String, Vendedor> datos = new HashMap<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
             datos = (Map<String, Vendedor>) ois.readObject();
-            System.out.println("Archivo leído exitosamente.");
+            System.out.println("✅ Archivo leído exitosamente. Contenido:");
+
+            // Imprimir los datos del HashMap
+            for (Map.Entry<String, Vendedor> entry : datos.entrySet()) {
+                System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
+            }
+
         } catch (FileNotFoundException e) {
-            System.out.println("Archivo no encontrado. Se devolverá un HashMap vacío.");
+            System.out.println("⚠️ Archivo no encontrado. Se devolverá un HashMap vacío.");
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
+            System.err.println("❌ Error al leer el archivo: " + e.getMessage());
         }
         return datos;
     }
@@ -66,6 +75,32 @@ public class ManejarArchivos {
         }
 
         return null;
+
+    }
+
+    public void editarTabla(JTable tabla) {
+        // Leer el archivo binario
+        Map<String, Vendedor> vendedores = new HashMap<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+            vendedores = (HashMap<String, Vendedor>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "❌ Error al leer el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Crear modelo de tabla
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Comision");
+
+        // Llenar el modelo con los datos del HashMap
+        for (Vendedor v : vendedores.values()) {
+            modelo.addRow(new Object[]{v.getNombre(), v.sumarComision()});
+        }
+
+        // Asignar el modelo a la tabla
+        tabla.setModel(modelo);
 
     }
 

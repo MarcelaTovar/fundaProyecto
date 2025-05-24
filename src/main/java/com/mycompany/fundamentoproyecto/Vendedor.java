@@ -12,15 +12,18 @@ import java.util.ArrayList;
  *
  * @author Osmin Tovar
  */
-public class Vendedor implements Serializable  {
+public class Vendedor implements Serializable {
+
     String id;
     String nombre;
-    ArrayList <Comision> comisiones;
-    ArrayList <Meta> metas;
-    ArrayList <Venta> ventas;
+    ArrayList<Comision> comisiones = new ArrayList<>();
+    ArrayList<Meta> metas = new ArrayList<>();
+    ArrayList<Venta> ventas = new ArrayList<>();
     String firmaVendedor;
-    ArrayList <String> tipo;
-    ArrayList <String> Sucursal;
+    ArrayList<String> tipo = new ArrayList<>();
+    ArrayList<String> Sucursal = new ArrayList<>();
+    int comisionTotal;
+    private static final long serialVersionUID = 1L;
 
     public Vendedor() {
     }
@@ -41,6 +44,14 @@ public class Vendedor implements Serializable  {
         this.Sucursal = Sucursal;
     }
 
+    public int getComisionTotal() {
+        return comisionTotal;
+    }
+
+    public void setComisionTotal(int comisionTotal) {
+        this.comisionTotal = comisionTotal;
+    }
+
     public ArrayList<String> getTipo() {
         return tipo;
     }
@@ -56,8 +67,7 @@ public class Vendedor implements Serializable  {
     public void setSucursal(ArrayList<String> Sucursal) {
         this.Sucursal = Sucursal;
     }
-    
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -65,8 +75,6 @@ public class Vendedor implements Serializable  {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
 
     public String getId() {
         return id;
@@ -108,16 +116,16 @@ public class Vendedor implements Serializable  {
         this.firmaVendedor = firmaVendedor;
     }
 
+    public double sumarComision() {
+        for (int i = 0; i < this.comisiones.size(); i++) {
+            this.comisionTotal += this.comisiones.get(i).porcentaje;
+        }
+        return this.comisionTotal;
+    }
+
     @Override
     public String toString() {
         return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + '}';
     }
 
-    
-
-    
-
-    
-    
-    
 }
