@@ -106,10 +106,6 @@ public class Main extends javax.swing.JFrame {
         JText_ComisionEditar1 = new javax.swing.JTextField();
         JText_ComisionEditar2 = new javax.swing.JTextField();
         JText_ComisionEditar3 = new javax.swing.JTextField();
-        JCheckBox_Sucursal4 = new javax.swing.JCheckBox();
-        JCheckBox_Sucursal1 = new javax.swing.JCheckBox();
-        JCheckBox_Sucursal2 = new javax.swing.JCheckBox();
-        JCheckBox_Sucursal3 = new javax.swing.JCheckBox();
         JLabel_EditarVendedor = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
@@ -508,14 +504,6 @@ public class Main extends javax.swing.JFrame {
         JText_ComisionEditar2.setBounds(580, 280, 120, 30);
         JPanel_EditarVendedor.add(JText_ComisionEditar3);
         JText_ComisionEditar3.setBounds(580, 330, 120, 30);
-        JPanel_EditarVendedor.add(JCheckBox_Sucursal4);
-        JCheckBox_Sucursal4.setBounds(740, 380, 21, 21);
-        JPanel_EditarVendedor.add(JCheckBox_Sucursal1);
-        JCheckBox_Sucursal1.setBounds(740, 230, 20, 21);
-        JPanel_EditarVendedor.add(JCheckBox_Sucursal2);
-        JCheckBox_Sucursal2.setBounds(740, 280, 21, 21);
-        JPanel_EditarVendedor.add(JCheckBox_Sucursal3);
-        JCheckBox_Sucursal3.setBounds(740, 330, 21, 21);
 
         JLabel_EditarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Editar_Vendedor.png"))); // NOI18N
         JLabel_EditarVendedor.setMaximumSize(new java.awt.Dimension(957, 569));
@@ -629,7 +617,7 @@ public class Main extends javax.swing.JFrame {
 
     private void JLabel_BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarMouseClicked
         // TODO add your handling code here:
-        sql.buscarEnTabla(conn, JTable_ImpresionVendedores, JText_BuscarVendedor.getText());
+        binario.buscarYMostrarVendedorEnTabla(JText_BuscarVendedor.getText(), JTable_ImpresionVendedores);
     }//GEN-LAST:event_JLabel_BuscarMouseClicked
 
     private void JLabel_BuscarFicha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarFicha1MouseClicked
@@ -723,10 +711,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_AgregarComision;
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Editar;
-    private javax.swing.JCheckBox JCheckBox_Sucursal1;
-    private javax.swing.JCheckBox JCheckBox_Sucursal2;
-    private javax.swing.JCheckBox JCheckBox_Sucursal3;
-    private javax.swing.JCheckBox JCheckBox_Sucursal4;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar2;

@@ -91,52 +91,8 @@ public class SQLManagement {
         return conn;
     }
 
-    public void llenarTabla(Connection conn, JTable tabla) {
-        String[] columnas = {"Nombre", "Comision"};
-        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
 
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT SlpName, Commission FROM OSLP");
-
-            while (rs.next()) {
-                Object[] fila = {
-                    rs.getString("SlpName"),
-                    rs.getString("Commission")
-                };
-                modelo.addRow(fila);
-            }
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "❌ Error al llenar la tabla:\n" + e.getMessage());
-        }
-    }
     
-    public void buscarEnTabla (Connection conn, JTable tabla, String nombre){
-        String[] columnas = {"Nombre", "Comision"};
-        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
-
-        try {
-            Statement stmt = conn.createStatement();
-            String query = "Select SlpName, Commission FROM OSLP WHERE SlpName = '"+nombre+"'";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                Object[] fila = {
-                    rs.getString("SlpName"),
-                    rs.getString("Commission")
-                };
-                modelo.addRow(fila);
-            }
-
-            tabla.setModel(modelo);
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "❌ Error al llenar la tabla:\n" + e.getMessage());
-        }
-    }
     
     public HashMap<String, Vendedor> cargarVendedores(Connection conn) {
         HashMap<String, Vendedor> vendedores = new HashMap<>();

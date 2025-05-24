@@ -104,4 +104,30 @@ public class ManejarArchivos {
 
     }
 
+    public void buscarYMostrarVendedorEnTabla(String nombreBuscado, JTable tabla) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+            Map<String, Vendedor> datos = (Map<String, Vendedor>) ois.readObject();
+
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+            for (Vendedor v : datos.values()) {
+                if (v.getNombre().equalsIgnoreCase(nombreBuscado)) {
+                    // Agrega una fila con los datos del vendedor encontrado
+                    modelo.addRow(new Object[]{
+                        v.getNombre(),
+                        v.getComisionTotal()
+                    });
+                    return; // solo muestra el primero que coincida
+                }
+            }
+
+            // Si no se encuentra
+            JOptionPane.showMessageDialog(null, "❌ Vendedor no encontrado.", "Error", JOptionPane.WARNING_MESSAGE);
+
+        } catch (IOException | ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "❌ Error al leer el archivo: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 }
