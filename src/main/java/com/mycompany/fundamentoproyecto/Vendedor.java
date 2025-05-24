@@ -40,9 +40,24 @@ public class Vendedor implements Serializable  {
         this.tipo = tipo;
         this.Sucursal = Sucursal;
     }
-    
-    
 
+    public ArrayList<String> getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(ArrayList<String> tipo) {
+        this.tipo = tipo;
+    }
+
+    public ArrayList<String> getSucursal() {
+        return Sucursal;
+    }
+
+    public void setSucursal(ArrayList<String> Sucursal) {
+        this.Sucursal = Sucursal;
+    }
+    
+    
     public String getNombre() {
         return nombre;
     }

@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class SQLManagement {
@@ -150,7 +151,7 @@ public class SQLManagement {
                 String nombre = rs.getString("SlpName");
 
                 Vendedor vendedor = new Vendedor(id, nombre);
-                vendedores.put(id, vendedor);  // Guardas en el HashMap con el id como clave
+                vendedores.put(id, vendedor); 
             }
 
         } catch (SQLException e) {
@@ -159,5 +160,6 @@ public class SQLManagement {
 
         return vendedores;
     }
+
 
 }

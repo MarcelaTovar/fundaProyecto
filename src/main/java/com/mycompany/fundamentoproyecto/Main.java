@@ -9,8 +9,10 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -67,7 +69,7 @@ public class Main extends javax.swing.JFrame {
         JLable_ImpresionVendedores = new javax.swing.JLabel();
         JTabPane_FichaPorVendedor = new javax.swing.JPanel();
         JLabel_FichaVendedor = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        JPanel_BuscarFicha = new javax.swing.JPanel();
         JText_BuscarFicha = new javax.swing.JTextField();
         JLabel_BuscarFicha = new javax.swing.JLabel();
         JLabel_TipoFicha = new javax.swing.JLabel();
@@ -82,7 +84,33 @@ public class Main extends javax.swing.JFrame {
         JText_Porcentaje = new javax.swing.JTextField();
         JText_Firma = new javax.swing.JTextField();
         JLabel_Ficha = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        JPanel_EditarVendedor = new javax.swing.JPanel();
+        JLabel_EditarVendedorPrincipal = new javax.swing.JLabel();
+        JLabel_TipoEditar = new javax.swing.JLabel();
+        JLabel_SucursalEditar = new javax.swing.JLabel();
+        JLabel_ComisionEditar = new javax.swing.JLabel();
+        JPanel_BuscarFicha1 = new javax.swing.JPanel();
+        JLabel_BuscarFicha1 = new javax.swing.JLabel();
+        JText_BuscarFicha1 = new javax.swing.JTextField();
+        JComboBox_SucursalEditar = new javax.swing.JComboBox<>();
+        JComboBox_TipoEditar = new javax.swing.JComboBox<>();
+        JText_ComisionEditar = new javax.swing.JTextField();
+        JButton_AgregarComision = new javax.swing.JButton();
+        JButton_Editar = new javax.swing.JButton();
+        JComboBox_SucursalEditar1 = new javax.swing.JComboBox<>();
+        JComboBox_SucursalEditar2 = new javax.swing.JComboBox<>();
+        JComboBox_SucursalEditar3 = new javax.swing.JComboBox<>();
+        JComboBox_TipoEditar1 = new javax.swing.JComboBox<>();
+        JComboBox_TipoEditar2 = new javax.swing.JComboBox<>();
+        JComboBox_TipoEditar3 = new javax.swing.JComboBox<>();
+        JText_ComisionEditar1 = new javax.swing.JTextField();
+        JText_ComisionEditar2 = new javax.swing.JTextField();
+        JText_ComisionEditar3 = new javax.swing.JTextField();
+        JCheckBox_Sucursal4 = new javax.swing.JCheckBox();
+        JCheckBox_Sucursal1 = new javax.swing.JCheckBox();
+        JCheckBox_Sucursal2 = new javax.swing.JCheckBox();
+        JCheckBox_Sucursal3 = new javax.swing.JCheckBox();
+        JLabel_EditarVendedor = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
@@ -292,32 +320,32 @@ public class Main extends javax.swing.JFrame {
         JTabPane_FichaPorVendedor.add(JLabel_FichaVendedor);
         JLabel_FichaVendedor.setBounds(330, 40, 340, 48);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        JPanel_BuscarFicha.setBackground(new java.awt.Color(255, 255, 255));
 
         JText_BuscarFicha.setBorder(null);
 
         JLabel_BuscarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPanel_BuscarFichaLayout = new javax.swing.GroupLayout(JPanel_BuscarFicha);
+        JPanel_BuscarFicha.setLayout(JPanel_BuscarFichaLayout);
+        JPanel_BuscarFichaLayout.setHorizontalGroup(
+            JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel_BuscarFichaLayout.createSequentialGroup()
                 .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLabel_BuscarFicha))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        JPanel_BuscarFichaLayout.setVerticalGroup(
+            JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanel_BuscarFichaLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(JLabel_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        JTabPane_FichaPorVendedor.add(jPanel1);
-        jPanel1.setBounds(260, 90, 400, 30);
+        JTabPane_FichaPorVendedor.add(JPanel_BuscarFicha);
+        JPanel_BuscarFicha.setBounds(260, 90, 400, 30);
 
         JLabel_TipoFicha.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_TipoFicha.setText("Tipo de Vendedor");
@@ -365,18 +393,133 @@ public class Main extends javax.swing.JFrame {
 
         JTabPane_Vendedores.addTab("Ficha Por Vendedor", JTabPane_FichaPorVendedor);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 957, Short.MAX_VALUE)
+        JPanel_EditarVendedor.setMaximumSize(new java.awt.Dimension(957, 569));
+        JPanel_EditarVendedor.setMinimumSize(new java.awt.Dimension(957, 569));
+        JPanel_EditarVendedor.setPreferredSize(new java.awt.Dimension(957, 569));
+        JPanel_EditarVendedor.setLayout(null);
+
+        JLabel_EditarVendedorPrincipal.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        JLabel_EditarVendedorPrincipal.setText("Editar Vendedor");
+        JPanel_EditarVendedor.add(JLabel_EditarVendedorPrincipal);
+        JLabel_EditarVendedorPrincipal.setBounds(390, 110, 210, 33);
+
+        JLabel_TipoEditar.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_TipoEditar.setText("Tipo de Vendedor");
+        JPanel_EditarVendedor.add(JLabel_TipoEditar);
+        JLabel_TipoEditar.setBounds(380, 200, 110, 20);
+
+        JLabel_SucursalEditar.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_SucursalEditar.setText("Sucursal");
+        JPanel_EditarVendedor.add(JLabel_SucursalEditar);
+        JLabel_SucursalEditar.setBounds(180, 200, 80, 19);
+
+        JLabel_ComisionEditar.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JLabel_ComisionEditar.setText("Comision");
+        JPanel_EditarVendedor.add(JLabel_ComisionEditar);
+        JLabel_ComisionEditar.setBounds(610, 200, 53, 19);
+
+        JPanel_BuscarFicha1.setBackground(new java.awt.Color(255, 255, 255));
+
+        JLabel_BuscarFicha1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JLabel_BuscarFicha1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JLabel_BuscarFicha1MouseClicked(evt);
+            }
+        });
+
+        JText_BuscarFicha1.setBorder(null);
+
+        javax.swing.GroupLayout JPanel_BuscarFicha1Layout = new javax.swing.GroupLayout(JPanel_BuscarFicha1);
+        JPanel_BuscarFicha1.setLayout(JPanel_BuscarFicha1Layout);
+        JPanel_BuscarFicha1Layout.setHorizontalGroup(
+            JPanel_BuscarFicha1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel_BuscarFicha1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JText_BuscarFicha1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JLabel_BuscarFicha1))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
+        JPanel_BuscarFicha1Layout.setVerticalGroup(
+            JPanel_BuscarFicha1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanel_BuscarFicha1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(JPanel_BuscarFicha1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(JLabel_BuscarFicha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JText_BuscarFicha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        JTabPane_Vendedores.addTab("Editar Vendedor", jPanel2);
+        JPanel_EditarVendedor.add(JPanel_BuscarFicha1);
+        JPanel_BuscarFicha1.setBounds(260, 150, 400, 30);
+
+        JComboBox_SucursalEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_EditarVendedor.add(JComboBox_SucursalEditar);
+        JComboBox_SucursalEditar.setBounds(180, 380, 110, 30);
+
+        JComboBox_TipoEditar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_EditarVendedor.add(JComboBox_TipoEditar);
+        JComboBox_TipoEditar.setBounds(380, 380, 110, 30);
+        JPanel_EditarVendedor.add(JText_ComisionEditar);
+        JText_ComisionEditar.setBounds(580, 380, 120, 30);
+
+        JButton_AgregarComision.setText("Agregar Tipo de Comision");
+        JPanel_EditarVendedor.add(JButton_AgregarComision);
+        JButton_AgregarComision.setBounds(450, 450, 155, 40);
+
+        JButton_Editar.setText("Editar");
+        JButton_Editar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_EditarMouseClicked(evt);
+            }
+        });
+        JPanel_EditarVendedor.add(JButton_Editar);
+        JButton_Editar.setBounds(330, 450, 80, 40);
+
+        JComboBox_SucursalEditar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_EditarVendedor.add(JComboBox_SucursalEditar1);
+        JComboBox_SucursalEditar1.setBounds(180, 230, 110, 30);
+
+        JComboBox_SucursalEditar2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_EditarVendedor.add(JComboBox_SucursalEditar2);
+        JComboBox_SucursalEditar2.setBounds(180, 280, 110, 30);
+
+        JComboBox_SucursalEditar3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_EditarVendedor.add(JComboBox_SucursalEditar3);
+        JComboBox_SucursalEditar3.setBounds(180, 330, 110, 30);
+
+        JComboBox_TipoEditar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_EditarVendedor.add(JComboBox_TipoEditar1);
+        JComboBox_TipoEditar1.setBounds(380, 230, 110, 30);
+
+        JComboBox_TipoEditar2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_EditarVendedor.add(JComboBox_TipoEditar2);
+        JComboBox_TipoEditar2.setBounds(380, 280, 110, 30);
+
+        JComboBox_TipoEditar3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_EditarVendedor.add(JComboBox_TipoEditar3);
+        JComboBox_TipoEditar3.setBounds(380, 330, 110, 30);
+        JPanel_EditarVendedor.add(JText_ComisionEditar1);
+        JText_ComisionEditar1.setBounds(580, 230, 120, 30);
+        JPanel_EditarVendedor.add(JText_ComisionEditar2);
+        JText_ComisionEditar2.setBounds(580, 280, 120, 30);
+        JPanel_EditarVendedor.add(JText_ComisionEditar3);
+        JText_ComisionEditar3.setBounds(580, 330, 120, 30);
+        JPanel_EditarVendedor.add(JCheckBox_Sucursal4);
+        JCheckBox_Sucursal4.setBounds(740, 380, 21, 21);
+        JPanel_EditarVendedor.add(JCheckBox_Sucursal1);
+        JCheckBox_Sucursal1.setBounds(740, 230, 20, 21);
+        JPanel_EditarVendedor.add(JCheckBox_Sucursal2);
+        JCheckBox_Sucursal2.setBounds(740, 280, 21, 21);
+        JPanel_EditarVendedor.add(JCheckBox_Sucursal3);
+        JCheckBox_Sucursal3.setBounds(740, 330, 21, 21);
+
+        JLabel_EditarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Editar_Vendedor.png"))); // NOI18N
+        JLabel_EditarVendedor.setMaximumSize(new java.awt.Dimension(957, 569));
+        JLabel_EditarVendedor.setMinimumSize(new java.awt.Dimension(957, 569));
+        JLabel_EditarVendedor.setPreferredSize(new java.awt.Dimension(957, 569));
+        JPanel_EditarVendedor.add(JLabel_EditarVendedor);
+        JLabel_EditarVendedor.setBounds(0, 0, 957, 569);
+
+        JTabPane_Vendedores.addTab("Editar Sucursal y Tipo", JPanel_EditarVendedor);
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
@@ -457,7 +600,6 @@ public class Main extends javax.swing.JFrame {
         JPanel_Base.setSize(736, 479);
 
         JFrame_Base.setSize(736, 479);
-        JFrame_Base.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFrame_Base.setLocationRelativeTo(null);
         JFrame_Base.setLayout(null);
         JFrame_Base.add(JPanel_Base); // ← Asegúrate de que aquí estás agregando el JPanel correcto
@@ -473,7 +615,6 @@ public class Main extends javax.swing.JFrame {
         JPanel_VendedoresImpresion.setSize(736, 479);
 
         JFrame_Ficha.setSize(736, 479);
-        JFrame_Ficha.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFrame_Ficha.setLocationRelativeTo(null);
         JFrame_Ficha.setLayout(null);
         JFrame_Ficha.add(JTabPane_Vendedores); // ← Asegúrate de que aquí estás agregando el JPanel correcto
@@ -485,6 +626,46 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         sql.buscarEnTabla(conn, JTable_ImpresionVendedores, JText_BuscarVendedor.getText());
     }//GEN-LAST:event_JLabel_BuscarMouseClicked
+
+    private void JLabel_BuscarFicha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarFicha1MouseClicked
+        // TODO add your handling code here:
+        String nombre = JText_BuscarFicha1.getText();
+        vendedorActivo = binario.buscarVendedor(nombre);
+
+        if (vendedorActivo != null) {
+            JOptionPane.showMessageDialog(null,
+                    "✅ Vendedor encontrado:\nID: " + vendedorActivo.getId() + "\nNombre: " + vendedorActivo.getNombre(),
+                    "Resultado de búsqueda",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "❌ No se encontró ningún vendedor con el nombre: " + nombre,
+                    "Sin resultados",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_JLabel_BuscarFicha1MouseClicked
+
+    private void JButton_EditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_EditarMouseClicked
+        // TODO add your handling code here:
+        if (JCheckBox_Sucursal1.isSelected()) {
+            editarVendedor(JComboBox_SucursalEditar1, JText_ComisionEditar1, JComboBox_TipoEditar1);
+        }
+        if (JCheckBox_Sucursal2.isSelected()) {
+            editarVendedor(JComboBox_SucursalEditar2, JText_ComisionEditar2, JComboBox_TipoEditar2);
+        }
+        if (JCheckBox_Sucursal3.isSelected()) {
+            editarVendedor(JComboBox_SucursalEditar3, JText_ComisionEditar3, JComboBox_TipoEditar3);
+        }
+        if (JCheckBox_Sucursal4.isSelected()) {
+            editarVendedor(JComboBox_SucursalEditar, JText_ComisionEditar, JComboBox_TipoEditar);
+        }
+        if (vendedorActivo != null) {
+            binario.actualizarArchivo(vendedorActivo);
+            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JButton_EditarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -524,7 +705,21 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_IniciarSesion;
     private javax.swing.JTextArea JArea_MetasFicha;
+    private javax.swing.JButton JButton_AgregarComision;
     private javax.swing.JButton JButton_Conexion;
+    private javax.swing.JButton JButton_Editar;
+    private javax.swing.JCheckBox JCheckBox_Sucursal1;
+    private javax.swing.JCheckBox JCheckBox_Sucursal2;
+    private javax.swing.JCheckBox JCheckBox_Sucursal3;
+    private javax.swing.JCheckBox JCheckBox_Sucursal4;
+    private javax.swing.JComboBox<String> JComboBox_SucursalEditar;
+    private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
+    private javax.swing.JComboBox<String> JComboBox_SucursalEditar2;
+    private javax.swing.JComboBox<String> JComboBox_SucursalEditar3;
+    private javax.swing.JComboBox<String> JComboBox_TipoEditar;
+    private javax.swing.JComboBox<String> JComboBox_TipoEditar1;
+    private javax.swing.JComboBox<String> JComboBox_TipoEditar2;
+    private javax.swing.JComboBox<String> JComboBox_TipoEditar3;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
@@ -532,17 +727,26 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel_Bono;
     private javax.swing.JLabel JLabel_Buscar;
     private javax.swing.JLabel JLabel_BuscarFicha;
+    private javax.swing.JLabel JLabel_BuscarFicha1;
+    private javax.swing.JLabel JLabel_ComisionEditar;
+    private javax.swing.JLabel JLabel_EditarVendedor;
+    private javax.swing.JLabel JLabel_EditarVendedorPrincipal;
     private javax.swing.JLabel JLabel_Ficha;
     private javax.swing.JLabel JLabel_FichaVendedor;
     private javax.swing.JLabel JLabel_FirmaPago;
     private javax.swing.JLabel JLabel_Metas;
     private javax.swing.JLabel JLabel_Porcentajes;
+    private javax.swing.JLabel JLabel_SucursalEditar;
+    private javax.swing.JLabel JLabel_TipoEditar;
     private javax.swing.JLabel JLabel_TipoFicha;
     private javax.swing.JLabel JLable_ImpresionVendedores;
     private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
     private javax.swing.JMenu JMenu_Base;
     private javax.swing.JMenu JMenu_Ficha;
     private javax.swing.JPanel JPanel_Base;
+    private javax.swing.JPanel JPanel_BuscarFicha;
+    private javax.swing.JPanel JPanel_BuscarFicha1;
+    private javax.swing.JPanel JPanel_EditarVendedor;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
     private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
@@ -550,7 +754,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_Bono;
     private javax.swing.JTextField JText_BuscarFicha;
+    private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
+    private javax.swing.JTextField JText_ComisionEditar;
+    private javax.swing.JTextField JText_ComisionEditar1;
+    private javax.swing.JTextField JText_ComisionEditar2;
+    private javax.swing.JTextField JText_ComisionEditar3;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
     private javax.swing.JTextField JText_Porcentaje;
@@ -567,8 +776,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
@@ -577,4 +784,33 @@ public class Main extends javax.swing.JFrame {
     Connection conn = null;
 
     ManejarArchivos binario = new ManejarArchivos("vendedores.bin");
+    Vendedor vendedorActivo = new Vendedor();
+
+    //Funciones
+    public void editarVendedor(JComboBox comboSucursal, JTextField text, JComboBox combotipo) {
+        Object sucursal = comboSucursal.getSelectedItem();
+        Object tipo = combotipo.getSelectedItem();
+        String comisionCategoria = text.getText();
+        if (sucursal.equals("Kenedy")) {
+            PorProducto comision = new PorProducto(1, Double.parseDouble(comisionCategoria));
+            vendedorActivo.getSucursal().add("1");
+            vendedorActivo.getTipo().add((String) tipo);
+            vendedorActivo.getComisiones().add(comision);
+        } else if (sucursal.equals("San Angel")) {
+            PorProducto comision = new PorProducto(2, Double.parseDouble(comisionCategoria));
+            vendedorActivo.getSucursal().add("2");
+            vendedorActivo.getTipo().add((String) tipo);
+            vendedorActivo.getComisiones().add(comision);
+        } else if (sucursal.equals("Ruben Dario")) {
+            PorProducto comision = new PorProducto(3, Double.parseDouble(comisionCategoria));
+            vendedorActivo.getSucursal().add("3");
+            vendedorActivo.getTipo().add((String) tipo);
+            vendedorActivo.getComisiones().add(comision);
+        } else if (sucursal.equals("City Mall")) {
+            PorProducto comision = new PorProducto(4, Double.parseDouble(comisionCategoria));
+            vendedorActivo.getSucursal().add("4");
+            vendedorActivo.getTipo().add((String) tipo);
+            vendedorActivo.getComisiones().add(comision);
+        }
+    }
 }

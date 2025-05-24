@@ -43,5 +43,30 @@ public class ManejarArchivos {
         datos.put(nuevoRegistro.getId(), nuevoRegistro); // actualiza si ya existe
         escribirArchivo(datos);
     }
-}
 
+    public Vendedor buscarVendedor(String nombre) {
+        Map<String, Vendedor> datos = new HashMap<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
+            datos = (Map<String, Vendedor>) ois.readObject();
+            System.out.println("📂 Archivo leído exitosamente.");
+
+            for (Vendedor v : datos.values()) {
+                if (v.getNombre().equalsIgnoreCase(nombre)) { // Ignora mayúsculas/minúsculas
+                    return v; // Retorna el primer vendedor que coincida por nombre
+                }
+            }
+
+            System.out.println("🔍 No se encontró un vendedor con el nombre: " + nombre);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("⚠️ Archivo no encontrado.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("❌ Error al leer el archivo: " + e.getMessage());
+        }
+
+        return null;
+
+    }
+
+}
