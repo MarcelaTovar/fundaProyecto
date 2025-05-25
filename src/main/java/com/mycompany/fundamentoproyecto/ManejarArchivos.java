@@ -1,6 +1,7 @@
 package com.mycompany.fundamentoproyecto;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -23,6 +24,54 @@ public class ManejarArchivos {
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo: " + e.getMessage());
         }
+    }
+
+    public void guardarComoBinario(String rutaTexto, String rutaBinario) {
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        // 1. Leer el archivo de texto
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaTexto))) {
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(",");
+
+                if (partes.length == 2) {
+                    String categoria = partes[1].trim();
+                    int id = Integer.parseInt(partes[0].trim());
+
+                    productos.add(new Producto(categoria, id));
+                }
+            }
+
+        } catch (IOException e) {
+            System.err.println("❌ Error al leer el archivo de texto: " + e.getMessage());
+            return;
+        }
+
+        // 2. Escribir el ArrayList en un archivo binario
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaBinario))) {
+            oos.writeObject(productos);
+            System.out.println("✅ Datos guardados exitosamente en binario.");
+        } catch (IOException e) {
+            System.err.println("❌ Error al escribir el archivo binario: " + e.getMessage());
+        }
+    }
+
+    public ArrayList<Producto> leerProducto(String rutaBinario) {
+        ArrayList<Producto> productos = new ArrayList<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaBinario))) {
+            productos = (ArrayList<Producto>) ois.readObject();
+            System.out.println("✅ Archivo leído exitosamente:");
+            for (Producto p : productos) {
+                System.out.println(p);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("❌ Error al leer el archivo binario: " + e.getMessage());
+        }
+
+        return productos;
     }
 
     // Leer HashMap desde el archivo binario
@@ -91,12 +140,12 @@ public class ManejarArchivos {
 
         // Crear modelo de tabla
         DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Comision");
 
         // Llenar el modelo con los datos del HashMap
         for (Vendedor v : vendedores.values()) {
-            modelo.addRow(new Object[]{v.getNombre(), v.sumarComision()});
+            modelo.addRow(new Object[]{v.getId(),v.getNombre()});
         }
 
         // Asignar el modelo a la tabla

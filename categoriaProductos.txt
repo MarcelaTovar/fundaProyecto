@@ -1,0 +1,15 @@
+101,Accesorios
+102,Aceites y Lubricante
+103,Bujías
+104,Filtros de Aire
+105,Equipo
+106,Filtros de Aceite
+107,Filtros Otros
+108,Fricciones pastilla
+109,Liquido y Aditivos
+110,Llantas Importadas
+111,Fricciones en bloque
+112,Plomo
+113,Tubos y Protectores
+114,Remaches
+115,Repuestos

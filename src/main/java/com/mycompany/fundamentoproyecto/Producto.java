@@ -13,17 +13,19 @@ import java.io.Serializable;
  */
 public class Producto implements Serializable{
     String categoria;
-    String nombre;
-    int valor;
+    int id;
+    double porcentajeComision;
+    int cantidadVendida;
 
     public Producto() {
     }
 
-    public Producto(String categoria, String nombre, int valor) {
+    public Producto(String categoria, int id) {
         this.categoria = categoria;
-        this.nombre = nombre;
-        this.valor = valor;
+        this.id = id;
     }
+
+    
 
     public String getCategoria() {
         return categoria;
@@ -33,26 +35,43 @@ public class Producto implements Serializable{
         this.categoria = categoria;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getId() {
+        return id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getValor() {
-        return valor;
+    public double getPorcentajeComision() {
+        return porcentajeComision;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public void setPorcentajeComision(double porcentajeComision) {
+        this.porcentajeComision = porcentajeComision;
     }
+
+    public int getCantidadVendida() {
+        return cantidadVendida;
+    }
+
+    public void setCantidadVendida(int cantidadVendida) {
+        this.cantidadVendida = cantidadVendida;
+    }
+
+    public double comision(){
+        double comision = 0;
+        comision = 10000 * porcentajeComision;
+        return comision;
+    }
+    
 
     @Override
     public String toString() {
-        return "Producto{" + "categoria=" + categoria + ", nombre=" + nombre + ", valor=" + valor + '}';
+        return "Producto{" + "categoria=" + categoria + ", id=" + id + '}';
     }
+    
+    
     
     
 }

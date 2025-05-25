@@ -6,6 +6,7 @@
 package com.mycompany.fundamentoproyecto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +14,8 @@ import java.io.Serializable;
  */
 public class PorProducto extends Comision implements Serializable {
      private static final long serialVersionUID = 1L;
+     ArrayList <Producto> comisionPorProducto = new ArrayList();
+
      
     public PorProducto() {
     }
@@ -20,7 +23,24 @@ public class PorProducto extends Comision implements Serializable {
     public PorProducto(int sucursal, double porcentaje) {
         super(sucursal, porcentaje);
     }
+
+    public PorProducto(ArrayList<Producto> comisionPorProducto) {
+        this.comisionPorProducto = comisionPorProducto;
+    }
+
+    public ArrayList<Producto> getComisionPorProducto() {
+        return comisionPorProducto;
+    }
+
+    public void setComisionPorProducto(ArrayList<Producto> comisionPorProducto) {
+        this.comisionPorProducto = comisionPorProducto;
+    }
     
+    public void calcularComision(){
+        for (int i = 0; i < comisionPorProducto.size(); i++) {
+            comisionFinal += comisionPorProducto.get(i).comision();
+        }
+    }
     
     
 }

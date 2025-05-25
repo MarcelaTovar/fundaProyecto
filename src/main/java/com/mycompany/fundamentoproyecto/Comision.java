@@ -15,6 +15,7 @@ public class Comision implements Serializable {
     int sucursal;
     double porcentaje;
      private static final long serialVersionUID = 1L;
+    double comisionFinal;
 
     public Comision() {
     }
@@ -43,6 +44,14 @@ public class Comision implements Serializable {
     @Override
     public String toString() {
         return "Comision{" + "sucursal=" + sucursal + ", porcentaje=" + porcentaje + '}';
+    }
+
+    public double getComisionFinal() {
+        return comisionFinal;
+    }
+
+    public void setComisionFinal(double comisionFinal) {
+        this.comisionFinal = comisionFinal;
     }
     
 }
