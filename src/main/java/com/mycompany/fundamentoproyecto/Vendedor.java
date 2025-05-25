@@ -116,12 +116,7 @@ public class Vendedor implements Serializable {
         this.firmaVendedor = firmaVendedor;
     }
 
-    public double sumarComision() {
-        for (int i = 0; i < this.comisiones.size(); i++) {
-            this.comisionTotal += this.comisiones.get(i).porcentaje;
-        }
-        return this.comisionTotal;
-    }
+
 
     @Override
     public String toString() {

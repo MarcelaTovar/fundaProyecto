@@ -742,6 +742,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = JText_BuscarFicha1.getText();
         vendedorActivo = binario.buscarVendedor(nombre);
+        System.out.println(vendedorActivo);
 
         if (vendedorActivo != null) {
             JOptionPane.showMessageDialog(null,
@@ -759,10 +760,24 @@ public class Main extends javax.swing.JFrame {
 
     private void JButton_EditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_EditarMouseClicked
         // TODO add your handling code here:
-        ArrayList <Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-        vendedorActivo.getComisiones().add(new PorProducto(productosDelVendedor));
-        
-        
+        if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Kennedy")) {
+            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+            PorProducto p = new PorProducto(productosDelVendedor,1);
+            vendedorActivo.getComisiones().add(p);
+        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("San Angel")){
+            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+            PorProducto p = new PorProducto(productosDelVendedor,2);
+            vendedorActivo.getComisiones().add(p);
+        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Ruben Dario")){
+            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+            PorProducto p = new PorProducto(productosDelVendedor,3);
+            vendedorActivo.getComisiones().add(p);
+        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("City Mall")){
+            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+            PorProducto p = new PorProducto(productosDelVendedor,4);
+            vendedorActivo.getComisiones().add(p);
+        }
+
         if (vendedorActivo != null) {
             binario.actualizarArchivo(vendedorActivo);
             JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
@@ -918,33 +933,6 @@ public class Main extends javax.swing.JFrame {
     Vendedor vendedorActivo = new Vendedor();
 
     //Funciones
-    public void editarVendedor(JComboBox comboSucursal, JTextField text, JComboBox combotipo) {
-        Object sucursal = comboSucursal.getSelectedItem();
-        Object tipo = combotipo.getSelectedItem();
-        String comisionCategoria = text.getText();
-        if (sucursal.equals("Kennedy")) {
-            PorProducto comision = new PorProducto(1, Double.parseDouble(comisionCategoria));
-            vendedorActivo.getSucursal().add("1");
-            vendedorActivo.getTipo().add((String) tipo);
-            vendedorActivo.getComisiones().add(comision);
-        } else if (sucursal.equals("San Angel")) {
-            PorProducto comision = new PorProducto(2, Double.parseDouble(comisionCategoria));
-            vendedorActivo.getSucursal().add("2");
-            vendedorActivo.getTipo().add((String) tipo);
-            vendedorActivo.getComisiones().add(comision);
-        } else if (sucursal.equals("Ruben Dario")) {
-            PorProducto comision = new PorProducto(3, Double.parseDouble(comisionCategoria));
-            vendedorActivo.getSucursal().add("3");
-            vendedorActivo.getTipo().add((String) tipo);
-            vendedorActivo.getComisiones().add(comision);
-        } else if (sucursal.equals("City Mall")) {
-            PorProducto comision = new PorProducto(4, Double.parseDouble(comisionCategoria));
-            vendedorActivo.getSucursal().add("4");
-            vendedorActivo.getTipo().add((String) tipo);
-            vendedorActivo.getComisiones().add(comision);
-        }
-    }
-
     public void cargarProductos(JTable tabla, String rutaBinario) {
         File archivo = new File(rutaBinario);
 
@@ -982,13 +970,13 @@ public class Main extends javax.swing.JFrame {
             try {
                 int id = Integer.parseInt(modelo.getValueAt(i, 0).toString());
                 String categoria = modelo.getValueAt(i, 1).toString();
-                String porcentajeComision = modelo.getValueAt(i, 1).toString();
+                double porcentajeComision = Double.parseDouble(modelo.getValueAt(i, 2).toString());
 
                 Producto producto = new Producto(categoria, id);
-                producto.setPorcentajeComision(Double.parseDouble(porcentajeComision));
+                producto.setPorcentajeComision(porcentajeComision);
                 listaProductos.add(producto);
             } catch (NumberFormatException e) {
-                System.err.println("⚠️ Error al convertir ID en la fila " + i + ": " + e.getMessage());
+                System.err.println("⚠️ Error al convertir número en la fila " + i + ": " + e.getMessage());
             } catch (Exception e) {
                 System.err.println("⚠️ Error general en la fila " + i + ": " + e.getMessage());
             }
@@ -996,4 +984,5 @@ public class Main extends javax.swing.JFrame {
 
         return listaProductos;
     }
+
 }

@@ -17,8 +17,8 @@ public class PorCliente extends Comision{
     public PorCliente() {
     }
 
-    public PorCliente(String tipoCliente, int sucursal, double porcentaje) {
-        super(sucursal, porcentaje);
+    public PorCliente(String tipoCliente, int sucursal) {
+        super(sucursal);
         this.tipoCliente = tipoCliente;
     }
 

@@ -13,16 +13,14 @@ import java.io.Serializable;
  */
 public class Comision implements Serializable {
     int sucursal;
-    double porcentaje;
-     private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     double comisionFinal;
 
     public Comision() {
     }
 
-    public Comision(int sucursal, double porcentaje) {
+    public Comision(int sucursal) {
         this.sucursal = sucursal;
-        this.porcentaje = porcentaje;
     }
 
     public int getSucursal() {
@@ -33,17 +31,11 @@ public class Comision implements Serializable {
         this.sucursal = sucursal;
     }
 
-    public double getPorcentaje() {
-        return porcentaje;
-    }
 
-    public void setPorcentaje(double porcentaje) {
-        this.porcentaje = porcentaje;
-    }
 
     @Override
     public String toString() {
-        return "Comision{" + "sucursal=" + sucursal + ", porcentaje=" + porcentaje + '}';
+        return "Comision{" + "sucursal=" + sucursal;
     }
 
     public double getComisionFinal() {

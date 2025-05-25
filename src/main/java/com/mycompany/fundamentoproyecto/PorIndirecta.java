@@ -17,8 +17,8 @@ public class PorIndirecta extends Comision{
     public PorIndirecta() {
     }
 
-    public PorIndirecta(Vendedor vendedorDelQueRecibe, int sucursal, double porcentaje) {
-        super(sucursal, porcentaje);
+    public PorIndirecta(Vendedor vendedorDelQueRecibe, int sucursal) {
+        super(sucursal);
         this.vendedorDelQueRecibe = vendedorDelQueRecibe;
     }
 

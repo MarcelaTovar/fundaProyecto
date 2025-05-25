@@ -12,10 +12,12 @@ import java.io.Serializable;
  * @author Osmin Tovar
  */
 public class Producto implements Serializable{
+    private static final long serialVersionUID = 1L;
     String categoria;
     int id;
     double porcentajeComision;
-    int cantidadVendida;
+    int cantidadVendida = 10;
+    double comision;
 
     public Producto() {
     }
@@ -23,6 +25,7 @@ public class Producto implements Serializable{
     public Producto(String categoria, int id) {
         this.categoria = categoria;
         this.id = id;
+        this.comision = porcentajeComision * cantidadVendida;
     }
 
     
@@ -59,11 +62,16 @@ public class Producto implements Serializable{
         this.cantidadVendida = cantidadVendida;
     }
 
-    public double comision(){
-        double comision = 0;
-        comision = 10000 * porcentajeComision;
-        return comision;
+    public double getComision() {
+        return comision = cantidadVendida * porcentajeComision;
     }
+
+    public void setComision(double comision) {
+        this.comision = comision;
+    }
+    
+    
+
     
 
     @Override

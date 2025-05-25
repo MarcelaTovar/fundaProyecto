@@ -63,10 +63,7 @@ public class ManejarArchivos {
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaBinario))) {
             productos = (ArrayList<Producto>) ois.readObject();
-            System.out.println("✅ Archivo leído exitosamente:");
-            for (Producto p : productos) {
-                System.out.println(p);
-            }
+
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("❌ Error al leer el archivo binario: " + e.getMessage());
         }
@@ -82,10 +79,7 @@ public class ManejarArchivos {
             datos = (Map<String, Vendedor>) ois.readObject();
             System.out.println("✅ Archivo leído exitosamente. Contenido:");
 
-            // Imprimir los datos del HashMap
-            for (Map.Entry<String, Vendedor> entry : datos.entrySet()) {
-                System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
-            }
+
 
         } catch (FileNotFoundException e) {
             System.out.println("⚠️ Archivo no encontrado. Se devolverá un HashMap vacío.");
