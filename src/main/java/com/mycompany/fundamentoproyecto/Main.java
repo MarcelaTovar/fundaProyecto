@@ -1223,7 +1223,7 @@ public class Main extends javax.swing.JFrame {
                     modelo.addRow(new Object[]{
                         detalle.getCategoria(),
                         detalle.getPorcentaje(),
-                        porCLiente.calcularComisionPorCliente(detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                        porCLiente.calcularComisionPorCliente(vendedorActivo.getClientes(),detalle.getCategoria()) // o si es por detalle, ajusta aquí
                     });
                 }
             }
