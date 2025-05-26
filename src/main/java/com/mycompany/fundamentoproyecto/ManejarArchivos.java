@@ -79,7 +79,12 @@ public class ManejarArchivos {
             datos = (Map<String, Vendedor>) ois.readObject();
             System.out.println("✅ Archivo leído exitosamente. Contenido:");
 
-
+            // Imprimir el contenido del archivo
+            for (Map.Entry<String, Vendedor> entry : datos.entrySet()) {
+                System.out.println("🧾 Clave: " + entry.getKey());
+                System.out.println("👤 Vendedor: " + entry.getValue());
+                System.out.println("--------------------------------------------");
+            }
 
         } catch (FileNotFoundException e) {
             System.out.println("⚠️ Archivo no encontrado. Se devolverá un HashMap vacío.");
@@ -139,7 +144,7 @@ public class ManejarArchivos {
 
         // Llenar el modelo con los datos del HashMap
         for (Vendedor v : vendedores.values()) {
-            modelo.addRow(new Object[]{v.getId(),v.getNombre()});
+            modelo.addRow(new Object[]{v.getId(), v.getNombre()});
         }
 
         // Asignar el modelo a la tabla

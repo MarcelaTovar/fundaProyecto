@@ -13,26 +13,27 @@ import java.util.ArrayList;
  * @author Osmin Tovar
  */
 public class Venta implements Serializable{
-    ArrayList <Producto> productos;
+    String categoria;
     String fecha;
+    double monto;
     boolean propia;
 
     public Venta() {
     }
 
-    public Venta(ArrayList<Producto> productos, String fecha, boolean propia) {
-        this.productos = productos;
+    public Venta(String categoria, String fecha) {
+        this.categoria = categoria;
         this.fecha = fecha;
-        this.propia = propia;
     }
 
-    public ArrayList<Producto> getProductos() {
-        return productos;
+    public Venta(String categoria, String fecha, double monto) {
+        this.categoria = categoria;
+        this.fecha = fecha;
+        this.monto = monto;
     }
+    
 
-    public void setProductos(ArrayList<Producto> productos) {
-        this.productos = productos;
-    }
+    
 
     public String getFecha() {
         return fecha;
@@ -50,10 +51,29 @@ public class Venta implements Serializable{
         this.propia = propia;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
     @Override
     public String toString() {
-        return "Venta{" + "productos=" + productos + ", fecha=" + fecha + ", propia=" + propia + '}';
+        return "Venta{" + "categoria=" + categoria + ", fecha=" + fecha + ", monto=" + monto + '}';
     }
+
+    
+    
     
     
 }

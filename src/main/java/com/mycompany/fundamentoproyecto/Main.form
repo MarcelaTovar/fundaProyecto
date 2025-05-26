@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JFrame" name="JFrame_PaginaPrincipal">
       <Properties>
@@ -292,7 +292,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="140" y="380" width="120" height="-1"/>
+                  <AbsoluteConstraints x="140" y="380" width="120" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -314,13 +314,7 @@
     </Container>
     <Container class="javax.swing.JFrame" name="JFrame_Ficha">
       <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[957, 569]"/>
-        </Property>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[957, 569]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[957, 569]"/>
         </Property>
       </Properties>
@@ -864,11 +858,6 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JFrame" name="JFrame_NuevaCom">
-      <Properties>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[734, 394]"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

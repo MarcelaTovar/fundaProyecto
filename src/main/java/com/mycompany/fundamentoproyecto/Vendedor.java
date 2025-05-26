@@ -33,7 +33,7 @@ public class Vendedor implements Serializable {
         this.nombre = nombre;
     }
 
-    public Vendedor(String id, String nombre, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor, ArrayList<String> tipo, ArrayList<String> Sucursal) {
+    public Vendedor(String nombre, String id, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor, ArrayList<String> tipo, ArrayList<String> Sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.comisiones = comisiones;

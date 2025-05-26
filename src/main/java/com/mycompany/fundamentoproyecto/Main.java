@@ -252,7 +252,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_Base.add(JButton_Conexion);
-        JButton_Conexion.setBounds(140, 380, 120, 25);
+        JButton_Conexion.setBounds(140, 380, 120, 40);
 
         JLabel_Base.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bases.jpg"))); // NOI18N
         JPanel_Base.add(JLabel_Base);
@@ -279,9 +279,7 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        JFrame_Ficha.setMaximumSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.setMinimumSize(new java.awt.Dimension(957, 569));
-        JFrame_Ficha.setPreferredSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.getContentPane().setLayout(null);
 
         JTabPane_Vendedores.setMaximumSize(new java.awt.Dimension(957, 569));
@@ -526,8 +524,6 @@ public class Main extends javax.swing.JFrame {
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
 
-        JFrame_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
-
         JPanel_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
         JPanel_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 394));
         JPanel_NuevaCom.setLayout(null);
@@ -693,6 +689,12 @@ public class Main extends javax.swing.JFrame {
         File archivo = new File("vendedores.bin");
         if (!archivo.exists()) {
             binario.escribirArchivo(vendedores);
+            new Thread(() -> {
+                System.out.println("⏳ Consultando base de datos...");
+                sql.cargarventas("vendedores.bin", conn);
+                System.out.println("✅ Consulta finalizada y binario actualizado.");
+                binario.leerArchivo();
+            }).start();
         } else {
             int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
@@ -762,19 +764,19 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Kennedy")) {
             ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor,1);
+            PorProducto p = new PorProducto(productosDelVendedor, 1);
             vendedorActivo.getComisiones().add(p);
-        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("San Angel")){
+        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("San Angel")) {
             ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor,2);
+            PorProducto p = new PorProducto(productosDelVendedor, 2);
             vendedorActivo.getComisiones().add(p);
-        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Ruben Dario")){
+        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Ruben Dario")) {
             ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor,3);
+            PorProducto p = new PorProducto(productosDelVendedor, 3);
             vendedorActivo.getComisiones().add(p);
-        }else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("City Mall")){
+        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("City Mall")) {
             ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor,4);
+            PorProducto p = new PorProducto(productosDelVendedor, 4);
             vendedorActivo.getComisiones().add(p);
         }
 
