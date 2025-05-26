@@ -94,8 +94,11 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         JArea_MetasFicha = new javax.swing.JTextArea();
         JText_Bono = new javax.swing.JTextField();
-        JText_Porcentaje = new javax.swing.JTextField();
         JText_Firma = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        JTable_ficha = new javax.swing.JTable();
+        jLabel16 = new javax.swing.JLabel();
+        JComboBox_SucursalFicha = new javax.swing.JComboBox<>();
         JLabel_Ficha = new javax.swing.JLabel();
         JPanel_EditarVendedor = new javax.swing.JPanel();
         JLabel_EditarVendedorPrincipal = new javax.swing.JLabel();
@@ -354,6 +357,11 @@ public class Main extends javax.swing.JFrame {
         JText_BuscarFicha.setBorder(null);
 
         JLabel_BuscarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JLabel_BuscarFicha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JLabel_BuscarFichaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanel_BuscarFichaLayout = new javax.swing.GroupLayout(JPanel_BuscarFicha);
         JPanel_BuscarFicha.setLayout(JPanel_BuscarFichaLayout);
@@ -379,12 +387,12 @@ public class Main extends javax.swing.JFrame {
         JLabel_TipoFicha.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_TipoFicha.setText("Tipo de Vendedor");
         JTabPane_FichaPorVendedor.add(JLabel_TipoFicha);
-        JLabel_TipoFicha.setBounds(80, 170, 140, 19);
+        JLabel_TipoFicha.setBounds(80, 210, 140, 19);
 
         JLabel_Metas.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_Metas.setText("Metas del Vendedor");
         JTabPane_FichaPorVendedor.add(JLabel_Metas);
-        JLabel_Metas.setBounds(80, 220, 114, 19);
+        JLabel_Metas.setBounds(80, 260, 114, 19);
 
         JLabel_Bono.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_Bono.setText("Bonos por cumplimiento");
@@ -399,22 +407,59 @@ public class Main extends javax.swing.JFrame {
         JLabel_FirmaPago.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_FirmaPago.setText("Firma de Autorizacion de Pago");
         JTabPane_FichaPorVendedor.add(JLabel_FirmaPago);
-        JLabel_FirmaPago.setBounds(550, 280, 180, 19);
+        JLabel_FirmaPago.setBounds(80, 500, 180, 19);
         JTabPane_FichaPorVendedor.add(JText_TipoVendedor);
-        JText_TipoVendedor.setBounds(220, 170, 220, 30);
+        JText_TipoVendedor.setBounds(220, 210, 220, 30);
 
         JArea_MetasFicha.setColumns(20);
         JArea_MetasFicha.setRows(5);
         jScrollPane2.setViewportView(JArea_MetasFicha);
 
         JTabPane_FichaPorVendedor.add(jScrollPane2);
-        jScrollPane2.setBounds(80, 260, 370, 170);
+        jScrollPane2.setBounds(80, 300, 370, 170);
         JTabPane_FichaPorVendedor.add(JText_Bono);
         JText_Bono.setBounds(710, 170, 200, 30);
-        JTabPane_FichaPorVendedor.add(JText_Porcentaje);
-        JText_Porcentaje.setBounds(710, 220, 200, 30);
+
+        JText_Firma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JText_FirmaActionPerformed(evt);
+            }
+        });
         JTabPane_FichaPorVendedor.add(JText_Firma);
-        JText_Firma.setBounds(750, 280, 160, 30);
+        JText_Firma.setBounds(290, 490, 160, 30);
+
+        JTable_ficha.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Tipo", "Porcentaje", "Comision Calculada"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(JTable_ficha);
+
+        JTabPane_FichaPorVendedor.add(jScrollPane4);
+        jScrollPane4.setBounds(630, 230, 290, 290);
+
+        jLabel16.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel16.setText("Sucursal");
+        JTabPane_FichaPorVendedor.add(jLabel16);
+        jLabel16.setBounds(80, 170, 70, 19);
+
+        JComboBox_SucursalFicha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall", " " }));
+        JTabPane_FichaPorVendedor.add(JComboBox_SucursalFicha);
+        JComboBox_SucursalFicha.setBounds(220, 160, 100, 30);
 
         JLabel_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ficha.png"))); // NOI18N
         JTabPane_FichaPorVendedor.add(JLabel_Ficha);
@@ -764,10 +809,11 @@ public class Main extends javax.swing.JFrame {
         if (JComboBox_Tipo.getSelectedItem().equals("Pista")) {
             vendedorActivo.getTipo().add("Pista");
             editarPorCategoria();
-        }else if (JComboBox_Tipo.getSelectedItem().equals("Mayoreo")) {
+            
+        } else if (JComboBox_Tipo.getSelectedItem().equals("Mayoreo")) {
             vendedorActivo.getTipo().add("Mayoreo");
             editarPorCategoria();
-        }else if (JComboBox_Tipo.getSelectedItem().equals("Redes Sociales")) {
+        } else if (JComboBox_Tipo.getSelectedItem().equals("Redes Sociales")) {
             vendedorActivo.getTipo().add("Redes Sociales");
             editarPorCategoria();
         }
@@ -816,6 +862,48 @@ public class Main extends javax.swing.JFrame {
         binario.buscarYMostrarVendedorEnTabla(JText_BuscarVendedor.getText(), JTable_ImpresionVendedores);
     }//GEN-LAST:event_JLabel_BuscarMouseClicked
 
+    private void JLabel_BuscarFichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarFichaMouseClicked
+        // TODO add your handling code here:
+        String nombre = JText_BuscarFicha.getText();
+        String sucursal = "";
+        switch ((String) JComboBox_SucursalEditar1.getSelectedItem()) {
+            case "Kennedy": {
+                sucursal = "1";
+                break;
+            }
+            case "San Angel": {
+                sucursal = "2";
+                break;
+            }
+            case "Ruben Dario": {
+                sucursal = "3";
+                break;
+            }
+            case "City Mall": {
+                sucursal = "4";
+                break;
+            }
+            default:
+                break;
+        }
+        int indexDeLaInformacion = 0;
+        
+        vendedorActivo = binario.buscarVendedor(nombre);
+
+        for (int i = 0; i < vendedorActivo.getSucursal().size(); i++) {
+            if (vendedorActivo.getSucursal().get(i).equalsIgnoreCase(sucursal)) {
+                indexDeLaInformacion = i;
+            }
+        }
+ 
+        JText_TipoVendedor.setText(vendedorActivo.getTipo().get(indexDeLaInformacion));
+        Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin",indexDeLaInformacion);
+    }//GEN-LAST:event_JLabel_BuscarFichaMouseClicked
+
+    private void JText_FirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_FirmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JText_FirmaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -858,6 +946,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Editar;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
+    private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
     private javax.swing.JComboBox<String> JComboBox_Tipo;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
@@ -894,6 +983,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane JTabPane_Vendedores;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTable JTable_Productos;
+    private javax.swing.JTable JTable_ficha;
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_Bono;
     private javax.swing.JTextField JText_BuscarFicha;
@@ -901,7 +991,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
-    private javax.swing.JTextField JText_Porcentaje;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
     private javax.swing.JTextField JText_TipoVendedor;
@@ -921,6 +1010,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -932,6 +1022,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -1029,6 +1120,45 @@ public class Main extends javax.swing.JFrame {
             default:
                 break;
         }
+    }
+
+    public void Llenar_Tabla_Ficha(JTable tabla, String rutaBinario, int localizacion) {
+        Map<String, Vendedor> vendedores;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaBinario))) {
+            vendedores = (Map<String, Vendedor>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("❌ Error al leer binario: " + e.getMessage());
+            return;
+        }
+
+        // Si quieres usar el vendedorActivo que viene de afuera, puedes ignorar el mapa que leíste.
+        // O si quieres usar un vendedor del archivo, obténlo de 'vendedores' aquí.
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Porcentaje");
+        modelo.addColumn("Comisión Calculada");
+
+        // Verificar que vendedorActivo no sea null y tenga comisiones
+        if (vendedorActivo != null && vendedorActivo.getComisiones() != null) {
+            Comision com = vendedorActivo.getComisiones().get(localizacion);
+                if (com instanceof PorProducto) {
+                    PorProducto porProducto = (PorProducto) com;
+
+                    // Recorrer la lista de comisiones por producto dentro de esta comision
+                    for (Producto detalle : porProducto.getComisionPorProducto()) {
+                        modelo.addRow(new Object[]{
+                            detalle.getCategoria(),
+                            detalle.getPorcentajeComision(),
+                            porProducto.calcularComisionPorProducto(vendedorActivo.getVentas(),detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                        });
+                    }
+                
+                // Puedes agregar else if para otros tipos de comisiones si hay
+            }
+        }
+
+        tabla.setModel(modelo);
     }
 
 }

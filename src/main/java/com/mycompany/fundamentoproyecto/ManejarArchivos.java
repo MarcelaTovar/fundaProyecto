@@ -81,9 +81,9 @@ public class ManejarArchivos {
 
             // Imprimir el contenido del archivo
             for (Map.Entry<String, Vendedor> entry : datos.entrySet()) {
-               // System.out.println("🧾 Clave: " + entry.getKey());
-               // System.out.println("👤 Vendedor: " + entry.getValue());
-               // System.out.println("--------------------------------------------");
+                // System.out.println("🧾 Clave: " + entry.getKey());
+                // System.out.println("👤 Vendedor: " + entry.getValue());
+                // System.out.println("--------------------------------------------");
             }
 
         } catch (FileNotFoundException e) {
@@ -97,7 +97,7 @@ public class ManejarArchivos {
     // Agregar o actualizar un registro
     public void actualizarArchivo(Vendedor nuevoRegistro) {
         Map<String, Vendedor> datos = leerArchivo();
-        datos.put(nuevoRegistro.getId(), nuevoRegistro); // actualiza si ya existe
+        datos.put(nuevoRegistro.getNombre(), nuevoRegistro); // actualiza por nombre
         escribirArchivo(datos);
     }
 
