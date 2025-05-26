@@ -22,6 +22,7 @@ public class Vendedor implements Serializable {
     String firmaVendedor;
     ArrayList<String> tipo = new ArrayList<>();
     ArrayList<String> Sucursal = new ArrayList<>();
+    ArrayList<Cliente> clientes = new ArrayList<>();
     int comisionTotal;
     private static final long serialVersionUID = 1L;
 
@@ -116,11 +117,20 @@ public class Vendedor implements Serializable {
         this.firmaVendedor = firmaVendedor;
     }
 
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
 
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
 
     @Override
     public String toString() {
-        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas.get(0) + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + '}';
+        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas.get(0) + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + ", clientes=" + clientes.get(0) + ", comisionTotal=" + comisionTotal + '}';
     }
+    
+
+    
 
 }

@@ -122,7 +122,7 @@ public class Main extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JText_PorcentajeCliente = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -608,7 +608,7 @@ public class Main extends javax.swing.JFrame {
         JPanel_NuevaCom.add(jLabel9);
         jLabel9.setBounds(70, 240, 120, 19);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
         JPanel_NuevaCom.add(jComboBox1);
         jComboBox1.setBounds(540, 320, 140, 30);
 
@@ -616,8 +616,8 @@ public class Main extends javax.swing.JFrame {
         jLabel10.setText("Tipo de Cliente");
         JPanel_NuevaCom.add(jLabel10);
         jLabel10.setBounds(70, 180, 120, 19);
-        JPanel_NuevaCom.add(jTextField1);
-        jTextField1.setBounds(200, 240, 140, 30);
+        JPanel_NuevaCom.add(JText_PorcentajeCliente);
+        JText_PorcentajeCliente.setBounds(200, 240, 140, 30);
 
         jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel11.setText("Vendedor Del que Recibe Comision");
@@ -634,6 +634,11 @@ public class Main extends javax.swing.JFrame {
         jTextField3.setBounds(540, 250, 140, 30);
 
         jButton1.setText("Agregar Comision");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         JPanel_NuevaCom.add(jButton1);
         jButton1.setBounds(340, 410, 117, 30);
 
@@ -651,7 +656,7 @@ public class Main extends javax.swing.JFrame {
         JPanel_NuevaCom.add(jComboBox2);
         jComboBox2.setBounds(200, 180, 140, 30);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
         JPanel_NuevaCom.add(jComboBox3);
         jComboBox3.setBounds(200, 320, 140, 30);
 
@@ -749,11 +754,16 @@ public class Main extends javax.swing.JFrame {
         File archivo = new File("vendedores.bin");
         if (!archivo.exists()) {
             binario.escribirArchivo(vendedores);
-            new Thread(() -> {
+            /*new Thread(() -> {
                 System.out.println("⏳ Consultando base de datos...");
                 sql.cargarventas("vendedores.bin", conn);
                 System.out.println("✅ Consulta finalizada y binario actualizado.");
-                //binario.leerArchivo();
+            }).start();*/
+            new Thread(() -> {
+                System.out.println("⏳ Consultando base de datos...");
+               sql.cargarClientes("vendedores.bin", conn);
+                System.out.println("✅ Consulta finalizada y binario actualizado.");
+                binario.leerArchivo();
             }).start();
         } else {
             int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
@@ -904,6 +914,11 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_JText_FirmaActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -991,6 +1006,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
+    private javax.swing.JTextField JText_PorcentajeCliente;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
     private javax.swing.JTextField JText_TipoVendedor;
@@ -1023,7 +1039,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables

@@ -166,10 +166,83 @@ public class SQLManagement {
                     Venta venta = new Venta(tipo, fecha, monto);
                     v.getVentas().add(venta);
                     System.out.println("➕ Venta agregada a: " + nombre + " → " + tipo + ", " + fecha + ", L " + monto);
-                } 
+                }
 
             }
 
+        } catch (SQLException e) {
+            System.err.println("❌ Error en la consulta: " + e.getMessage());
+            return;
+        }
+
+        // 3. Guardar de nuevo el binario actualizado
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaBinario))) {
+            oos.writeObject(vendedores);
+            System.out.println("✅ Binario actualizado con comisiones extra.");
+        } catch (IOException e) {
+            System.err.println("❌ Error al guardar binario actualizado: " + e.getMessage());
+        }
+    }
+
+    public void cargarClientes(String rutaBinario, Connection conexion) {
+        Map<String, Vendedor> vendedores = new HashMap<>();
+        
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaBinario))) {
+            vendedores = (Map<String, Vendedor>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("❌ Error al leer binario: " + e.getMessage());
+            return;
+        }
+        String query = "SELECT\n"
+                + "C.CardCode AS 'Código Cliente',\n"
+                + "C.CardName AS 'Nombre Cliente',\n"
+                + "S.SlpName AS 'Vendedor',\n"
+                + "G.GroupName AS 'Categoría Cliente',\n"
+                + "P.DocDate AS 'Fecha de Pago',\n"
+                + "I.DocDate AS 'Fecha de Factura',\n"
+                + "I.DocNum AS 'Número de Factura',\n"
+                + "SUM(RP.SumApplied) AS 'Monto Pagado'\n"
+                + "FROM\n"
+                + "ORCT P -- Pagos recibidos\n"
+                + "INNER JOIN RCT2 RP ON P.DocEntry = RP.DocNum -- Relación pagos con facturas\n"
+                + "INNER JOIN OINV I ON RP.DocEntry = I.DocEntry -- Facturas relacionadas con el\n"
+                + "INNER JOIN OCRD C ON I.CardCode = C.CardCode -- Clientes\n"
+                + "INNER JOIN OCRG G ON C.GroupCode = G.GroupCode -- Categoría del cliente\n"
+                + "INNER JOIN OSLP S ON I.SlpCode = S.SlpCode -- Vendedores\n"
+                + "WHERE\n"
+                + "P.DocDate BETWEEN '01-01-2011' AND '30-04-2025' -- Solo pide rango de fechas\n"
+                + "AND P.Canceled = 'N' -- Solo pagos no cancelados\n"
+                + "GROUP BY\n"
+                + "C.CardCode, C.CardName, S.SlpName, G.GroupName, P.DocDate, I.DocDate, I.DocNum\n"
+                + "ORDER BY\n"
+                + "P.DocDate DESC, I.DocNum";
+        try (PreparedStatement ps = conexion.prepareStatement(query);
+                ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                String codigo = rs.getString("Código Cliente");
+                String nombreC = rs.getString("Nombre Cliente");
+                String categoria = rs.getString("Categoría Cliente");
+                String nombre = rs.getString("Vendedor");
+                String fecha = rs.getString("Fecha de Pago");
+                double monto = rs.getDouble("Monto Pagado");
+
+                String nombreLimpio = nombre.trim();
+                if (vendedores.containsKey(nombreLimpio)) {
+                    Vendedor v = vendedores.get(nombreLimpio);
+                    for (int i = 0; i < v.getClientes().size(); i++) {
+                        if (v.getClientes().get(i).getNombre().equals(nombreC)) {
+                            break;
+                        }else{
+                            
+                        }
+                    }
+                    Cliente cliente = new Cliente(codigo, nombreC, fecha, monto,categoria);
+                    v.getClientes().add(cliente);
+                    System.out.println("➕ Cliente agregado a: " + nombre + " → " + categoria + ", " + fecha + ", L " + monto);
+                }
+
+            }
         } catch (SQLException e) {
             System.err.println("❌ Error en la consulta: " + e.getMessage());
             return;

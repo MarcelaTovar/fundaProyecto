@@ -6,29 +6,36 @@
 package com.mycompany.fundamentoproyecto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author Osmin Tovar
  */
 public class PorCliente extends Comision{
-    String tipoCliente;
+    ArrayList <Cliente> clientes = new ArrayList();
     
     public PorCliente() {
     }
 
-    public PorCliente(String tipoCliente, int sucursal) {
+    public PorCliente(int sucursal) {
         super(sucursal);
-        this.tipoCliente = tipoCliente;
+
+    }
+    public PorCliente(ArrayList<Cliente> clientes, int sucursal) {
+        super(sucursal);
+        this.clientes = clientes;
     }
 
-    public String getTipoCliente() {
-        return tipoCliente;
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
     }
 
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
     }
+    
+
 
     
     
