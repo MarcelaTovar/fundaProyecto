@@ -5,11 +5,13 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Osmin Tovar
  */
-public class Cliente {
+public class Cliente implements Serializable{
     String id;
     String nombre;
     String fecha;

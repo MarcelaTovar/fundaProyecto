@@ -230,13 +230,6 @@ public class SQLManagement {
                 String nombreLimpio = nombre.trim();
                 if (vendedores.containsKey(nombreLimpio)) {
                     Vendedor v = vendedores.get(nombreLimpio);
-                    for (int i = 0; i < v.getClientes().size(); i++) {
-                        if (v.getClientes().get(i).getNombre().equals(nombreC)) {
-                            break;
-                        }else{
-                            
-                        }
-                    }
                     Cliente cliente = new Cliente(codigo, nombreC, fecha, monto,categoria);
                     v.getClientes().add(cliente);
                     System.out.println("➕ Cliente agregado a: " + nombre + " → " + categoria + ", " + fecha + ", L " + monto);

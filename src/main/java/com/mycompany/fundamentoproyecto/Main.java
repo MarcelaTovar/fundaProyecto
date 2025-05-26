@@ -71,6 +71,7 @@ public class Main extends javax.swing.JFrame {
         JText_Base = new javax.swing.JTextField();
         JText_Servidor = new javax.swing.JTextField();
         JButton_Conexion = new javax.swing.JButton();
+        JButton_Conexion1 = new javax.swing.JButton();
         JLabel_Base = new javax.swing.JLabel();
         JFrame_Ficha = new javax.swing.JFrame();
         JTabPane_Vendedores = new javax.swing.JTabbedPane();
@@ -250,14 +251,25 @@ public class Main extends javax.swing.JFrame {
 
         JButton_Conexion.setBackground(new java.awt.Color(255, 255, 255));
         JButton_Conexion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
-        JButton_Conexion.setText("Conectar Base");
+        JButton_Conexion.setText("Cargar Ventas");
         JButton_Conexion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JButton_ConexionMouseClicked(evt);
             }
         });
         JPanel_Base.add(JButton_Conexion);
-        JButton_Conexion.setBounds(140, 380, 120, 40);
+        JButton_Conexion.setBounds(150, 390, 120, 40);
+
+        JButton_Conexion1.setBackground(new java.awt.Color(255, 255, 255));
+        JButton_Conexion1.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        JButton_Conexion1.setText("Cargar Clientes");
+        JButton_Conexion1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_Conexion1MouseClicked(evt);
+            }
+        });
+        JPanel_Base.add(JButton_Conexion1);
+        JButton_Conexion1.setBounds(430, 390, 120, 40);
 
         JLabel_Base.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bases.jpg"))); // NOI18N
         JPanel_Base.add(JLabel_Base);
@@ -754,16 +766,10 @@ public class Main extends javax.swing.JFrame {
         File archivo = new File("vendedores.bin");
         if (!archivo.exists()) {
             binario.escribirArchivo(vendedores);
-            /*new Thread(() -> {
+            new Thread(() -> {
                 System.out.println("⏳ Consultando base de datos...");
                 sql.cargarventas("vendedores.bin", conn);
                 System.out.println("✅ Consulta finalizada y binario actualizado.");
-            }).start();*/
-            new Thread(() -> {
-                System.out.println("⏳ Consultando base de datos...");
-               sql.cargarClientes("vendedores.bin", conn);
-                System.out.println("✅ Consulta finalizada y binario actualizado.");
-                binario.leerArchivo();
             }).start();
         } else {
             int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
@@ -819,7 +825,7 @@ public class Main extends javax.swing.JFrame {
         if (JComboBox_Tipo.getSelectedItem().equals("Pista")) {
             vendedorActivo.getTipo().add("Pista");
             editarPorCategoria();
-            
+
         } else if (JComboBox_Tipo.getSelectedItem().equals("Mayoreo")) {
             vendedorActivo.getTipo().add("Mayoreo");
             editarPorCategoria();
@@ -897,7 +903,7 @@ public class Main extends javax.swing.JFrame {
                 break;
         }
         int indexDeLaInformacion = 0;
-        
+
         vendedorActivo = binario.buscarVendedor(nombre);
 
         for (int i = 0; i < vendedorActivo.getSucursal().size(); i++) {
@@ -905,9 +911,9 @@ public class Main extends javax.swing.JFrame {
                 indexDeLaInformacion = i;
             }
         }
- 
+
         JText_TipoVendedor.setText(vendedorActivo.getTipo().get(indexDeLaInformacion));
-        Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin",indexDeLaInformacion);
+        Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
     }//GEN-LAST:event_JLabel_BuscarFichaMouseClicked
 
     private void JText_FirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_FirmaActionPerformed
@@ -916,8 +922,18 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void JButton_Conexion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_Conexion1MouseClicked
+        // TODO add your handling code here:
+        new Thread(() -> {
+            System.out.println("⏳ Consultando base de datos...");
+            sql.cargarClientes("vendedores.bin", conn);
+            System.out.println("✅ Consulta finalizada y binario actualizado.");
+            binario.leerArchivo();
+        }).start();
+    }//GEN-LAST:event_JButton_Conexion1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -959,6 +975,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextArea JArea_MetasFicha;
     private javax.swing.JButton JButton_AgregarComision;
     private javax.swing.JButton JButton_Conexion;
+    private javax.swing.JButton JButton_Conexion1;
     private javax.swing.JButton JButton_Editar;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
     private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
@@ -1157,18 +1174,18 @@ public class Main extends javax.swing.JFrame {
         // Verificar que vendedorActivo no sea null y tenga comisiones
         if (vendedorActivo != null && vendedorActivo.getComisiones() != null) {
             Comision com = vendedorActivo.getComisiones().get(localizacion);
-                if (com instanceof PorProducto) {
-                    PorProducto porProducto = (PorProducto) com;
+            if (com instanceof PorProducto) {
+                PorProducto porProducto = (PorProducto) com;
 
-                    // Recorrer la lista de comisiones por producto dentro de esta comision
-                    for (Producto detalle : porProducto.getComisionPorProducto()) {
-                        modelo.addRow(new Object[]{
-                            detalle.getCategoria(),
-                            detalle.getPorcentajeComision(),
-                            porProducto.calcularComisionPorProducto(vendedorActivo.getVentas(),detalle.getCategoria()) // o si es por detalle, ajusta aquí
-                        });
-                    }
-                
+                // Recorrer la lista de comisiones por producto dentro de esta comision
+                for (Producto detalle : porProducto.getComisionPorProducto()) {
+                    modelo.addRow(new Object[]{
+                        detalle.getCategoria(),
+                        detalle.getPorcentajeComision(),
+                        porProducto.calcularComisionPorProducto(vendedorActivo.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                    });
+                }
+
                 // Puedes agregar else if para otros tipos de comisiones si hay
             }
         }
