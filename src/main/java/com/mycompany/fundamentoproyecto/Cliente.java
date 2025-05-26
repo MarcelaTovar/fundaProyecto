@@ -16,7 +16,7 @@ public class Cliente implements Serializable{
     String nombre;
     String fecha;
     double cantidad;
-    String porcentaje;
+    double porcentaje;
     String categoria;
 
     public Cliente(String id, String nombre, String fecha, double cantidad,String categoria) {
@@ -26,6 +26,12 @@ public class Cliente implements Serializable{
         this.cantidad = cantidad;
         this.categoria = categoria;
     }
+
+    public Cliente(double porcentaje, String categoria) {
+        this.porcentaje = porcentaje;
+        this.categoria = categoria;
+    }
+    
 
     
     public Cliente() {
@@ -76,11 +82,11 @@ public class Cliente implements Serializable{
 
     
 
-    public String getPorcentaje() {
+    public double getPorcentaje() {
         return porcentaje;
     }
 
-    public void setPorcentaje(String porcentaje) {
+    public void setPorcentaje(double porcentaje) {
         this.porcentaje = porcentaje;
     }
 

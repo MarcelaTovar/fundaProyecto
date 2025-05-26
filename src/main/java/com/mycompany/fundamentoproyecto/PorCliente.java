@@ -35,6 +35,22 @@ public class PorCliente extends Comision{
         this.clientes = clientes;
     }
     
+    public double calcularComisionPorCliente(String nombreCategoria) {
+        double comisionFinalVenta = 0.0;
+        double comisionFinalProducto = 0.0;
+        for (int i = 0; i < this.clientes.size(); i++) {
+            if (this.clientes.get(i).getCategoria().equalsIgnoreCase(nombreCategoria)) {
+                comisionFinalVenta += this.clientes.get(i).getCantidad();
+            }
+        }
+        for (int j = 0; j < this.clientes.size(); j++) {
+            if (this.clientes.get(j).getCategoria().equalsIgnoreCase(nombreCategoria)) {
+                comisionFinalProducto += this.clientes.get(j).getPorcentaje();
+            }
+        }
+        comisionFinalProducto = comisionFinalVenta * comisionFinalProducto;
+        return comisionFinalProducto;
+    }
 
 
     

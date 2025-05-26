@@ -123,8 +123,8 @@ public class Main extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        JComboBox_TipoEnCliente = new javax.swing.JComboBox<>();
+        JComboBox_SucursalCliente = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -629,13 +629,13 @@ public class Main extends javax.swing.JFrame {
         JPanel_NuevaCom.add(jLabel13);
         jLabel13.setBounds(70, 250, 70, 19);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
-        JPanel_NuevaCom.add(jComboBox2);
-        jComboBox2.setBounds(200, 180, 140, 30);
+        JComboBox_TipoEnCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_NuevaCom.add(JComboBox_TipoEnCliente);
+        JComboBox_TipoEnCliente.setBounds(200, 180, 140, 40);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
-        JPanel_NuevaCom.add(jComboBox3);
-        jComboBox3.setBounds(200, 250, 140, 30);
+        JComboBox_SucursalCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_NuevaCom.add(JComboBox_SucursalCliente);
+        JComboBox_SucursalCliente.setBounds(200, 250, 140, 40);
 
         jCheckBox1.setText("Comision Por Todo Lo Vendido");
         jCheckBox1.setToolTipText("");
@@ -673,11 +673,11 @@ public class Main extends javax.swing.JFrame {
         JFrame_NuevaCom.getContentPane().setLayout(JFrame_NuevaComLayout);
         JFrame_NuevaComLayout.setHorizontalGroup(
             JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         JFrame_NuevaComLayout.setVerticalGroup(
             JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -770,7 +770,10 @@ public class Main extends javax.swing.JFrame {
 
     private void JMenu_FichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseClicked
         // Tablas
-        binario.editarTabla(JTable_ImpresionVendedores);
+        new Thread(() -> {
+            binario.editarTabla(JTable_ImpresionVendedores);
+        }).start();
+
         new Thread(() -> {
             cargarProductos(JTable_Productos, "productos.bin");
         }).start();
@@ -831,30 +834,31 @@ public class Main extends javax.swing.JFrame {
         String[] columnas = {"Categoria", "Comision"};
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
-        Object[] fila = {"Corportaivo"};
+        Object[] fila = {"Corporativo", ""};
         modelo.addRow(fila);
-        Object[] fila1 = {"Proveedor Nacional"};
+        Object[] fila1 = {"Proveedor Nacional", ""};
         modelo.addRow(fila1);
-        Object[] fila2 = {"Empleado"};
+        Object[] fila2 = {"Empleado", ""};
         modelo.addRow(fila2);
-        Object[] fila3 = {"Empresa Relacionada"};
+        Object[] fila3 = {"Empresa Relacionada", ""};
         modelo.addRow(fila3);
-        Object[] fila4 = {"Gobierno"};
+        Object[] fila4 = {"Gobierno", ""};
         modelo.addRow(fila4);
-        Object[] fila5 = {"ONG"};
+        Object[] fila5 = {"ONG", ""};
         modelo.addRow(fila5);
-        Object[] fila6 = {"Personas Naturales"};
+        Object[] fila6 = {"Personas Naturales", ""};
         modelo.addRow(fila6);
-        Object[] fila7 = {"Subdistribuidor"};
+        Object[] fila7 = {"Subdistribuidor", ""};
         modelo.addRow(fila7);
-        Object[] fila8 = {"Proveedor Extranjero"};
+        Object[] fila8 = {"Proveedor Extranjero", ""};
         modelo.addRow(fila8);
-        Object[] fila9 = {"Flota"};
+        Object[] fila9 = {"Flota", ""};
         modelo.addRow(fila9);
-        Object[] fila10 = {"Estacion Combustible"};
+        Object[] fila10 = {"Estacion Combustible", ""};
         modelo.addRow(fila10);
 
         JTable_ComisionCliente.setModel(modelo);
+
         System.out.println("✅ Datos cargados en la tabla.");
 
         JPanel_NuevaCom.setLayout(null);
@@ -924,7 +928,8 @@ public class Main extends javax.swing.JFrame {
                 indexDeLaInformacion = i;
             }
         }
-
+        System.out.println(vendedorActivo.getComisiones().get(0).getClass().getName());
+        //System.out.println(((PorCliente)vendedorActivo.getComisiones().get(0)).getClientes().get(0).getPorcentaje());
         JText_TipoVendedor.setText(vendedorActivo.getTipo().get(indexDeLaInformacion));
         Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
     }//GEN-LAST:event_JLabel_BuscarFichaMouseClicked
@@ -935,6 +940,24 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        if (JComboBox_TipoEnCliente.getSelectedItem().equals("Pista")) {
+            vendedorActivo.getTipo().add("Pista");
+            editarPorCliente();
+
+        } else if (JComboBox_TipoEnCliente.getSelectedItem().equals("Mayoreo")) {
+            vendedorActivo.getTipo().add("Mayoreo");
+            editarPorCliente();
+        } else if (JComboBox_TipoEnCliente.getSelectedItem().equals("Redes Sociales")) {
+            vendedorActivo.getTipo().add("Redes Sociales");
+            editarPorCliente();
+        }
+        if (vendedorActivo != null) {
+            binario.actualizarArchivo(vendedorActivo);
+            System.out.println(vendedorActivo);
+            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -990,9 +1013,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Conexion1;
     private javax.swing.JButton JButton_Editar;
+    private javax.swing.JComboBox<String> JComboBox_SucursalCliente;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
     private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
     private javax.swing.JComboBox<String> JComboBox_Tipo;
+    private javax.swing.JComboBox<String> JComboBox_TipoEnCliente;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_NuevaCom;
@@ -1046,8 +1071,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
@@ -1194,10 +1217,102 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 // Puedes agregar else if para otros tipos de comisiones si hay
+            }else if (com instanceof PorCliente) {
+                PorCliente porCLiente = (PorCliente) com;
+                for (Cliente detalle : porCLiente.getClientes()) {
+                    modelo.addRow(new Object[]{
+                        detalle.getCategoria(),
+                        detalle.getPorcentaje(),
+                        porCLiente.calcularComisionPorCliente(detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                    });
+                }
             }
         }
 
         tabla.setModel(modelo);
+    }
+
+    public ArrayList<Cliente> obtenerClientesDesdeTabla(JTable tabla) {
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        int filas = modelo.getRowCount();
+
+        for (int i = 0; i < filas; i++) {
+            Object objCategoria = modelo.getValueAt(i, 0);
+            Object objDinero = modelo.getValueAt(i, 1);
+
+            if ((objCategoria == null || objCategoria.toString().trim().isEmpty())
+                    && (objDinero == null || objDinero.toString().trim().isEmpty())) {
+                System.out.println("ℹ️ Fila " + i + " está completamente vacía. Se omite.");
+                continue;
+            }
+
+            try {
+                //Object objCategoria = modelo.getValueAt(i, 0);
+                //Object objDinero = modelo.getValueAt(i, 1); // Columna 1: "Comision"
+
+                System.out.println("Fila " + i + " -> Categoria: " + objCategoria + ", Comision: " + objDinero);
+
+                if (objCategoria == null || objDinero == null) {
+                    System.err.println("❌ Celda nula en fila " + i);
+                    continue;
+                }
+
+                String categoria = objCategoria.toString();
+                double dinero = Double.parseDouble(objDinero.toString());
+
+                Cliente cliente = new Cliente(dinero, categoria);
+                //cliente.setPorcentaje(porcentajeComision);
+                listaClientes.add(cliente);
+            } catch (NumberFormatException e) {
+                System.err.println("⚠️ Error al convertir número en la fila " + i + ": " + e.getMessage());
+            } catch (Exception e) {
+                System.err.println("⚠️ Error general en la fila " + i + ": " + e.getMessage());
+            }
+
+        }
+
+        return listaClientes;
+    }
+
+    public void editarPorCliente() {
+        switch ((String) JComboBox_SucursalCliente.getSelectedItem()) {
+            case "Kennedy": {
+                if (JTable_ComisionCliente.isEditing()) {
+                    JTable_ComisionCliente.getCellEditor().stopCellEditing();
+                }
+
+                ArrayList<Cliente> clientePorcentaje = obtenerClientesDesdeTabla(JTable_ComisionCliente);
+                PorCliente c = new PorCliente(clientePorcentaje, 1);
+                vendedorActivo.getComisiones().add(c);
+                vendedorActivo.getSucursal().add("1");
+                break;
+            }
+            case "San Angel": {
+                ArrayList<Cliente> clientePorcentaje = obtenerClientesDesdeTabla(JTable_ComisionCliente);
+                PorCliente c = new PorCliente(clientePorcentaje, 2);
+                vendedorActivo.getComisiones().add(c);
+                vendedorActivo.getSucursal().add("2");
+                break;
+            }
+            case "Ruben Dario": {
+                ArrayList<Cliente> clientePorcentaje = obtenerClientesDesdeTabla(JTable_ComisionCliente);
+                PorCliente c = new PorCliente(clientePorcentaje, 3);
+                vendedorActivo.getComisiones().add(c);
+                vendedorActivo.getSucursal().add("3");
+                break;
+            }
+            case "City Mall": {
+                ArrayList<Cliente> clientePorcentaje = obtenerClientesDesdeTabla(JTable_ComisionCliente);
+                PorCliente c = new PorCliente(clientePorcentaje, 4);
+                vendedorActivo.getComisiones().add(c);
+                vendedorActivo.getSucursal().add("4");
+                break;
+            }
+            default:
+                break;
+        }
     }
 
 }
