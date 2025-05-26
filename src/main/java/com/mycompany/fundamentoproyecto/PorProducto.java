@@ -39,10 +39,15 @@ public class PorProducto extends Comision implements Serializable {
         this.comisionPorProducto = comisionPorProducto;
     }
     
-    public void calcularComision(){
-        for (int i = 0; i < comisionPorProducto.size(); i++) {
-            comisionFinal += comisionPorProducto.get(i).comision;
+    public double calcularComision(ArrayList <Venta> ventas){
+        for (int i = 0; i < ventas.size(); i++) {
+            for (int j = 0; j < comisionPorProducto.size(); j++) {
+                if (ventas.get(i).getCategoria().equals(comisionPorProducto.get(j).getCategoria())) {
+                    comisionFinal = ventas.get(i).getMonto() * comisionPorProducto.get(j).getPorcentajeComision();
+                }
+            }
         }
+        return comisionFinal;
     }
     
     

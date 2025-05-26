@@ -165,7 +165,7 @@ public class SQLManagement {
                     Vendedor v = vendedores.get(nombreLimpio);
                     Venta venta = new Venta(tipo, fecha, monto);
                     v.getVentas().add(venta);
-                    
+                    System.out.println("➕ Venta agregada a: " + nombre + " → " + tipo + ", " + fecha + ", L " + monto);
                 } 
 
             }

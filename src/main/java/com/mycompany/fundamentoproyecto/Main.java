@@ -108,6 +108,8 @@ public class Main extends javax.swing.JFrame {
         JComboBox_SucursalEditar1 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         JTable_Productos = new javax.swing.JTable();
+        jLabel15 = new javax.swing.JLabel();
+        JComboBox_Tipo = new javax.swing.JComboBox<>();
         JLabel_EditarVendedor = new javax.swing.JLabel();
         JFrame_NuevaCom = new javax.swing.JFrame();
         JPanel_NuevaCom = new javax.swing.JPanel();
@@ -279,7 +281,9 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        JFrame_Ficha.setMaximumSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.setMinimumSize(new java.awt.Dimension(957, 569));
+        JFrame_Ficha.setPreferredSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.getContentPane().setLayout(null);
 
         JTabPane_Vendedores.setMaximumSize(new java.awt.Dimension(957, 569));
@@ -512,6 +516,15 @@ public class Main extends javax.swing.JFrame {
         JPanel_EditarVendedor.add(jScrollPane3);
         jScrollPane3.setBounds(360, 200, 360, 240);
 
+        jLabel15.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel15.setText("Tipo de Vendedor");
+        JPanel_EditarVendedor.add(jLabel15);
+        jLabel15.setBounds(180, 270, 120, 19);
+
+        JComboBox_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_EditarVendedor.add(JComboBox_Tipo);
+        JComboBox_Tipo.setBounds(180, 310, 100, 30);
+
         JLabel_EditarVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Editar_Vendedor.png"))); // NOI18N
         JLabel_EditarVendedor.setMaximumSize(new java.awt.Dimension(957, 569));
         JLabel_EditarVendedor.setMinimumSize(new java.awt.Dimension(957, 569));
@@ -519,10 +532,12 @@ public class Main extends javax.swing.JFrame {
         JPanel_EditarVendedor.add(JLabel_EditarVendedor);
         JLabel_EditarVendedor.setBounds(0, 0, 957, 569);
 
-        JTabPane_Vendedores.addTab("Comision Por Categoria", JPanel_EditarVendedor);
+        JTabPane_Vendedores.addTab("Comision Por Producto", JPanel_EditarVendedor);
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
+
+        JFrame_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
 
         JPanel_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 394));
         JPanel_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 394));
@@ -693,7 +708,7 @@ public class Main extends javax.swing.JFrame {
                 System.out.println("⏳ Consultando base de datos...");
                 sql.cargarventas("vendedores.bin", conn);
                 System.out.println("✅ Consulta finalizada y binario actualizado.");
-                binario.leerArchivo();
+                //binario.leerArchivo();
             }).start();
         } else {
             int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
@@ -735,10 +750,47 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_JMenu_FichaMouseClicked
 
-    private void JLabel_BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarMouseClicked
+    private void JMenu_FichaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseEntered
         // TODO add your handling code here:
-        binario.buscarYMostrarVendedorEnTabla(JText_BuscarVendedor.getText(), JTable_ImpresionVendedores);
-    }//GEN-LAST:event_JLabel_BuscarMouseClicked
+    }//GEN-LAST:event_JMenu_FichaMouseEntered
+
+    private void JTabPane_VendedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTabPane_VendedoresMouseClicked
+        // TODO add your handling code here:
+        binario.editarTabla(JTable_ImpresionVendedores);
+    }//GEN-LAST:event_JTabPane_VendedoresMouseClicked
+
+    private void JButton_EditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_EditarMouseClicked
+        // TODO add your handling code here:
+        if (JComboBox_Tipo.getSelectedItem().equals("Pista")) {
+            vendedorActivo.getTipo().add("Pista");
+            editarPorCategoria();
+        }else if (JComboBox_Tipo.getSelectedItem().equals("Mayoreo")) {
+            vendedorActivo.getTipo().add("Mayoreo");
+            editarPorCategoria();
+        }else if (JComboBox_Tipo.getSelectedItem().equals("Redes Sociales")) {
+            vendedorActivo.getTipo().add("Redes Sociales");
+            editarPorCategoria();
+        }
+        if (vendedorActivo != null) {
+            binario.actualizarArchivo(vendedorActivo);
+            System.out.println(vendedorActivo);
+            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JButton_EditarMouseClicked
+
+    private void JButton_AgregarComisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_AgregarComisionMouseClicked
+        // TODO add your handling code here:
+        JPanel_NuevaCom.setLayout(null);
+        JPanel_NuevaCom.setSize(736, 479);
+
+        JFrame_NuevaCom.setSize(736, 479);
+        JFrame_NuevaCom.setLocationRelativeTo(null);
+        JFrame_NuevaCom.setLayout(null);
+        JFrame_NuevaCom.add(JPanel_NuevaCom);
+        JFrame_NuevaCom.setVisible(true);
+    }//GEN-LAST:event_JButton_AgregarComisionMouseClicked
 
     private void JLabel_BuscarFicha1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarFicha1MouseClicked
         // TODO add your handling code here:
@@ -757,57 +809,12 @@ public class Main extends javax.swing.JFrame {
                     "Sin resultados",
                     JOptionPane.WARNING_MESSAGE);
         }
-
     }//GEN-LAST:event_JLabel_BuscarFicha1MouseClicked
 
-    private void JButton_EditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_EditarMouseClicked
+    private void JLabel_BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarMouseClicked
         // TODO add your handling code here:
-        if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Kennedy")) {
-            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor, 1);
-            vendedorActivo.getComisiones().add(p);
-        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("San Angel")) {
-            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor, 2);
-            vendedorActivo.getComisiones().add(p);
-        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("Ruben Dario")) {
-            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor, 3);
-            vendedorActivo.getComisiones().add(p);
-        } else if (((String) JComboBox_SucursalEditar1.getSelectedItem()).equals("City Mall")) {
-            ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
-            PorProducto p = new PorProducto(productosDelVendedor, 4);
-            vendedorActivo.getComisiones().add(p);
-        }
-
-        if (vendedorActivo != null) {
-            binario.actualizarArchivo(vendedorActivo);
-            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
-        } else {
-            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_JButton_EditarMouseClicked
-
-    private void JTabPane_VendedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTabPane_VendedoresMouseClicked
-        // TODO add your handling code here:
-        binario.editarTabla(JTable_ImpresionVendedores);
-    }//GEN-LAST:event_JTabPane_VendedoresMouseClicked
-
-    private void JButton_AgregarComisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_AgregarComisionMouseClicked
-        // TODO add your handling code here:
-        JPanel_NuevaCom.setLayout(null);
-        JPanel_NuevaCom.setSize(736, 479);
-
-        JFrame_NuevaCom.setSize(736, 479);
-        JFrame_NuevaCom.setLocationRelativeTo(null);
-        JFrame_NuevaCom.setLayout(null);
-        JFrame_NuevaCom.add(JPanel_NuevaCom);
-        JFrame_NuevaCom.setVisible(true);
-    }//GEN-LAST:event_JButton_AgregarComisionMouseClicked
-
-    private void JMenu_FichaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JMenu_FichaMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JMenu_FichaMouseEntered
+        binario.buscarYMostrarVendedorEnTabla(JText_BuscarVendedor.getText(), JTable_ImpresionVendedores);
+    }//GEN-LAST:event_JLabel_BuscarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -851,6 +858,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Editar;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
+    private javax.swing.JComboBox<String> JComboBox_Tipo;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_NuevaCom;
@@ -912,6 +920,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -985,6 +994,41 @@ public class Main extends javax.swing.JFrame {
         }
 
         return listaProductos;
+    }
+
+    public void editarPorCategoria() {
+        switch ((String) JComboBox_SucursalEditar1.getSelectedItem()) {
+            case "Kennedy": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+                PorProducto p = new PorProducto(productosDelVendedor, 1);
+                vendedorActivo.getComisiones().add(p);
+                vendedorActivo.getSucursal().add("1");
+                break;
+            }
+            case "San Angel": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+                PorProducto p = new PorProducto(productosDelVendedor, 2);
+                vendedorActivo.getComisiones().add(p);
+                vendedorActivo.getSucursal().add("2");
+                break;
+            }
+            case "Ruben Dario": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+                PorProducto p = new PorProducto(productosDelVendedor, 3);
+                vendedorActivo.getComisiones().add(p);
+                vendedorActivo.getSucursal().add("3");
+                break;
+            }
+            case "City Mall": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_Productos);
+                PorProducto p = new PorProducto(productosDelVendedor, 4);
+                vendedorActivo.getComisiones().add(p);
+                vendedorActivo.getSucursal().add("4");
+                break;
+            }
+            default:
+                break;
+        }
     }
 
 }

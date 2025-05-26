@@ -16,7 +16,6 @@ public class Producto implements Serializable{
     String categoria;
     int id;
     double porcentajeComision;
-    int cantidadVendida = 10;
     double comision;
 
     public Producto() {
@@ -25,7 +24,6 @@ public class Producto implements Serializable{
     public Producto(String categoria, int id) {
         this.categoria = categoria;
         this.id = id;
-        this.comision = porcentajeComision * cantidadVendida;
     }
 
     
@@ -54,17 +52,7 @@ public class Producto implements Serializable{
         this.porcentajeComision = porcentajeComision;
     }
 
-    public int getCantidadVendida() {
-        return cantidadVendida;
-    }
-
-    public void setCantidadVendida(int cantidadVendida) {
-        this.cantidadVendida = cantidadVendida;
-    }
-
-    public double getComision() {
-        return comision = cantidadVendida * porcentajeComision;
-    }
+  
 
     public void setComision(double comision) {
         this.comision = comision;

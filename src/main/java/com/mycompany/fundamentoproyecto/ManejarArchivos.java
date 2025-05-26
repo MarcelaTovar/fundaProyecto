@@ -81,9 +81,9 @@ public class ManejarArchivos {
 
             // Imprimir el contenido del archivo
             for (Map.Entry<String, Vendedor> entry : datos.entrySet()) {
-                System.out.println("🧾 Clave: " + entry.getKey());
-                System.out.println("👤 Vendedor: " + entry.getValue());
-                System.out.println("--------------------------------------------");
+               // System.out.println("🧾 Clave: " + entry.getKey());
+               // System.out.println("👤 Vendedor: " + entry.getValue());
+               // System.out.println("--------------------------------------------");
             }
 
         } catch (FileNotFoundException e) {
