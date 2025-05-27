@@ -116,7 +116,7 @@ public class Main extends javax.swing.JFrame {
         JComboBox_Tipo = new javax.swing.JComboBox<>();
         JLabel_EditarVendedor = new javax.swing.JLabel();
         JFrame_NuevaCom = new javax.swing.JFrame();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        JTabPane_ComisionesExtras = new javax.swing.JTabbedPane();
         JPanel_NuevaCom = new javax.swing.JPanel();
         JLabel_ComisionEspecial = new javax.swing.JLabel();
         JLabel_PorCliente = new javax.swing.JLabel();
@@ -130,6 +130,20 @@ public class Main extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         JTable_ComisionCliente = new javax.swing.JTable();
         JLabel_NuevaCom = new javax.swing.JLabel();
+        JPanel_VentaIndirecta = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        JComboBox_TipoIndirecto = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        JText_ComisionIndirecta = new javax.swing.JTextField();
+        JButton_ComisionIndirecta = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        JTable_VentaIndirecta = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
@@ -588,22 +602,25 @@ public class Main extends javax.swing.JFrame {
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
 
+        JFrame_NuevaCom.setBackground(new java.awt.Color(249, 220, 196));
         JFrame_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 495));
         JFrame_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 495));
         JFrame_NuevaCom.setPreferredSize(new java.awt.Dimension(734, 495));
+        JFrame_NuevaCom.getContentPane().setLayout(null);
 
-        jTabbedPane1.setMaximumSize(new java.awt.Dimension(734, 495));
-        jTabbedPane1.setMinimumSize(new java.awt.Dimension(734, 495));
-        jTabbedPane1.setPreferredSize(new java.awt.Dimension(734, 495));
+        JTabPane_ComisionesExtras.setBackground(new java.awt.Color(249, 220, 196));
+        JTabPane_ComisionesExtras.setMaximumSize(new java.awt.Dimension(734, 495));
+        JTabPane_ComisionesExtras.setMinimumSize(new java.awt.Dimension(734, 495));
+        JTabPane_ComisionesExtras.setPreferredSize(new java.awt.Dimension(734, 495));
 
         JPanel_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 495));
         JPanel_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 495));
         JPanel_NuevaCom.setLayout(null);
 
         JLabel_ComisionEspecial.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
-        JLabel_ComisionEspecial.setText("Agregar Comision Especial");
+        JLabel_ComisionEspecial.setText("Agregar Comision Por Cliente");
         JPanel_NuevaCom.add(JLabel_ComisionEspecial);
-        JLabel_ComisionEspecial.setBounds(220, 20, 290, 60);
+        JLabel_ComisionEspecial.setBounds(210, 20, 300, 60);
 
         JLabel_PorCliente.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         JLabel_PorCliente.setText("Por Cliente");
@@ -667,18 +684,83 @@ public class Main extends javax.swing.JFrame {
         JPanel_NuevaCom.add(JLabel_NuevaCom);
         JLabel_NuevaCom.setBounds(-4, 0, 740, 479);
 
-        jTabbedPane1.addTab("Cliente", JPanel_NuevaCom);
+        JTabPane_ComisionesExtras.addTab("Cliente", JPanel_NuevaCom);
 
-        javax.swing.GroupLayout JFrame_NuevaComLayout = new javax.swing.GroupLayout(JFrame_NuevaCom.getContentPane());
-        JFrame_NuevaCom.getContentPane().setLayout(JFrame_NuevaComLayout);
-        JFrame_NuevaComLayout.setHorizontalGroup(
-            JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        JFrame_NuevaComLayout.setVerticalGroup(
-            JFrame_NuevaComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        JPanel_VentaIndirecta.setLayout(null);
+
+        jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        jLabel11.setText("Agregar Comision Por Venta Indirecta");
+        JPanel_VentaIndirecta.add(jLabel11);
+        jLabel11.setBounds(190, 40, 410, 33);
+
+        jLabel9.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel9.setText("Tipo de Vendedor");
+        JPanel_VentaIndirecta.add(jLabel9);
+        jLabel9.setBounds(80, 130, 110, 19);
+
+        jLabel12.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel12.setText("Sucursal");
+        JPanel_VentaIndirecta.add(jLabel12);
+        jLabel12.setBounds(80, 200, 60, 19);
+
+        jLabel14.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel14.setText("Porcentaje");
+        JPanel_VentaIndirecta.add(jLabel14);
+        jLabel14.setBounds(370, 120, 80, 19);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall" }));
+        JPanel_VentaIndirecta.add(jComboBox1);
+        jComboBox1.setBounds(210, 200, 100, 40);
+
+        JComboBox_TipoIndirecto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pista", "Mayoreo", "Redes Sociales" }));
+        JPanel_VentaIndirecta.add(JComboBox_TipoIndirecto);
+        JComboBox_TipoIndirecto.setBounds(210, 130, 100, 40);
+
+        jLabel17.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel17.setText("Vendedor Indirecto");
+        JPanel_VentaIndirecta.add(jLabel17);
+        jLabel17.setBounds(70, 290, 110, 19);
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JPanel_VentaIndirecta.add(jLabel18);
+        jLabel18.setBounds(320, 330, 25, 30);
+        JPanel_VentaIndirecta.add(JText_ComisionIndirecta);
+        JText_ComisionIndirecta.setBounds(70, 330, 280, 30);
+
+        JButton_ComisionIndirecta.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        JButton_ComisionIndirecta.setText("Agregar Comision");
+        JButton_ComisionIndirecta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_ComisionIndirectaMouseClicked(evt);
+            }
+        });
+        JPanel_VentaIndirecta.add(JButton_ComisionIndirecta);
+        JButton_ComisionIndirecta.setBounds(70, 390, 130, 40);
+
+        JTable_VentaIndirecta.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Producto", "Comision"
+            }
+        ));
+        jScrollPane6.setViewportView(JTable_VentaIndirecta);
+
+        JPanel_VentaIndirecta.add(jScrollPane6);
+        jScrollPane6.setBounds(390, 150, 320, 240);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diferetnesComisiones.png"))); // NOI18N
+        JPanel_VentaIndirecta.add(jLabel8);
+        jLabel8.setBounds(0, 0, 736, 479);
+
+        JTabPane_ComisionesExtras.addTab("Por Venta Indirecta", JPanel_VentaIndirecta);
+
+        JFrame_NuevaCom.getContentPane().add(JTabPane_ComisionesExtras);
+        JTabPane_ComisionesExtras.setBounds(0, 0, 734, 495);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jframe");
@@ -858,6 +940,10 @@ public class Main extends javax.swing.JFrame {
         modelo.addRow(fila10);
 
         JTable_ComisionCliente.setModel(modelo);
+        
+         new Thread(() -> {
+            cargarProductos(JTable_VentaIndirecta, "productos.bin");
+        }).start();
 
         System.out.println("✅ Datos cargados en la tabla.");
 
@@ -867,7 +953,7 @@ public class Main extends javax.swing.JFrame {
         JFrame_NuevaCom.setSize(736, 479);
         JFrame_NuevaCom.setLocationRelativeTo(null);
         JFrame_NuevaCom.setLayout(null);
-        JFrame_NuevaCom.add(JPanel_NuevaCom);
+        JFrame_NuevaCom.add(JTabPane_ComisionesExtras);
         JFrame_NuevaCom.setVisible(true);
     }//GEN-LAST:event_JButton_AgregarComisionMouseClicked
 
@@ -971,6 +1057,33 @@ public class Main extends javax.swing.JFrame {
         }).start();
     }//GEN-LAST:event_JButton_Conexion1MouseClicked
 
+    private void JButton_ComisionIndirectaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_ComisionIndirectaMouseClicked
+        // TODO add your handling code here:
+        String nombreVendedor = JText_ComisionIndirecta.getText();
+        vendedorIndirecto = binario.buscarVendedor(nombreVendedor);
+        
+        if (JComboBox_TipoIndirecto.getSelectedItem().equals("Pista")) {
+            vendedorActivo.getTipo().add("Pista");
+            editarPorVentaIndirecta(vendedorIndirecto);
+
+        } else if (JComboBox_TipoIndirecto.getSelectedItem().equals("Mayoreo")) {
+            vendedorActivo.getTipo().add("Mayoreo");
+            editarPorVentaIndirecta(vendedorIndirecto);
+
+        } else if (JComboBox_TipoIndirecto.getSelectedItem().equals("Redes Sociales")) {
+            vendedorActivo.getTipo().add("Redes Sociales");
+            editarPorVentaIndirecta(vendedorIndirecto);
+
+        }
+        if (vendedorActivo != null) {
+            binario.actualizarArchivo(vendedorActivo);
+            System.out.println(vendedorActivo);
+            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_JButton_ComisionIndirectaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1010,6 +1123,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Button_IniciarSesion;
     private javax.swing.JTextArea JArea_MetasFicha;
     private javax.swing.JButton JButton_AgregarComision;
+    private javax.swing.JButton JButton_ComisionIndirecta;
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Conexion1;
     private javax.swing.JButton JButton_Editar;
@@ -1018,6 +1132,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
     private javax.swing.JComboBox<String> JComboBox_Tipo;
     private javax.swing.JComboBox<String> JComboBox_TipoEnCliente;
+    private javax.swing.JComboBox<String> JComboBox_TipoIndirecto;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_NuevaCom;
@@ -1049,17 +1164,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel JPanel_EditarVendedor;
     private javax.swing.JPanel JPanel_NuevaCom;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
+    private javax.swing.JPanel JPanel_VentaIndirecta;
+    private javax.swing.JTabbedPane JTabPane_ComisionesExtras;
     private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
     private javax.swing.JTable JTable_ComisionCliente;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTable JTable_Productos;
+    private javax.swing.JTable JTable_VentaIndirecta;
     private javax.swing.JTable JTable_ficha;
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_Bono;
     private javax.swing.JTextField JText_BuscarFicha;
     private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
+    private javax.swing.JTextField JText_ComisionIndirecta;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
     private javax.swing.JTextField JText_Puerto;
@@ -1071,23 +1190,31 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane6;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
     SQLManagement sql = new SQLManagement();
@@ -1095,6 +1222,7 @@ public class Main extends javax.swing.JFrame {
 
     ManejarArchivos binario = new ManejarArchivos("vendedores.bin");
     Vendedor vendedorActivo = new Vendedor();
+    Vendedor vendedorIndirecto = new Vendedor();
 
     //Funciones
     public void cargarProductos(JTable tabla, String rutaBinario) {
@@ -1217,13 +1345,23 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 // Puedes agregar else if para otros tipos de comisiones si hay
-            }else if (com instanceof PorCliente) {
+            } else if (com instanceof PorCliente) {
                 PorCliente porCLiente = (PorCliente) com;
                 for (Cliente detalle : porCLiente.getClientes()) {
                     modelo.addRow(new Object[]{
                         detalle.getCategoria(),
                         detalle.getPorcentaje(),
-                        porCLiente.calcularComisionPorCliente(vendedorActivo.getClientes(),detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                        porCLiente.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                    });
+                }
+            }else if (com instanceof PorIndirecta) {
+                PorIndirecta porIndirectas = (PorIndirecta) com;
+                
+                for (Producto detalle : porIndirectas.getProductosComisionados()) {
+                    modelo.addRow(new Object[]{
+                        detalle.getCategoria(),
+                        detalle.getPorcentajeComision(),
+                        porIndirectas.calcularComisionPorProducto(vendedorIndirecto.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
                     });
                 }
             }
@@ -1307,6 +1445,41 @@ public class Main extends javax.swing.JFrame {
                 ArrayList<Cliente> clientePorcentaje = obtenerClientesDesdeTabla(JTable_ComisionCliente);
                 PorCliente c = new PorCliente(clientePorcentaje, 4);
                 vendedorActivo.getComisiones().add(c);
+                vendedorActivo.getSucursal().add("4");
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    public void editarPorVentaIndirecta(Vendedor vendedorQueRecibe) {
+        switch ((String) JComboBox_SucursalCliente.getSelectedItem()) {
+            case "Kennedy": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_VentaIndirecta);
+                PorIndirecta I = new PorIndirecta(vendedorQueRecibe, 1,productosDelVendedor);
+                vendedorActivo.getComisiones().add(I);
+                vendedorActivo.getSucursal().add("1");
+                break;
+            }
+            case "San Angel": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_VentaIndirecta);
+                PorIndirecta I = new PorIndirecta(vendedorQueRecibe, 2,productosDelVendedor);
+                vendedorActivo.getComisiones().add(I);
+                vendedorActivo.getSucursal().add("2");
+                break;
+            }
+            case "Ruben Dario": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_VentaIndirecta);
+                PorIndirecta I = new PorIndirecta(vendedorQueRecibe, 3,productosDelVendedor);
+                vendedorActivo.getComisiones().add(I);
+                vendedorActivo.getSucursal().add("3");
+                break;
+            }
+            case "City Mall": {
+                ArrayList<Producto> productosDelVendedor = obtenerProductosDesdeTabla(JTable_VentaIndirecta);
+                PorIndirecta I = new PorIndirecta(vendedorQueRecibe, 4,productosDelVendedor);
+                vendedorActivo.getComisiones().add(I);
                 vendedorActivo.getSucursal().add("4");
                 break;
             }
