@@ -117,6 +117,16 @@ public class Main extends javax.swing.JFrame {
         JTB_comisionVendido = new javax.swing.JToggleButton();
         JTB_comisionVendido1 = new javax.swing.JToggleButton();
         JLabel_EditarVendedor = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        JLabel_BuscarMeta = new javax.swing.JLabel();
+        JTextField_BuscarMeta = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        JTextField_Bono = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        JTextField_Meta = new javax.swing.JTextField();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jLabel19 = new javax.swing.JLabel();
         JFrame_NuevaCom = new javax.swing.JFrame();
         JTabPane_ComisionesExtras = new javax.swing.JTabbedPane();
         JPanel_NuevaCom = new javax.swing.JPanel();
@@ -605,6 +615,54 @@ public class Main extends javax.swing.JFrame {
         JLabel_EditarVendedor.setBounds(0, 0, 957, 569);
 
         JTabPane_Vendedores.addTab("Comision Por Producto", JPanel_EditarVendedor);
+
+        jPanel1.setLayout(null);
+
+        jLabel20.setFont(new java.awt.Font("Sylfaen", 0, 48)); // NOI18N
+        jLabel20.setText("Metas Y Bonos");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(30, 40, 320, 50);
+
+        JLabel_BuscarMeta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JLabel_BuscarMeta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JLabel_BuscarMetaMouseClicked(evt);
+            }
+        });
+        jPanel1.add(JLabel_BuscarMeta);
+        JLabel_BuscarMeta.setBounds(570, 200, 30, 30);
+        jPanel1.add(JTextField_BuscarMeta);
+        JTextField_BuscarMeta.setBounds(380, 200, 220, 30);
+
+        jLabel22.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel22.setText("Ingrese Meta");
+        jPanel1.add(jLabel22);
+        jLabel22.setBounds(260, 240, 110, 24);
+        jPanel1.add(JTextField_Bono);
+        JTextField_Bono.setBounds(550, 270, 150, 30);
+
+        jLabel23.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel23.setText("Ingrese Bono");
+        jPanel1.add(jLabel23);
+        jLabel23.setBounds(550, 240, 120, 24);
+        jPanel1.add(JTextField_Meta);
+        JTextField_Meta.setBounds(260, 270, 150, 30);
+
+        jToggleButton1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jToggleButton1.setText("Ingrese Meta");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jToggleButton1);
+        jToggleButton1.setBounds(430, 320, 107, 40);
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MetasyBonos.png"))); // NOI18N
+        jPanel1.add(jLabel19);
+        jLabel19.setBounds(0, 0, 952, 548);
+
+        JTabPane_Vendedores.addTab("Agregar Meta y Bono", jPanel1);
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
         JTabPane_Vendedores.setBounds(0, 0, 957, 569);
@@ -1166,6 +1224,18 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JTB_comisionVendido1MouseClicked
 
+    private void JLabel_BuscarMetaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarMetaMouseClicked
+        // TODO add your handling code here:
+        vendedorActivo = binario.buscarVendedor(JTextField_BuscarMeta.getText());
+    }//GEN-LAST:event_JLabel_BuscarMetaMouseClicked
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // TODO add your handling code here:
+        String Meta = JTextField_Meta.getText();
+        String bono = JTextField_Bono.getText();
+        vendedorActivo.getMetas().add(new Meta(Double.parseDouble(bono),Meta));
+    }//GEN-LAST:event_jToggleButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1224,6 +1294,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel_Buscar;
     private javax.swing.JLabel JLabel_BuscarFicha;
     private javax.swing.JLabel JLabel_BuscarFicha1;
+    private javax.swing.JLabel JLabel_BuscarMeta;
     private javax.swing.JLabel JLabel_ComisionEspecial;
     private javax.swing.JLabel JLabel_EditarVendedor;
     private javax.swing.JLabel JLabel_EditarVendedorPrincipal;
@@ -1257,6 +1328,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable JTable_Productos;
     private javax.swing.JTable JTable_VentaIndirecta;
     private javax.swing.JTable JTable_ficha;
+    private javax.swing.JTextField JTextField_Bono;
+    private javax.swing.JTextField JTextField_BuscarMeta;
+    private javax.swing.JTextField JTextField_Meta;
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_Bono;
     private javax.swing.JTextField JText_BuscarFicha;
@@ -1285,7 +1359,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1293,12 +1371,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
     SQLManagement sql = new SQLManagement();
