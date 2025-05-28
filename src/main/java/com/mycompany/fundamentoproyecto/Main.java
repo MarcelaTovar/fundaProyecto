@@ -54,9 +54,11 @@ public class Main extends javax.swing.JFrame {
 
         JFrame_PaginaPrincipal = new javax.swing.JFrame();
         PanelPrincipal = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         JMenuBar_PaginaPrincipal = new javax.swing.JMenuBar();
         JMenu_Base = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         JMenu_Ficha = new javax.swing.JMenu();
         JFrame_Base = new javax.swing.JFrame();
         JPanel_Base = new javax.swing.JPanel();
@@ -155,19 +157,48 @@ public class Main extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         JTable_VentaIndirecta = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
+        JFrame_ReporteGerencial = new javax.swing.JFrame();
+        JPanel_ReporteGerencial = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
         JFrame_PaginaPrincipal.setMinimumSize(new java.awt.Dimension(957, 569));
 
+        PanelPrincipal.setBackground(new java.awt.Color(255, 204, 204));
         PanelPrincipal.setMaximumSize(new java.awt.Dimension(957, 548));
         PanelPrincipal.setMinimumSize(new java.awt.Dimension(957, 548));
         PanelPrincipal.setPreferredSize(new java.awt.Dimension(957, 548));
         PanelPrincipal.setVerifyInputWhenFocusTarget(false);
-        PanelPrincipal.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.setLayout(null);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel2);
+        jPanel2.setBounds(30, 30, 270, 250);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PaginaPrincipal2.png"))); // NOI18N
-        PanelPrincipal.add(jLabel7, java.awt.BorderLayout.CENTER);
+        PanelPrincipal.add(jLabel7);
+        jLabel7.setBounds(0, 0, 960, 550);
 
         JMenu_Base.setText("Conectar a Base");
         JMenu_Base.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,6 +207,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JMenuBar_PaginaPrincipal.add(JMenu_Base);
+
+        jMenu1.setText("Reporte Gerencial");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        JMenuBar_PaginaPrincipal.add(jMenu1);
 
         JMenu_Ficha.setText("Ficha de Vendedores");
         JMenu_Ficha.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -660,7 +699,9 @@ public class Main extends javax.swing.JFrame {
         JTabPane_Vendedores.setBounds(0, 0, 957, 590);
 
         JFrame_NuevaCom.setBackground(new java.awt.Color(249, 220, 196));
+        JFrame_NuevaCom.setMaximumSize(new java.awt.Dimension(734, 495));
         JFrame_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 495));
+        JFrame_NuevaCom.setPreferredSize(new java.awt.Dimension(734, 495));
         JFrame_NuevaCom.getContentPane().setLayout(null);
 
         JTabPane_ComisionesExtras.setBackground(new java.awt.Color(249, 220, 196));
@@ -817,6 +858,123 @@ public class Main extends javax.swing.JFrame {
         JFrame_NuevaCom.getContentPane().add(JTabPane_ComisionesExtras);
         JTabPane_ComisionesExtras.setBounds(0, 0, 734, 495);
 
+        JFrame_ReporteGerencial.setMaximumSize(new java.awt.Dimension(957, 569));
+        JFrame_ReporteGerencial.setMinimumSize(new java.awt.Dimension(957, 569));
+        JFrame_ReporteGerencial.setPreferredSize(new java.awt.Dimension(957, 569));
+
+        JPanel_ReporteGerencial.setBackground(new java.awt.Color(255, 255, 255));
+        JPanel_ReporteGerencial.setMaximumSize(new java.awt.Dimension(957, 569));
+        JPanel_ReporteGerencial.setMinimumSize(new java.awt.Dimension(957, 569));
+        JPanel_ReporteGerencial.setLayout(null);
+
+        jLabel24.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        jLabel24.setText("Cumplimiento de Metas del [fecha inicio] al [fecha fin]\"");
+        JPanel_ReporteGerencial.add(jLabel24);
+        jLabel24.setBounds(230, 50, 570, 33);
+
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JPanel_ReporteGerencial.add(jLabel25);
+        jLabel25.setBounds(600, 100, 30, 30);
+        JPanel_ReporteGerencial.add(jTextField1);
+        jTextField1.setBounds(330, 100, 300, 30);
+
+        jLabel26.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel26.setText("a");
+        JPanel_ReporteGerencial.add(jLabel26);
+        jLabel26.setBounds(180, 110, 20, 19);
+        JPanel_ReporteGerencial.add(jTextField2);
+        jTextField2.setBounds(200, 110, 80, 20);
+
+        jLabel27.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel27.setText("Fecha: ");
+        JPanel_ReporteGerencial.add(jLabel27);
+        jLabel27.setBounds(40, 110, 70, 19);
+        JPanel_ReporteGerencial.add(jTextField3);
+        jTextField3.setBounds(90, 110, 80, 20);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Categoria", "Monto Vendido ", "Porcentaje de comisión aplicado", "Comisión generada por categoría"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        JPanel_ReporteGerencial.add(jScrollPane2);
+        jScrollPane2.setBounds(60, 150, 420, 380);
+
+        jLabel28.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        jLabel28.setText("Total de Ventas");
+        JPanel_ReporteGerencial.add(jLabel28);
+        jLabel28.setBounds(690, 140, 130, 24);
+
+        jLabel29.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel29.setText("Metas asignadas:");
+        JPanel_ReporteGerencial.add(jLabel29);
+        jLabel29.setBounds(500, 230, 130, 30);
+
+        jLabel30.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel30.setText("Ventas del Periodo: ");
+        JPanel_ReporteGerencial.add(jLabel30);
+        jLabel30.setBounds(500, 190, 130, 19);
+
+        jLabel31.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel31.setText("Comisiones Generadas:");
+        JPanel_ReporteGerencial.add(jLabel31);
+        jLabel31.setBounds(740, 170, 160, 30);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Meta Asignada", "Bono", "¿Cumplió la meta?"
+            }
+        ));
+        jScrollPane8.setViewportView(jTable2);
+
+        JPanel_ReporteGerencial.add(jScrollPane8);
+        jScrollPane8.setBounds(510, 260, 400, 160);
+
+        jLabel32.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel32.setText("Total Final a Pagar: ");
+        JPanel_ReporteGerencial.add(jLabel32);
+        jLabel32.setBounds(510, 450, 120, 19);
+        JPanel_ReporteGerencial.add(jTextField4);
+        jTextField4.setBounds(750, 200, 140, 30);
+        JPanel_ReporteGerencial.add(jTextField5);
+        jTextField5.setBounds(670, 450, 130, 20);
+        JPanel_ReporteGerencial.add(jTextField6);
+        jTextField6.setBounds(630, 180, 90, 30);
+
+        jLabel33.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel33.setText("Firma de autorizacion:");
+        JPanel_ReporteGerencial.add(jLabel33);
+        jLabel33.setBounds(510, 500, 140, 19);
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
+        JPanel_ReporteGerencial.add(jLabel21);
+        jLabel21.setBounds(0, -20, 957, 600);
+
+        javax.swing.GroupLayout JFrame_ReporteGerencialLayout = new javax.swing.GroupLayout(JFrame_ReporteGerencial.getContentPane());
+        JFrame_ReporteGerencial.getContentPane().setLayout(JFrame_ReporteGerencialLayout);
+        JFrame_ReporteGerencialLayout.setHorizontalGroup(
+            JFrame_ReporteGerencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JPanel_ReporteGerencial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        JFrame_ReporteGerencialLayout.setVerticalGroup(
+            JFrame_ReporteGerencialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(JPanel_ReporteGerencial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jframe");
         getContentPane().setLayout(null);
@@ -840,8 +998,10 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_IniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Button_IniciarSesionMouseClicked
+        // Oculta la ventana actual
         this.setVisible(false);
-        PanelPrincipal.setLayout(null);
+
+        //PanelPrincipal.setLayout(BorderLayout);
         PanelPrincipal.setSize(957, 548);
 
         JFrame_PaginaPrincipal.setSize(957, 548);
@@ -849,9 +1009,16 @@ public class Main extends javax.swing.JFrame {
         JFrame_PaginaPrincipal.setLocationRelativeTo(null);
         JFrame_PaginaPrincipal.setLayout(null);
 
+        ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
+        c1.setNames("Grafica 1", "xname", "yname");
+        c1.showBarChart(); // <-- este método debería agregar el chart al PanelPrincipal
+
         JFrame_PaginaPrincipal.add(PanelPrincipal);
-// PanelPrincipal.setBounds(...) → ¡ya no es necesario!
         JFrame_PaginaPrincipal.setVisible(true);
+
+        PanelPrincipal.revalidate();
+        PanelPrincipal.repaint();
+
 
     }//GEN-LAST:event_Button_IniciarSesionMouseClicked
 
@@ -1235,6 +1402,20 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+        //PanelPrincipal.setLayout(BorderLayout);
+        JPanel_ReporteGerencial.setSize(957, 548);
+
+        JFrame_ReporteGerencial.setSize(957, 548);
+        JFrame_ReporteGerencial.setLocationRelativeTo(null);
+        JFrame_ReporteGerencial.setLayout(null);
+
+
+        JFrame_ReporteGerencial.add(JPanel_ReporteGerencial);
+        JFrame_ReporteGerencial.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1287,6 +1468,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_NuevaCom;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
+    private javax.swing.JFrame JFrame_ReporteGerencial;
     private javax.swing.JLabel JLabel_Base;
     private javax.swing.JLabel JLabel_Buscar;
     private javax.swing.JLabel JLabel_BuscarFicha;
@@ -1314,6 +1496,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel JPanel_BuscarFicha1;
     private javax.swing.JPanel JPanel_EditarVendedor;
     private javax.swing.JPanel JPanel_NuevaCom;
+    private javax.swing.JPanel JPanel_ReporteGerencial;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
     private javax.swing.JPanel JPanel_VentaIndirecta;
     private javax.swing.JToggleButton JTB_comisionVendido;
@@ -1359,22 +1542,45 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
@@ -1540,7 +1746,6 @@ public class Main extends javax.swing.JFrame {
 
             }
         }
-
 
         DefaultListModel<Meta> modeloLista = new DefaultListModel<>();
         for (Meta meta : vendedorActivo.getMetas()) {
