@@ -161,13 +161,13 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        JTextField_BuscarVendedorReporte = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        JTextField_fecha2 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        JTextField_Fecha1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTable_CategoriaReporte = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -873,32 +873,37 @@ public class Main extends javax.swing.JFrame {
         jLabel24.setBounds(230, 50, 570, 33);
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel25MouseClicked(evt);
+            }
+        });
         JPanel_ReporteGerencial.add(jLabel25);
         jLabel25.setBounds(600, 100, 30, 30);
 
-        jTextField1.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField1);
-        jTextField1.setBounds(330, 100, 300, 30);
+        JTextField_BuscarVendedorReporte.setBorder(null);
+        JPanel_ReporteGerencial.add(JTextField_BuscarVendedorReporte);
+        JTextField_BuscarVendedorReporte.setBounds(330, 100, 300, 30);
 
         jLabel26.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel26.setText("a");
         JPanel_ReporteGerencial.add(jLabel26);
         jLabel26.setBounds(180, 110, 20, 19);
 
-        jTextField2.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField2);
-        jTextField2.setBounds(200, 110, 80, 20);
+        JTextField_fecha2.setBorder(null);
+        JPanel_ReporteGerencial.add(JTextField_fecha2);
+        JTextField_fecha2.setBounds(200, 110, 80, 20);
 
         jLabel27.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel27.setText("Fecha: ");
         JPanel_ReporteGerencial.add(jLabel27);
         jLabel27.setBounds(40, 110, 70, 19);
 
-        jTextField3.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField3);
-        jTextField3.setBounds(90, 110, 80, 20);
+        JTextField_Fecha1.setBorder(null);
+        JPanel_ReporteGerencial.add(JTextField_Fecha1);
+        JTextField_Fecha1.setBounds(90, 110, 80, 20);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTable_CategoriaReporte.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -909,7 +914,7 @@ public class Main extends javax.swing.JFrame {
                 "Categoria", "Monto Vendido ", "Porcentaje de comisión aplicado", "Comisión generada por categoría"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(JTable_CategoriaReporte);
 
         JPanel_ReporteGerencial.add(jScrollPane2);
         jScrollPane2.setBounds(60, 150, 420, 380);
@@ -1423,10 +1428,41 @@ public class Main extends javax.swing.JFrame {
         JFrame_ReporteGerencial.setLocationRelativeTo(null);
         JFrame_ReporteGerencial.setLayout(null);
 
-
         JFrame_ReporteGerencial.add(JPanel_ReporteGerencial);
         JFrame_ReporteGerencial.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+        // TODO add your handling code here:
+        // Variables ********
+        String nombre = JTextField_BuscarVendedorReporte.getText();
+        String fecha1 = JTextField_Fecha1.getText();
+        String fecha2 = JTextField_fecha2.getText();
+        //Buscar Vendedor
+        vendedorActivo = binario.buscarVendedor(nombre);
+        System.out.println(vendedorActivo);
+        
+        //Llenar la tabla 
+        DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+        modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+        for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+            Comision com = vendedorActivo.getComisiones().get(i);
+            if (com instanceof PorCliente) {
+                PorCliente c = (PorCliente) com;
+                for (Cliente detalle : c.getClientes()) {
+                    modelo.addRow(new Object[]{
+                        detalle.getCategoria(),
+                        detalle.getCantidad(),
+                        detalle.getPorcentaje(),
+                        c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                    });
+                }
+            }
+        }
+
+       
+    }//GEN-LAST:event_jLabel25MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1516,6 +1552,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTabbedPane JTabPane_ComisionesExtras;
     private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
+    private javax.swing.JTable JTable_CategoriaReporte;
     private javax.swing.JTable JTable_ComisionCliente;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTable JTable_Productos;
@@ -1523,7 +1560,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable JTable_ficha;
     private javax.swing.JTextField JTextField_Bono;
     private javax.swing.JTextField JTextField_BuscarMeta;
+    private javax.swing.JTextField JTextField_BuscarVendedorReporte;
+    private javax.swing.JTextField JTextField_Fecha1;
     private javax.swing.JTextField JTextField_Meta;
+    private javax.swing.JTextField JTextField_fecha2;
     private javax.swing.JTextField JText_Base;
     private javax.swing.JTextField JText_BuscarFicha;
     private javax.swing.JTextField JText_BuscarFicha1;
@@ -1585,11 +1625,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
