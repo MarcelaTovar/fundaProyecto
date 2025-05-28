@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -92,14 +93,14 @@ public class Main extends javax.swing.JFrame {
         JLabel_Porcentajes = new javax.swing.JLabel();
         JLabel_FirmaPago = new javax.swing.JLabel();
         JText_TipoVendedor = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        JArea_MetasFicha = new javax.swing.JTextArea();
         JText_Bono = new javax.swing.JTextField();
         JText_Firma = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         JTable_ficha = new javax.swing.JTable();
         jLabel16 = new javax.swing.JLabel();
         JComboBox_SucursalFicha = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        JList_metas = new javax.swing.JList<>();
         JLabel_Ficha = new javax.swing.JLabel();
         JPanel_EditarVendedor = new javax.swing.JPanel();
         JLabel_EditarVendedorPrincipal = new javax.swing.JLabel();
@@ -429,13 +430,6 @@ public class Main extends javax.swing.JFrame {
         JLabel_FirmaPago.setBounds(80, 500, 180, 19);
         JTabPane_FichaPorVendedor.add(JText_TipoVendedor);
         JText_TipoVendedor.setBounds(220, 210, 220, 30);
-
-        JArea_MetasFicha.setColumns(20);
-        JArea_MetasFicha.setRows(5);
-        jScrollPane2.setViewportView(JArea_MetasFicha);
-
-        JTabPane_FichaPorVendedor.add(jScrollPane2);
-        jScrollPane2.setBounds(80, 300, 370, 170);
         JTabPane_FichaPorVendedor.add(JText_Bono);
         JText_Bono.setBounds(710, 170, 200, 30);
 
@@ -479,6 +473,11 @@ public class Main extends javax.swing.JFrame {
         JComboBox_SucursalFicha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall", " " }));
         JTabPane_FichaPorVendedor.add(JComboBox_SucursalFicha);
         JComboBox_SucursalFicha.setBounds(220, 160, 100, 30);
+
+        jScrollPane7.setViewportView(JList_metas);
+
+        JTabPane_FichaPorVendedor.add(jScrollPane7);
+        jScrollPane7.setBounds(80, 290, 340, 180);
 
         JLabel_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ficha.png"))); // NOI18N
         JTabPane_FichaPorVendedor.add(JLabel_Ficha);
@@ -631,6 +630,8 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(JLabel_BuscarMeta);
         JLabel_BuscarMeta.setBounds(570, 200, 30, 30);
+
+        JTextField_BuscarMeta.setBorder(null);
         jPanel1.add(JTextField_BuscarMeta);
         JTextField_BuscarMeta.setBounds(380, 200, 220, 30);
 
@@ -665,7 +666,7 @@ public class Main extends javax.swing.JFrame {
         JTabPane_Vendedores.addTab("Agregar Meta y Bono", jPanel1);
 
         JFrame_Ficha.getContentPane().add(JTabPane_Vendedores);
-        JTabPane_Vendedores.setBounds(0, 0, 957, 569);
+        JTabPane_Vendedores.setBounds(0, 0, 957, 590);
 
         JFrame_NuevaCom.setBackground(new java.awt.Color(249, 220, 196));
         JFrame_NuevaCom.setMinimumSize(new java.awt.Dimension(734, 495));
@@ -1233,7 +1234,14 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         String Meta = JTextField_Meta.getText();
         String bono = JTextField_Bono.getText();
-        vendedorActivo.getMetas().add(new Meta(Double.parseDouble(bono),Meta));
+        vendedorActivo.getMetas().add(new Meta(Double.parseDouble(bono), Meta));
+        if (vendedorActivo != null) {
+            binario.actualizarArchivo(vendedorActivo);
+            System.out.println(vendedorActivo);
+            JOptionPane.showMessageDialog(null, "✅ Archivo actualizado correctamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "❌ No se puede actualizar: el vendedor está vacío o no seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jToggleButton1MouseClicked
 
     /**
@@ -1273,7 +1281,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_IniciarSesion;
-    private javax.swing.JTextArea JArea_MetasFicha;
     private javax.swing.JButton JButton_AgregarComision;
     private javax.swing.JButton JButton_ComisionIndirecta;
     private javax.swing.JButton JButton_Conexion;
@@ -1308,6 +1315,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel JLabel_SucursalEditar;
     private javax.swing.JLabel JLabel_TipoFicha;
     private javax.swing.JLabel JLable_ImpresionVendedores;
+    private javax.swing.JList<Meta> JList_metas;
     private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
     private javax.swing.JMenu JMenu_Base;
     private javax.swing.JMenu JMenu_Ficha;
@@ -1373,11 +1381,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
@@ -1531,18 +1539,26 @@ public class Main extends javax.swing.JFrame {
             } else if (com instanceof Comision) {
                 if (vendedorActivo.getComisiones().get(0).porVenta) {
                     modelo.addRow(new Object[]{
-                    "",
-                    com.porcentaje,
-                    com.comisionSinImportar(vendedorActivo.getVentas()),});
-                }else if (vendedorActivo.getComisiones().get(0).porCobro) {
+                        "",
+                        com.porcentaje,
+                        com.comisionSinImportar(vendedorActivo.getVentas()),});
+                } else if (vendedorActivo.getComisiones().get(0).porCobro) {
                     modelo.addRow(new Object[]{
-                    "",
-                    com.porcentaje,
-                    com.comisionPorCobro(vendedorActivo.getClientes()),});
+                        "",
+                        com.porcentaje,
+                        com.comisionPorCobro(vendedorActivo.getClientes()),});
                 }
-                
+
             }
         }
+
+
+        DefaultListModel<Meta> modeloLista = new DefaultListModel<>();
+        for (Meta meta : vendedorActivo.getMetas()) {
+            modeloLista.addElement(meta);
+        }
+
+        JList_metas.setModel(modeloLista);
 
         tabla.setModel(modelo);
     }

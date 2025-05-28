@@ -58,7 +58,7 @@ public class Meta implements Serializable{
 
     @Override
     public String toString() {
-        return "Meta{" + "bono=" + bono + ", meta=" + meta + ", completado=" + completado + '}';
+        return "Meta: " + meta + " | Bono: " + bono;
     }
     
 }
