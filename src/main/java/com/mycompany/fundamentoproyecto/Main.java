@@ -175,9 +175,9 @@ public class Main extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        JText_ComisionesGeneradas = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        JText_VentasPeriodo = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
@@ -960,17 +960,17 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel32);
         jLabel32.setBounds(510, 450, 120, 19);
 
-        jTextField4.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField4);
-        jTextField4.setBounds(770, 180, 140, 30);
+        JText_ComisionesGeneradas.setBorder(null);
+        JPanel_ReporteGerencial.add(JText_ComisionesGeneradas);
+        JText_ComisionesGeneradas.setBounds(770, 180, 140, 30);
 
         jTextField5.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField5);
         jTextField5.setBounds(670, 450, 130, 14);
 
-        jTextField6.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField6);
-        jTextField6.setBounds(550, 180, 130, 30);
+        JText_VentasPeriodo.setBorder(null);
+        JPanel_ReporteGerencial.add(JText_VentasPeriodo);
+        JText_VentasPeriodo.setBounds(550, 180, 130, 30);
 
         jLabel33.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel33.setText("Firma de autorizacion:");
@@ -1438,8 +1438,19 @@ public class Main extends javax.swing.JFrame {
         String nombre = JTextField_BuscarVendedorReporte.getText();
         String fecha1 = JTextField_Fecha1.getText();
         String fecha2 = JTextField_fecha2.getText();
+        
         //Buscar Vendedor
         vendedorActivo = binario.buscarVendedor(nombre);
+        String ventas = vendedorActivo.getVentas().size() + "";
+        double comisiones = 0;
+        for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+            comisiones = vendedorActivo.getComisiones().get(i).getComisionFinal();
+        }
+        String comisionFinal = comisiones + "";
+        JText_ComisionesGeneradas.setText(comisionFinal);
+        
+        
+        JText_VentasPeriodo.setText(ventas);
         System.out.println(vendedorActivo);
         
         //Llenar la tabla 
@@ -1569,12 +1580,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_ComisionIndirecta;
+    private javax.swing.JTextField JText_ComisionesGeneradas;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
     private javax.swing.JTextField JText_TipoVendedor;
     private javax.swing.JTextField JText_Usuario;
+    private javax.swing.JTextField JText_VentasPeriodo;
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton jButton1;
@@ -1626,9 +1639,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
