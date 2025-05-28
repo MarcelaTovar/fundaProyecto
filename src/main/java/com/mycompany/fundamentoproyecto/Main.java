@@ -875,6 +875,8 @@ public class Main extends javax.swing.JFrame {
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
         JPanel_ReporteGerencial.add(jLabel25);
         jLabel25.setBounds(600, 100, 30, 30);
+
+        jTextField1.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField1);
         jTextField1.setBounds(330, 100, 300, 30);
 
@@ -882,6 +884,8 @@ public class Main extends javax.swing.JFrame {
         jLabel26.setText("a");
         JPanel_ReporteGerencial.add(jLabel26);
         jLabel26.setBounds(180, 110, 20, 19);
+
+        jTextField2.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField2);
         jTextField2.setBounds(200, 110, 80, 20);
 
@@ -889,6 +893,8 @@ public class Main extends javax.swing.JFrame {
         jLabel27.setText("Fecha: ");
         JPanel_ReporteGerencial.add(jLabel27);
         jLabel27.setBounds(40, 110, 70, 19);
+
+        jTextField3.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField3);
         jTextField3.setBounds(90, 110, 80, 20);
 
@@ -911,7 +917,7 @@ public class Main extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel28.setText("Total de Ventas");
         JPanel_ReporteGerencial.add(jLabel28);
-        jLabel28.setBounds(690, 140, 130, 24);
+        jLabel28.setBounds(690, 120, 130, 24);
 
         jLabel29.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel29.setText("Metas asignadas:");
@@ -921,12 +927,12 @@ public class Main extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel30.setText("Ventas del Periodo: ");
         JPanel_ReporteGerencial.add(jLabel30);
-        jLabel30.setBounds(500, 190, 130, 19);
+        jLabel30.setBounds(560, 160, 130, 19);
 
         jLabel31.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel31.setText("Comisiones Generadas:");
         JPanel_ReporteGerencial.add(jLabel31);
-        jLabel31.setBounds(740, 170, 160, 30);
+        jLabel31.setBounds(770, 150, 160, 30);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -948,12 +954,18 @@ public class Main extends javax.swing.JFrame {
         jLabel32.setText("Total Final a Pagar: ");
         JPanel_ReporteGerencial.add(jLabel32);
         jLabel32.setBounds(510, 450, 120, 19);
+
+        jTextField4.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField4);
-        jTextField4.setBounds(750, 200, 140, 30);
+        jTextField4.setBounds(770, 180, 140, 30);
+
+        jTextField5.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField5);
-        jTextField5.setBounds(670, 450, 130, 20);
+        jTextField5.setBounds(670, 450, 130, 14);
+
+        jTextField6.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField6);
-        jTextField6.setBounds(630, 180, 90, 30);
+        jTextField6.setBounds(550, 180, 130, 30);
 
         jLabel33.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel33.setText("Firma de autorizacion:");
