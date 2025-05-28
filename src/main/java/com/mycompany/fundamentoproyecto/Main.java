@@ -89,11 +89,9 @@ public class Main extends javax.swing.JFrame {
         JLabel_BuscarFicha = new javax.swing.JLabel();
         JLabel_TipoFicha = new javax.swing.JLabel();
         JLabel_Metas = new javax.swing.JLabel();
-        JLabel_Bono = new javax.swing.JLabel();
         JLabel_Porcentajes = new javax.swing.JLabel();
         JLabel_FirmaPago = new javax.swing.JLabel();
         JText_TipoVendedor = new javax.swing.JTextField();
-        JText_Bono = new javax.swing.JTextField();
         JText_Firma = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         JTable_ficha = new javax.swing.JTable();
@@ -414,11 +412,6 @@ public class Main extends javax.swing.JFrame {
         JTabPane_FichaPorVendedor.add(JLabel_Metas);
         JLabel_Metas.setBounds(80, 260, 114, 19);
 
-        JLabel_Bono.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        JLabel_Bono.setText("Bonos por cumplimiento");
-        JTabPane_FichaPorVendedor.add(JLabel_Bono);
-        JLabel_Bono.setBounds(550, 170, 150, 19);
-
         JLabel_Porcentajes.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_Porcentajes.setText("Porcentajes");
         JTabPane_FichaPorVendedor.add(JLabel_Porcentajes);
@@ -427,11 +420,9 @@ public class Main extends javax.swing.JFrame {
         JLabel_FirmaPago.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         JLabel_FirmaPago.setText("Firma de Autorizacion de Pago");
         JTabPane_FichaPorVendedor.add(JLabel_FirmaPago);
-        JLabel_FirmaPago.setBounds(80, 500, 180, 19);
+        JLabel_FirmaPago.setBounds(550, 170, 180, 19);
         JTabPane_FichaPorVendedor.add(JText_TipoVendedor);
         JText_TipoVendedor.setBounds(220, 210, 220, 30);
-        JTabPane_FichaPorVendedor.add(JText_Bono);
-        JText_Bono.setBounds(710, 170, 200, 30);
 
         JText_Firma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,7 +430,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JTabPane_FichaPorVendedor.add(JText_Firma);
-        JText_Firma.setBounds(290, 490, 160, 30);
+        JText_Firma.setBounds(760, 170, 160, 30);
 
         JTable_ficha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1297,7 +1288,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFrame JFrame_NuevaCom;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
     private javax.swing.JLabel JLabel_Base;
-    private javax.swing.JLabel JLabel_Bono;
     private javax.swing.JLabel JLabel_Buscar;
     private javax.swing.JLabel JLabel_BuscarFicha;
     private javax.swing.JLabel JLabel_BuscarFicha1;
@@ -1340,7 +1330,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JTextField_BuscarMeta;
     private javax.swing.JTextField JTextField_Meta;
     private javax.swing.JTextField JText_Base;
-    private javax.swing.JTextField JText_Bono;
     private javax.swing.JTextField JText_BuscarFicha;
     private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
