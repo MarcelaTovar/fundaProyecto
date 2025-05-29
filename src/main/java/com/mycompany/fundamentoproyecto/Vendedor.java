@@ -22,6 +22,7 @@ public class Vendedor implements Serializable {
     String firmaVendedor;
     ArrayList<String> tipo = new ArrayList<>();
     ArrayList<String> Sucursal = new ArrayList<>();
+    ArrayList<Cliente> clientes = new ArrayList<>();
     int comisionTotal;
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +34,7 @@ public class Vendedor implements Serializable {
         this.nombre = nombre;
     }
 
-    public Vendedor(String id, String nombre, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor, ArrayList<String> tipo, ArrayList<String> Sucursal) {
+    public Vendedor(String nombre, String id, ArrayList<Comision> comisiones, ArrayList<Meta> metas, ArrayList<Venta> ventas, String firmaVendedor, ArrayList<String> tipo, ArrayList<String> Sucursal) {
         this.id = id;
         this.nombre = nombre;
         this.comisiones = comisiones;
@@ -116,16 +117,75 @@ public class Vendedor implements Serializable {
         this.firmaVendedor = firmaVendedor;
     }
 
-    public double sumarComision() {
-        for (int i = 0; i < this.comisiones.size(); i++) {
-            this.comisionTotal += this.comisiones.get(i).porcentaje;
-        }
-        return this.comisionTotal;
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
     @Override
     public String toString() {
-        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + '}';
+        return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas.get(0) + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + ", clientes=" + clientes.get(0) + ", comisionTotal=" + comisionTotal + '}';
+    }
+
+    public double obtenerCantidadVentaPorCategoria(String nombre, String clienteOVenta) {
+        double cantidadFinal = 0.0;
+        if (clienteOVenta.equalsIgnoreCase("Cliente")) {
+            for (int i = 0; i < clientes.size(); i++) {
+                if (clientes.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += clientes.get(i).getCantidad();
+                }
+            }
+        } else if (clienteOVenta.equalsIgnoreCase("Venta")) {
+            for (int i = 0; i < ventas.size(); i++) {
+                if (ventas.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += ventas.get(i).getMonto();
+                }
+            }
+        }
+        return cantidadFinal;
+
+    }
+    
+    public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList <Venta> ventas,ArrayList<Cliente> clientes,String nombre, String clienteOVenta){
+        double cantidadFinal = 0.0;
+        if (clienteOVenta.equalsIgnoreCase("Cliente")) {
+            for (int i = 0; i < clientes.size(); i++) {
+                if (clientes.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += clientes.get(i).getCantidad();
+                }
+            }
+        } else if (clienteOVenta.equalsIgnoreCase("Venta")) {
+            for (int i = 0; i < ventas.size(); i++) {
+                if (ventas.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += ventas.get(i).getMonto();
+                }
+            }
+        }
+        return cantidadFinal;
+    }
+
+    public boolean cumplioMeta(Meta m) {
+        double totalVentas = 0.0;
+
+        for (Venta venta : ventas) {
+            totalVentas += venta.getMonto();
+        }
+
+        try {
+            double meta = Double.parseDouble(m.getMeta());
+            if (totalVentas >= meta) {
+                m.setCompletado(true);
+                return true;
+            }else{
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("❌ Error: Meta no es un número válido -> " + m.getMeta());
+            return false;
+        }
     }
 
 }

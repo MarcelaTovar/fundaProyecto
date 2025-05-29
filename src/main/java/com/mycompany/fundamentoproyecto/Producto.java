@@ -12,18 +12,21 @@ import java.io.Serializable;
  * @author Osmin Tovar
  */
 public class Producto implements Serializable{
+    private static final long serialVersionUID = 1L;
     String categoria;
-    String nombre;
-    int valor;
+    int id;
+    double porcentajeComision;
+    double comision;
 
     public Producto() {
     }
 
-    public Producto(String categoria, String nombre, int valor) {
+    public Producto(String categoria, int id) {
         this.categoria = categoria;
-        this.nombre = nombre;
-        this.valor = valor;
+        this.id = id;
     }
+
+    
 
     public String getCategoria() {
         return categoria;
@@ -33,26 +36,38 @@ public class Producto implements Serializable{
         this.categoria = categoria;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getId() {
+        return id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getValor() {
-        return valor;
+    public double getPorcentajeComision() {
+        return porcentajeComision;
     }
 
-    public void setValor(int valor) {
-        this.valor = valor;
+    public void setPorcentajeComision(double porcentajeComision) {
+        this.porcentajeComision = porcentajeComision;
     }
+
+  
+
+    public void setComision(double comision) {
+        this.comision = comision;
+    }
+    
+    
+
+    
 
     @Override
     public String toString() {
-        return "Producto{" + "categoria=" + categoria + ", nombre=" + nombre + ", valor=" + valor + '}';
+        return "Producto{" + "categoria=" + categoria + ", id=" + id + '}';
     }
+    
+    
     
     
 }

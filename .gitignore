@@ -1,3 +1,4 @@
 ECHO est  activado.
 .env
+./vendedores.bin
 

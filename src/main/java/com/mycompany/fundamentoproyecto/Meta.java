@@ -12,24 +12,31 @@ import java.io.Serializable;
  * @author Osmin Tovar
  */
 public class Meta implements Serializable{
-    int bono;
+    double bono;
     String meta;
     boolean completado;
 
     public Meta() {
     }
 
-    public Meta(int bono, String meta, boolean completado) {
+    public Meta(double bono, String meta, boolean completado) {
         this.bono = bono;
         this.meta = meta;
         this.completado = completado;
     }
 
-    public int getBono() {
+    public Meta(double bono, String meta) {
+        this.bono = bono;
+        this.meta = meta;
+    }
+    
+    
+
+    public double getBono() {
         return bono;
     }
 
-    public void setBono(int bono) {
+    public void setBono(double bono) {
         this.bono = bono;
     }
 
@@ -51,7 +58,7 @@ public class Meta implements Serializable{
 
     @Override
     public String toString() {
-        return "Meta{" + "bono=" + bono + ", meta=" + meta + ", completado=" + completado + '}';
+        return "Meta: " + meta + " | Bono: " + bono;
     }
     
 }
