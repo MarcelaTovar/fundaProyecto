@@ -173,7 +173,7 @@ public class Main extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        JTable_Metas = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
         JText_ComisionesGeneradas = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
@@ -939,7 +939,7 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel31);
         jLabel31.setBounds(770, 150, 160, 30);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        JTable_Metas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -950,7 +950,7 @@ public class Main extends javax.swing.JFrame {
                 "Meta Asignada", "Bono", "¿Cumplió la meta?"
             }
         ));
-        jScrollPane8.setViewportView(jTable2);
+        jScrollPane8.setViewportView(JTable_Metas);
 
         JPanel_ReporteGerencial.add(jScrollPane8);
         jScrollPane8.setBounds(510, 260, 400, 160);
@@ -1438,21 +1438,25 @@ public class Main extends javax.swing.JFrame {
         String nombre = JTextField_BuscarVendedorReporte.getText();
         String fecha1 = JTextField_Fecha1.getText();
         String fecha2 = JTextField_fecha2.getText();
-        
+
         //Buscar Vendedor
         vendedorActivo = binario.buscarVendedor(nombre);
         String ventas = vendedorActivo.getVentas().size() + "";
         double comisiones = 0;
         for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
-            comisiones = vendedorActivo.getComisiones().get(i).getComisionFinal();
+            if (vendedorActivo.getComisiones().get(i) instanceof PorCliente) {
+                PorCliente pcliente = (PorCliente) vendedorActivo.getComisiones().get(i);
+                 comisiones += pcliente.calcularComisionFinal(vendedorActivo);
+                 System.out.println(comisiones);
+                 
+            }
+           
         }
         String comisionFinal = comisiones + "";
         JText_ComisionesGeneradas.setText(comisionFinal);
-        
-        
+
         JText_VentasPeriodo.setText(ventas);
-        System.out.println(vendedorActivo);
-        
+
         //Llenar la tabla 
         DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
         modelo.setRowCount(0); // Limpia la tabla antes de llenarla
@@ -1464,7 +1468,7 @@ public class Main extends javax.swing.JFrame {
                 for (Cliente detalle : c.getClientes()) {
                     modelo.addRow(new Object[]{
                         detalle.getCategoria(),
-                        detalle.getCantidad(),
+                        vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Cliente"),
                         detalle.getPorcentaje(),
                         c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
                     });
@@ -1472,7 +1476,17 @@ public class Main extends javax.swing.JFrame {
             }
         }
 
-       
+        DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+        modelo2.setRowCount(0);
+        for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+            Meta m = vendedorActivo.getMetas().get(i);
+            modelo2.addRow(new Object[]{
+                m.getMeta(),
+                m.getBono() // o si es por detalle, ajusta aquí
+            });
+        }
+
+
     }//GEN-LAST:event_jLabel25MouseClicked
 
     /**
@@ -1566,6 +1580,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable JTable_CategoriaReporte;
     private javax.swing.JTable JTable_ComisionCliente;
     private javax.swing.JTable JTable_ImpresionVendedores;
+    private javax.swing.JTable JTable_Metas;
     private javax.swing.JTable JTable_Productos;
     private javax.swing.JTable JTable_VentaIndirecta;
     private javax.swing.JTable JTable_ficha;
@@ -1638,7 +1653,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables

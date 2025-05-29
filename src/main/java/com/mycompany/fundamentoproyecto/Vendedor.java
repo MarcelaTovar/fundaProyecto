@@ -129,8 +129,24 @@ public class Vendedor implements Serializable {
     public String toString() {
         return "Vendedor{" + "id=" + id + ", nombre=" + nombre + ", comisiones=" + comisiones + ", metas=" + metas + ", ventas=" + ventas.get(0) + ", firmaVendedor=" + firmaVendedor + ", tipo=" + tipo + ", Sucursal=" + Sucursal + ", clientes=" + clientes.get(0) + ", comisionTotal=" + comisionTotal + '}';
     }
-    
 
-    
+    public double obtenerCantidadVentaPorCategoria(String nombre, String clienteOVenta) {
+        double cantidadFinal = 0.0;
+        if (clienteOVenta.equalsIgnoreCase("Cliente")) {
+            for (int i = 0; i < clientes.size(); i++) {
+                if (clientes.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += clientes.get(i).getCantidad();
+                }
+            }
+        } else if (clienteOVenta.equalsIgnoreCase("Venta")) {
+            for (int i = 0; i < ventas.size(); i++) {
+                if (ventas.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += ventas.get(i).getMonto();
+                }
+            }
+        }
+        return cantidadFinal;
+
+    }
 
 }
