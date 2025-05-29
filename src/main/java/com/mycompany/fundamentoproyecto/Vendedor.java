@@ -148,5 +148,44 @@ public class Vendedor implements Serializable {
         return cantidadFinal;
 
     }
+    
+    public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList <Venta> ventas,ArrayList<Cliente> clientes,String nombre, String clienteOVenta){
+        double cantidadFinal = 0.0;
+        if (clienteOVenta.equalsIgnoreCase("Cliente")) {
+            for (int i = 0; i < clientes.size(); i++) {
+                if (clientes.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += clientes.get(i).getCantidad();
+                }
+            }
+        } else if (clienteOVenta.equalsIgnoreCase("Venta")) {
+            for (int i = 0; i < ventas.size(); i++) {
+                if (ventas.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += ventas.get(i).getMonto();
+                }
+            }
+        }
+        return cantidadFinal;
+    }
+
+    public boolean cumplioMeta(Meta m) {
+        double totalVentas = 0.0;
+
+        for (Venta venta : ventas) {
+            totalVentas += venta.getMonto();
+        }
+
+        try {
+            double meta = Double.parseDouble(m.getMeta());
+            if (totalVentas >= meta) {
+                m.setCompletado(true);
+                return true;
+            }else{
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("❌ Error: Meta no es un número válido -> " + m.getMeta());
+            return false;
+        }
+    }
 
 }

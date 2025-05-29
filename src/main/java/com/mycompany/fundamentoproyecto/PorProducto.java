@@ -75,5 +75,23 @@ public class PorProducto extends Comision implements Serializable {
 
         return totalGanado;
     }
+    public double calcularComisionFinalFiltrada(ArrayList <Venta> v) {
+          double totalGanado = 0.0;
+
+        for (Venta venta : v) {
+            String tipoVenta = venta.getCategoria();
+            double cantidad = venta.getMonto();
+
+            for (Producto porcentajeDefinido : this.getComisionPorProducto()) {
+                if (porcentajeDefinido.getCategoria().equals(tipoVenta)) {
+                    double porcentaje = porcentajeDefinido.getPorcentajeComision(); // Porcentaje como 0.5
+                    totalGanado += cantidad * porcentaje;
+                    break;
+                }
+            }
+        }
+
+        return totalGanado;
+    }
 
 }

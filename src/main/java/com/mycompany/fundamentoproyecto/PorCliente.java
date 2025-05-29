@@ -124,5 +124,24 @@ public class PorCliente extends Comision {
 
         return totalGanado;
     }
+    
+    public double calcularComisionFinalFiltrada(ArrayList<Cliente> v) {
+        double totalGanado = 0.0;
+
+        for (Cliente c : v) {
+            String tipoCliente = c.getCategoria();
+            double cantidad = c.getCantidad();
+
+            for (Cliente porcentajeDefinido : this.getClientes()) {
+                if (porcentajeDefinido.getCategoria().equals(tipoCliente)) {
+                    double porcentaje = porcentajeDefinido.getPorcentaje(); // Porcentaje como 0.5
+                    totalGanado += cantidad * porcentaje;
+                    break;
+                }
+            }
+        }
+
+        return totalGanado;
+    }
 
 }
