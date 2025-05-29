@@ -1278,11 +1278,24 @@ public class Main extends javax.swing.JFrame {
                 PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
                 comisionF = com.calcularComisionFinal(vendedorActivo) + "";
                 JTextField_ComisionTotalVendedor.setText(comisionF);
-            }
-            else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
                 PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
                 comisionF = com.calcularComisionFinal(vendedorActivo) + "";
                 JTextField_ComisionTotalVendedor.setText(comisionF);
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorIndirecta) {
+                PorIndirecta com = (PorIndirecta) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo.getVentas()) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof Comision) {
+                if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorVenta()) {
+                    Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                    comisionF = com.comisionSinImportar(vendedorActivo.getVentas()) + "";
+                    JTextField_ComisionTotalVendedor.setText(comisionF);
+                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorCobro()) {
+                    Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                    comisionF = com.comisionPorCobro(vendedorActivo.getClientes()) + "";
+                    JTextField_ComisionTotalVendedor.setText(comisionF);
+                }
             }
             Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
         } else {
@@ -1297,11 +1310,24 @@ public class Main extends javax.swing.JFrame {
                 PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
                 comisionF = com.calcularComisionFinal(vendedorActivo) + "";
                 JTextField_ComisionTotalVendedor.setText(comisionF);
-            }
-            else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
                 PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
                 comisionF = com.calcularComisionFinal(vendedorActivo) + "";
                 JTextField_ComisionTotalVendedor.setText(comisionF);
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorIndirecta) {
+                PorIndirecta com = (PorIndirecta) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo.getVentas()) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof Comision) {
+                if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorVenta()) {
+                    Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                    comisionF = com.comisionSinImportar(vendedorActivo.getVentas()) + "";
+                    JTextField_ComisionTotalVendedor.setText(comisionF);
+                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorCobro()) {
+                    Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                    comisionF = com.comisionPorCobro(vendedorActivo.getClientes()) + "";
+                    JTextField_ComisionTotalVendedor.setText(comisionF);
+                }
             }
 
             Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
