@@ -56,7 +56,14 @@ public class Main extends javax.swing.JFrame {
 
         JFrame_PaginaPrincipal = new javax.swing.JFrame();
         PanelPrincipal = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        JButton_InsertarPanel = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         JMenuBar_PaginaPrincipal = new javax.swing.JMenuBar();
         JMenu_Base = new javax.swing.JMenu();
@@ -183,6 +190,7 @@ public class Main extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         JText_VentasPeriodo = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
@@ -196,9 +204,44 @@ public class Main extends javax.swing.JFrame {
         PanelPrincipal.setVerifyInputWhenFocusTarget(false);
         PanelPrincipal.setLayout(null);
 
+        jPanel4.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel4);
+        jPanel4.setBounds(670, 90, 220, 200);
+
+        jPanel7.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel7);
+        jPanel7.setBounds(670, 320, 220, 200);
+
+        jPanel3.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel3);
+        jPanel3.setBounds(360, 90, 220, 200);
+
+        jPanel6.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel6);
+        jPanel6.setBounds(360, 320, 220, 200);
+
+        jPanel5.setLayout(new java.awt.BorderLayout());
+        PanelPrincipal.add(jPanel5);
+        jPanel5.setBounds(50, 320, 220, 200);
+
         jPanel2.setLayout(new java.awt.BorderLayout());
         PanelPrincipal.add(jPanel2);
-        jPanel2.setBounds(30, 30, 270, 250);
+        jPanel2.setBounds(50, 90, 220, 200);
+
+        jLabel35.setFont(new java.awt.Font("Sylfaen", 0, 36)); // NOI18N
+        jLabel35.setText("Panel Informativo ");
+        PanelPrincipal.add(jLabel35);
+        jLabel35.setBounds(340, 20, 310, 48);
+
+        JButton_InsertarPanel.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        JButton_InsertarPanel.setText("Insertar Graficos");
+        JButton_InsertarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JButton_InsertarPanelMouseClicked(evt);
+            }
+        });
+        PanelPrincipal.add(JButton_InsertarPanel);
+        JButton_InsertarPanel.setBounds(803, 20, 130, 30);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PaginaPrincipal2.png"))); // NOI18N
         PanelPrincipal.add(jLabel7);
@@ -243,6 +286,8 @@ public class Main extends javax.swing.JFrame {
             JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        JFrame_Base.setMaximumSize(new java.awt.Dimension(734, 394));
 
         JPanel_Base.setMaximumSize(new java.awt.Dimension(734, 394));
         JPanel_Base.setMinimumSize(new java.awt.Dimension(734, 394));
@@ -1000,6 +1045,15 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel33);
         jLabel33.setBounds(510, 500, 140, 19);
 
+        jButton2.setText("jButton2");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        JPanel_ReporteGerencial.add(jButton2);
+        jButton2.setBounds(280, 510, 73, 23);
+
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
         JPanel_ReporteGerencial.add(jLabel21);
         jLabel21.setBounds(0, -20, 957, 600);
@@ -1531,7 +1585,7 @@ public class Main extends javax.swing.JFrame {
                         modelo.addRow(new Object[]{
                             detalle.getCategoria(),
                             //Cantidad de ventas que hizo
-                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Cliente"),
+                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Producto"),
                             detalle.getPorcentajeComision(),
                             p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria()) // o si es por detalle, ajusta aquí
                         });
@@ -1657,6 +1711,42 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel25MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo,"2011-01-01" , "2024-01-01");
+        ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, "2011-01-01" , "2024-01-01");
+        double xd = vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, "Llantas", "Cliente");
+        System.out.println(xd);
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void JButton_InsertarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_InsertarPanelMouseClicked
+        // TODO add your handling code here:
+         ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
+        c1.setNames("Mayor Comision", "xname", "yname");
+        c1.showBarChart();
+        
+        ChartAdminPanel c2 = new ChartAdminPanel(jPanel3);
+        c2.setNames("Ventas Por Sucursal", "Si", "Funciona");
+        c2.showPieChart();
+
+        ChartAdminPanel c3 = new ChartAdminPanel(jPanel4);
+        c3.setNames("Categorias con Mas Ingresos", "xname", "yname");
+        c3.setValues(new double[]{23, 10}, new String[]{"hola", "si"});
+        c3.showHistogram();
+
+        ChartAdminPanel c4 = new ChartAdminPanel(jPanel5);
+        c4.setNames("Ventas a lo Largo del Tiempo", "xname", "yname");
+        c4.showLineChart();
+        
+        ChartAdminPanel c5 = new ChartAdminPanel(jPanel6);
+        c5.setNames("Vendedores vs Metas", "xname", "yname");
+        c5.showHistogram();
+        
+        ChartAdminPanel c6 = new ChartAdminPanel(jPanel7);
+        c6.setNames("Como Sale Mas Rentable", "xname", "yname");
+        c6.showPieChart();
+    }//GEN-LAST:event_JButton_InsertarPanelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1699,6 +1789,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_Conexion;
     private javax.swing.JButton JButton_Conexion1;
     private javax.swing.JButton JButton_Editar;
+    private javax.swing.JButton JButton_InsertarPanel;
     private javax.swing.JComboBox<String> JComboBox_SucursalCliente;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
     private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
@@ -1775,6 +1866,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -1806,6 +1898,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1815,6 +1908,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
