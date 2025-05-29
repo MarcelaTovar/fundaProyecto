@@ -190,7 +190,6 @@ public class Main extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         JText_VentasPeriodo = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
@@ -1045,15 +1044,6 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel33);
         jLabel33.setBounds(510, 500, 140, 19);
 
-        jButton2.setText("jButton2");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        JPanel_ReporteGerencial.add(jButton2);
-        jButton2.setBounds(280, 510, 73, 23);
-
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
         JPanel_ReporteGerencial.add(jLabel21);
         jLabel21.setBounds(0, -20, 957, 600);
@@ -1585,7 +1575,7 @@ public class Main extends javax.swing.JFrame {
                         modelo.addRow(new Object[]{
                             detalle.getCategoria(),
                             //Cantidad de ventas que hizo
-                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Producto"),
+                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Venta"),
                             detalle.getPorcentajeComision(),
                             p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria()) // o si es por detalle, ajusta aquí
                         });
@@ -1711,30 +1701,22 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel25MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
-        ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo,"2011-01-01" , "2024-01-01");
-        ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, "2011-01-01" , "2024-01-01");
-        double xd = vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, "Llantas", "Cliente");
-        System.out.println(xd);
-    }//GEN-LAST:event_jButton2MouseClicked
-
     private void JButton_InsertarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_InsertarPanelMouseClicked
         // TODO add your handling code here:
          ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
-        c1.setNames("Mayor Comision", "xname", "yname");
+        c1.setNames("Mayor Comision", "Vendedor", "Cantidad");
         c1.showBarChart();
         
         ChartAdminPanel c2 = new ChartAdminPanel(jPanel3);
-        c2.setNames("Ventas Por Sucursal", "Si", "Funciona");
+        c2.setNames("Ventas Por Sucursal", "Venta", "Sucursal");
         c2.showPieChart();
 
         ChartAdminPanel c3 = new ChartAdminPanel(jPanel4);
         c3.setNames("Categorias con Mas Ingresos", "xname", "yname");
-        c3.setValues(new double[]{23, 10}, new String[]{"hola", "si"});
         c3.showHistogram();
 
         ChartAdminPanel c4 = new ChartAdminPanel(jPanel5);
+        c4.setValues(new double[]{23, 10}, new String[]{"hola", "si"});
         c4.setNames("Ventas a lo Largo del Tiempo", "xname", "yname");
         c4.showLineChart();
         
@@ -1866,7 +1848,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;

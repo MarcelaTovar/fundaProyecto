@@ -150,12 +150,6 @@ public class Vendedor implements Serializable {
     }
     
     public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList <Venta> ventas,ArrayList<Cliente> clientes,String nombre, String clienteOVenta){
-        System.out.println(ventas);
-        System.out.println("********");
-        System.out.println(clientes);
-        System.out.println("*******");
-        System.out.println(clienteOVenta);
-        
         //El arraylist cliente y el arraylist venta deben ser los del vendedorActivo
         double cantidadFinal = 0.0;
         if (clienteOVenta.equalsIgnoreCase("Cliente")) {
