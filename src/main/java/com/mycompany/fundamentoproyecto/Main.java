@@ -923,7 +923,7 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.setLayout(null);
 
         jLabel24.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
-        jLabel24.setText("Cumplimiento de Metas del [fecha inicio] al [fecha fin]\"");
+        jLabel24.setText("Cumplimiento de Metas");
         JPanel_ReporteGerencial.add(jLabel24);
         jLabel24.setBounds(230, 50, 570, 33);
 
@@ -1550,6 +1550,7 @@ public class Main extends javax.swing.JFrame {
         if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
             String fecha1 = JTextField_Fecha1.getText();
             String fecha2 = JTextField_fecha2.getText();
+            jLabel24.setText("Cumplimiento de Metas del "+fecha1+" al "+fecha2);
             ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2);
             ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2);
 
