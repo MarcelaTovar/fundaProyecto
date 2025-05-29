@@ -37,32 +37,43 @@ public class PorProducto extends Comision implements Serializable {
         this.comisionPorProducto = comisionPorProducto;
     }
 
-    public double calcularComisionFinal(ArrayList<Venta> ventas) {
-        for (int i = 0; i < ventas.size(); i++) {
-            for (int j = 0; j < comisionPorProducto.size(); j++) {
-                if (ventas.get(i).getCategoria().equalsIgnoreCase(comisionPorProducto.get(j).getCategoria())) {
-                    comisionFinal += ventas.get(i).getMonto() * comisionPorProducto.get(j).getPorcentajeComision();
+    public double calcularComisionFinal(Vendedor v) {
+        double totalGanado = 0.0;
+
+        for (Venta venta : v.getVentas()) {
+            String tipoVenta = venta.getCategoria();
+            double cantidad = venta.getMonto();
+
+            for (Producto porcentajeDefinido : this.getComisionPorProducto()) {
+                if (porcentajeDefinido.getCategoria().equals(tipoVenta)) {
+                    double porcentaje = porcentajeDefinido.getPorcentajeComision(); // Porcentaje como 0.5
+                    totalGanado += cantidad * porcentaje;
+                    break;
                 }
             }
         }
-        return comisionFinal;
+
+        return totalGanado;
     }
 
     public double calcularComisionPorProducto(ArrayList<Venta> ventas, String nombreCategoria) {
-        double comisionFinalVenta = 0.0;
-        double comisionFinalProducto = 0.0;
-        for (int i = 0; i < ventas.size(); i++) {
-            if (ventas.get(i).getCategoria().equalsIgnoreCase(nombreCategoria)) {
-                comisionFinalVenta += ventas.get(i).getMonto();
+        double totalGanado = 0.0;
+
+        for (Venta v : ventas) {
+            if (v.getCategoria().equals(nombreCategoria)) {
+                double cantidad = v.getMonto();
+
+                for (Producto porcentajeDefinido : this.comisionPorProducto) {
+                    if (porcentajeDefinido.getCategoria().equals(nombreCategoria)) {
+                        double porcentaje = porcentajeDefinido.getPorcentajeComision();
+                        totalGanado += cantidad * porcentaje;
+                        break;
+                    }
+                }
             }
         }
-        for (int j = 0; j < comisionPorProducto.size(); j++) {
-            if (comisionPorProducto.get(j).getCategoria().equalsIgnoreCase(nombreCategoria)) {
-                comisionFinalProducto += comisionPorProducto.get(j).getPorcentajeComision();
-            }
-        }
-        comisionFinalProducto = comisionFinalVenta * comisionFinalProducto;
-        return comisionFinalProducto;
+
+        return totalGanado;
     }
 
 }

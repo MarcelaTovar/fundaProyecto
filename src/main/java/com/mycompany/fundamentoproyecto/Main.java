@@ -101,6 +101,8 @@ public class Main extends javax.swing.JFrame {
         JComboBox_SucursalFicha = new javax.swing.JComboBox<>();
         jScrollPane7 = new javax.swing.JScrollPane();
         JList_metas = new javax.swing.JList<>();
+        jLabel34 = new javax.swing.JLabel();
+        JTextField_ComisionTotalVendedor = new javax.swing.JTextField();
         JLabel_Ficha = new javax.swing.JLabel();
         JPanel_EditarVendedor = new javax.swing.JPanel();
         JLabel_EditarVendedorPrincipal = new javax.swing.JLabel();
@@ -509,6 +511,13 @@ public class Main extends javax.swing.JFrame {
         JTabPane_FichaPorVendedor.add(jScrollPane7);
         jScrollPane7.setBounds(80, 290, 340, 180);
 
+        jLabel34.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel34.setText("Comision Total: ");
+        JTabPane_FichaPorVendedor.add(jLabel34);
+        jLabel34.setBounds(90, 490, 120, 19);
+        JTabPane_FichaPorVendedor.add(JTextField_ComisionTotalVendedor);
+        JTextField_ComisionTotalVendedor.setBounds(200, 490, 220, 30);
+
         JLabel_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ficha.png"))); // NOI18N
         JTabPane_FichaPorVendedor.add(JLabel_Ficha);
         JLabel_Ficha.setBounds(0, 0, 957, 548);
@@ -881,6 +890,8 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel25);
         jLabel25.setBounds(600, 100, 30, 30);
 
+        JTextField_BuscarVendedorReporte.setBackground(new java.awt.Color(255, 181, 167));
+        JTextField_BuscarVendedorReporte.setForeground(new java.awt.Color(255, 255, 255));
         JTextField_BuscarVendedorReporte.setBorder(null);
         JPanel_ReporteGerencial.add(JTextField_BuscarVendedorReporte);
         JTextField_BuscarVendedorReporte.setBounds(330, 100, 300, 30);
@@ -890,6 +901,8 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel26);
         jLabel26.setBounds(180, 110, 20, 19);
 
+        JTextField_fecha2.setBackground(new java.awt.Color(255, 181, 167));
+        JTextField_fecha2.setForeground(new java.awt.Color(255, 255, 255));
         JTextField_fecha2.setBorder(null);
         JPanel_ReporteGerencial.add(JTextField_fecha2);
         JTextField_fecha2.setBounds(200, 110, 80, 20);
@@ -899,7 +912,10 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel27);
         jLabel27.setBounds(40, 110, 70, 19);
 
+        JTextField_Fecha1.setBackground(new java.awt.Color(255, 181, 167));
+        JTextField_Fecha1.setForeground(new java.awt.Color(255, 255, 255));
         JTextField_Fecha1.setBorder(null);
+        JTextField_Fecha1.setCaretColor(new java.awt.Color(255, 255, 255));
         JPanel_ReporteGerencial.add(JTextField_Fecha1);
         JTextField_Fecha1.setBounds(90, 110, 80, 20);
 
@@ -917,7 +933,7 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2.setViewportView(JTable_CategoriaReporte);
 
         JPanel_ReporteGerencial.add(jScrollPane2);
-        jScrollPane2.setBounds(60, 150, 420, 380);
+        jScrollPane2.setBounds(60, 150, 420, 350);
 
         jLabel28.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel28.setText("Total de Ventas");
@@ -960,14 +976,20 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jLabel32);
         jLabel32.setBounds(510, 450, 120, 19);
 
+        JText_ComisionesGeneradas.setBackground(new java.awt.Color(255, 181, 167));
+        JText_ComisionesGeneradas.setForeground(new java.awt.Color(255, 255, 255));
         JText_ComisionesGeneradas.setBorder(null);
         JPanel_ReporteGerencial.add(JText_ComisionesGeneradas);
         JText_ComisionesGeneradas.setBounds(770, 180, 140, 30);
 
+        jTextField5.setBackground(new java.awt.Color(255, 181, 167));
+        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
         jTextField5.setBorder(null);
         JPanel_ReporteGerencial.add(jTextField5);
-        jTextField5.setBounds(670, 450, 130, 14);
+        jTextField5.setBounds(670, 450, 130, 30);
 
+        JText_VentasPeriodo.setBackground(new java.awt.Color(255, 181, 167));
+        JText_VentasPeriodo.setForeground(new java.awt.Color(255, 255, 255));
         JText_VentasPeriodo.setBorder(null);
         JPanel_ReporteGerencial.add(JText_VentasPeriodo);
         JText_VentasPeriodo.setBounds(550, 180, 130, 30);
@@ -1248,9 +1270,20 @@ public class Main extends javax.swing.JFrame {
         }
         int indexDeLaInformacion = 0;
         vendedorActivo = binario.buscarVendedor(nombre);
+        String comisionF = "";
 
         if (vendedorActivo.getComisiones().size() == 1) {
             JText_TipoVendedor.setText(vendedorActivo.getTipo().get(0));
+            if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorProducto) {
+                PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            }
+            else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
+                PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            }
             Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
         } else {
             for (int i = 0; i < vendedorActivo.getSucursal().size(); i++) {
@@ -1258,9 +1291,19 @@ public class Main extends javax.swing.JFrame {
                     indexDeLaInformacion = i;
                 }
             }
-            //System.out.println(vendedorActivo.getComisiones().get(0).getClass().getName());
-            //System.out.println(((PorCliente)vendedorActivo.getComisiones().get(0)).getClientes().get(0).getPorcentaje());
+
             JText_TipoVendedor.setText(vendedorActivo.getTipo().get(indexDeLaInformacion));
+            if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorProducto) {
+                PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            }
+            else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
+                PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
+                comisionF = com.calcularComisionFinal(vendedorActivo) + "";
+                JTextField_ComisionTotalVendedor.setText(comisionF);
+            }
+
             Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
         }
 
@@ -1446,11 +1489,11 @@ public class Main extends javax.swing.JFrame {
         for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
             if (vendedorActivo.getComisiones().get(i) instanceof PorCliente) {
                 PorCliente pcliente = (PorCliente) vendedorActivo.getComisiones().get(i);
-                 comisiones += pcliente.calcularComisionFinal(vendedorActivo);
-                 System.out.println(comisiones);
-                 
+                comisiones += pcliente.calcularComisionFinal(vendedorActivo);
+                System.out.println(comisiones);
+
             }
-           
+
         }
         String comisionFinal = comisiones + "";
         JText_ComisionesGeneradas.setText(comisionFinal);
@@ -1587,6 +1630,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JTextField_Bono;
     private javax.swing.JTextField JTextField_BuscarMeta;
     private javax.swing.JTextField JTextField_BuscarVendedorReporte;
+    private javax.swing.JTextField JTextField_ComisionTotalVendedor;
     private javax.swing.JTextField JTextField_Fecha1;
     private javax.swing.JTextField JTextField_Meta;
     private javax.swing.JTextField JTextField_fecha2;
@@ -1636,6 +1680,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
