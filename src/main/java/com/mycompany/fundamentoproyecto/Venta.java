@@ -17,6 +17,7 @@ public class Venta implements Serializable{
     String fecha;
     double monto;
     boolean propia;
+    String sucursal;
 
     public Venta() {
     }
@@ -26,10 +27,11 @@ public class Venta implements Serializable{
         this.fecha = fecha;
     }
 
-    public Venta(String categoria, String fecha, double monto) {
+    public Venta(String categoria, String fecha, double monto, String sucursal) {
         this.categoria = categoria;
         this.fecha = fecha;
         this.monto = monto;
+        this.sucursal = sucursal;
     }
     
 
