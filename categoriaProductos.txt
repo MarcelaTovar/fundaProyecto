@@ -13,3 +13,11 @@
 113,Tubos y Protectores
 114,Remaches
 115,Repuestos
+116,Rines
+117,Servicios
+118,Fricciones en rollo
+120,Baterías
+121,Llanta Local
+122,Combustible
+123,Alquiler
+125,Lubricantes Importad

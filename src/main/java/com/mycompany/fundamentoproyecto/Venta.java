@@ -33,8 +33,16 @@ public class Venta implements Serializable{
         this.monto = monto;
         this.sucursal = sucursal;
     }
-    
 
+    public String getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(String sucursal) {
+        this.sucursal = sucursal;
+    }
+    
+    
     
 
     public String getFecha() {
