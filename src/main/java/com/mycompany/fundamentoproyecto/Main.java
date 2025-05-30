@@ -5,6 +5,7 @@
  */
 package com.mycompany.fundamentoproyecto;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -1550,7 +1552,7 @@ public class Main extends javax.swing.JFrame {
         if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
             String fecha1 = JTextField_Fecha1.getText();
             String fecha2 = JTextField_fecha2.getText();
-            jLabel24.setText("Cumplimiento de Metas del "+fecha1+" al "+fecha2);
+            jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
             ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2);
             ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2);
 
@@ -1703,28 +1705,65 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel25MouseClicked
 
     private void JButton_InsertarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_InsertarPanelMouseClicked
-        // TODO add your handling code here:
-         ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
+        // Primer Grafico
+        ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
         c1.setNames("Mayor Comision", "Vendedor", "Cantidad");
         c1.showBarChart();
-        
+
+        //Ventas por sucursal
         ChartAdminPanel c2 = new ChartAdminPanel(jPanel3);
         c2.setNames("Ventas Por Sucursal", "Venta", "Sucursal");
+        double[] valoresVentasSucursal = obtnerVentasPorSucursal("vendedores.bin");
+        String[] sucursales = new String[]{"Kennedy", "San Angel", "Ruben Dario", "City Mall"};
+        c2.setValues(valoresVentasSucursal, sucursales);
+        c2.setOrientacionHorizontal();
         c2.showPieChart();
 
-        ChartAdminPanel c3 = new ChartAdminPanel(jPanel4);
-        c3.setNames("Categorias con Mas Ingresos", "xname", "yname");
-        c3.showHistogram();
+        //Categorias de productos con mas ingresos
+        new Thread(() -> {
+            ChartAdminPanel c3 = new ChartAdminPanel(jPanel4);
+            c3.setNames("Categorias con Mas Ingresos", "Cateogrias", "Ingresos");
+            double[] valoresCategorias = obtnerVentasPorSCategorias("vendedores.bin");
+            String[] categorias = new String[]{"Accesorios", "Aceites y Lubricante", "Bujías", "Filtros de Aire",
+                "Equipo", "Filtros de Aceite", "Filtros Otros", "Fricciones pastilla", "Liquido y Aditivos", "Llantas Importadas",
+                "Fricciones en bloque"
+                + "Plomo"
+                + "Tubos y Protectores"
+                + "Remaches"
+                + "Repuestos"
+                + "Rines"
+                + "Servicios"
+                + "Fricciones en rollo"
+                + "Baterías" + "Llanta Local"
+                + "Combustible"
+                + "Alquiler"
+                + "Lubricantes Importad"
+            };
+            c3.setValues(valoresCategorias, categorias);
+            c3.setOrientacionVertical();
+            c3.showBarChart();
+        }).start();
 
+        // Ventas a lo largo del tiempo (ocupo la venta y su fecha)
         ChartAdminPanel c4 = new ChartAdminPanel(jPanel5);
-        c4.setValues(new double[]{23, 10}, new String[]{"hola", "si"});
-        c4.setNames("Ventas a lo Largo del Tiempo", "xname", "yname");
+        Map<String, Double> ventasPorFecha = obtnerVentasTiempo("vendedores.bin");
+        String[] xvalues = new String[ventasPorFecha.size()];
+        double[] yvalues = new double[ventasPorFecha.size()];
+
+        int i = 0;
+        for (Map.Entry<String, Double> entry : ventasPorFecha.entrySet()) {
+            xvalues[i] = entry.getKey();     // Fecha
+            yvalues[i] = entry.getValue();   // Monto
+            i++;
+        }
+        c4.setValues(yvalues, xvalues);
+        c4.setNames("Ventas a lo Largo del Tiempo", "Fecha", "Ventas");
         c4.showLineChart();
-        
+
         ChartAdminPanel c5 = new ChartAdminPanel(jPanel6);
         c5.setNames("Vendedores vs Metas", "xname", "yname");
         c5.showHistogram();
-        
+
         ChartAdminPanel c6 = new ChartAdminPanel(jPanel7);
         c6.setNames("Como Sale Mas Rentable", "xname", "yname");
         c6.showPieChart();
@@ -2294,6 +2333,222 @@ public class Main extends javax.swing.JFrame {
         }
 
         return FinalAPagar;
+    }
+
+    public static double[] obtnerVentasPorSucursal(String rutaArchivo) {
+        HashMap<String, Vendedor> vendedores = new HashMap<>();
+        double Kennedy = 0, SanAngel = 0, RubenDario = 0, CityMall = 0;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("vendedores.bin"))) {
+            vendedores = (HashMap<String, Vendedor>) ois.readObject();
+
+            for (Vendedor v : vendedores.values()) {
+                if (v.getSucursal() == null || v.getSucursal().isEmpty()) {
+                    continue; // Ignorar vendedor sin sucursales
+                }
+
+                for (String sucursal : v.getSucursal()) {
+                    switch (sucursal) {
+                        case "1":
+                            for (Venta venta : v.getVentas()) {
+                                Kennedy += venta.getMonto();
+                            }
+                            break;
+                        case "2":
+                            for (Venta venta : v.getVentas()) {
+                                SanAngel += venta.getMonto();
+                            }
+                            break;
+                        case "3":
+                            for (Venta venta : v.getVentas()) {
+                                RubenDario += venta.getMonto();
+                            }
+                            break;
+                        case "4":
+                            for (Venta venta : v.getVentas()) {
+                                CityMall += venta.getMonto();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("⚠️ Error al leer el archivo: " + e.getMessage());
+        }
+        double[] arregloVentas = {Kennedy, SanAngel, RubenDario, CityMall};
+        return arregloVentas;
+    }
+
+    public static double[] obtnerVentasPorSCategorias(String rutaArchivo) {
+        HashMap<String, Vendedor> vendedores = new HashMap<>();
+        double Accesorios = 0, Aceites = 0, Bujías = 0, Filtros = 0;
+        double Equipo = 0, AceiteFiltros = 0, otrosFiltros = 0, Fricciones = 0, Liquido = 0;
+        double LlantasImportadas = 0, FriccionesBloque = 0, Plomo = 0, Tubo = 0, Remaches = 0;
+        double Repuestos = 0, rines = 0, servicios = 0, friccionesRollo = 0, baterias = 0;
+        double llantaLocal = 0, combustible = 0, alquiler = 0, lubricante = 0;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("vendedores.bin"))) {
+            vendedores = (HashMap<String, Vendedor>) ois.readObject();
+
+            for (Vendedor v : vendedores.values()) {
+                if (v.getVentas() == null || v.getVentas().isEmpty()) {
+                    continue; // Ignorar vendedor sin sucursales
+                }
+
+                for (Venta ventas : v.getVentas()) {
+                    switch (ventas.getCategoria()) {
+                        case "Accesorios":
+                            Accesorios += ventas.getMonto();
+                            break;
+                        case "Aceites y Lubricante":
+                            Aceites += ventas.getMonto();
+
+                            break;
+                        case "Bujías":
+
+                            Bujías += ventas.getMonto();
+
+                            break;
+                        case "Filtros de Aire":
+
+                            Filtros += ventas.getMonto();
+
+                            break;
+                        case "Equipo":
+
+                            Equipo += ventas.getMonto();
+
+                            break;
+                        case "Filtros de Aceite":
+                            for (Venta venta : v.getVentas()) {
+                                AceiteFiltros += venta.getMonto();
+                            }
+                            break;
+                        case "Filtros Otros":
+                            otrosFiltros += ventas.getMonto();
+
+                            break;
+                        case "Fricciones pastilla":
+
+                            Fricciones += ventas.getMonto();
+
+                            break;
+                        case "Liquido y Aditivos":
+
+                            Liquido += ventas.getMonto();
+
+                            break;
+                        case "Llantas Importadas":
+                            LlantasImportadas += ventas.getMonto();
+
+                            break;
+                        case "Fricciones en bloque":
+
+                            FriccionesBloque += ventas.getMonto();
+
+                            break;
+                        case "Plomo":
+
+                            Plomo += ventas.getMonto();
+
+                            break;
+                        case "Tubos y Protectores":
+
+                            Tubo += ventas.getMonto();
+
+                            break;
+                        case "Remaches":
+
+                            Remaches += ventas.getMonto();
+
+                            break;
+                        case "Repuestos":
+
+                            Repuestos += ventas.getMonto();
+
+                            break;
+                        case "Rines":
+
+                            rines += ventas.getMonto();
+
+                            break;
+                        case "Servicios":
+
+                            servicios += ventas.getMonto();
+
+                            break;
+                        case "Fricciones en rollo":
+
+                            friccionesRollo += ventas.getMonto();
+
+                            break;
+                        case "Baterías":
+
+                            baterias += ventas.getMonto();
+
+                            break;
+                        case "Llanta Local":
+
+                            llantaLocal += ventas.getMonto();
+
+                            break;
+                        case "Combustible":
+
+                            combustible += ventas.getMonto();
+
+                            break;
+                        case "Alquiler":
+
+                            alquiler += ventas.getMonto();
+
+                            break;
+                        case "Lubricantes Importad":
+
+                            lubricante += ventas.getMonto();
+
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("⚠️ Error al leer el archivo: " + e.getMessage());
+        }
+        double[] arregloVentas = {Accesorios, Aceites, Bujías, Filtros, Equipo, AceiteFiltros, otrosFiltros, Fricciones, Liquido,
+            LlantasImportadas, FriccionesBloque, Plomo, Tubo, Remaches, Repuestos, rines, servicios, friccionesRollo, baterias,
+            llantaLocal, combustible, alquiler, lubricante
+        };
+        return arregloVentas;
+    }
+
+    public static Map<String, Double> obtnerVentasTiempo(String rutaArchivo) {
+        HashMap<String, Vendedor> vendedores = new HashMap<>();
+        Map<String, Double> ventasPorFecha = new TreeMap<>();
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("vendedores.bin"))) {
+            vendedores = (HashMap<String, Vendedor>) ois.readObject();
+
+            for (Vendedor v : vendedores.values()) {
+                // Ordenado por fecha
+
+                for (Venta venta : v.getVentas()) {
+                    String fecha = venta.getFecha(); // en formato YYYY-MM-DD
+                    double monto = venta.getMonto();
+
+                    ventasPorFecha.put(fecha, ventasPorFecha.getOrDefault(fecha, 0.0) + monto);
+                }
+
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("⚠️ Error al leer el archivo: " + e.getMessage());
+        }
+        return ventasPorFecha;
     }
 
 }
