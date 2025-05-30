@@ -1582,6 +1582,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
         // TODO add your handling code here:
+
         // Variables ********
         String nombre = JTextField_BuscarVendedorReporte.getText();
         vendedorActivo = binario.buscarVendedor(nombre);
@@ -1614,7 +1615,177 @@ public class Main extends javax.swing.JFrame {
             }
         }
 
-        jComboBox2.addActionListener(e -> {
+        if (jComboBox2.getItemCount() != 0) {
+            jComboBox2.addActionListener(e -> {
+                String sucursal = "";
+                if (jComboBox2.getSelectedItem().equals("Kennedy")) {
+                    sucursal = "1";
+                } else if (jComboBox2.getSelectedItem().equals("San Angel")) {
+                    sucursal = "2";
+                } else if (jComboBox2.getSelectedItem().equals("Ruben Dario")) {
+                    sucursal = "3";
+                } else if (jComboBox2.getSelectedItem().equals("City Mall")) {
+                    sucursal = "4";
+                }
+                String tipo = (String) jComboBox3.getSelectedItem();
+
+                if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
+                    String fecha1 = JTextField_Fecha1.getText();
+                    String fecha2 = JTextField_fecha2.getText();
+                    jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
+                    ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                    ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                    ArrayList<Cliente> clientesFiltradosSinSucursal = calculandoSinImportarCliente(vendedorActivo, fecha1, fecha2);
+                    ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
+                    //Llenar tabla
+                    DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                    modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                    double prueba = 0.0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            for (Cliente detalle : c.getClientes()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Cliente"),
+                                    detalle.getPorcentaje(),
+                                    c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria()), // o si es por detalle, ajusta aquí
+                                });
+                                prueba += c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria());
+                            }
+                        } else if (com instanceof PorProducto) {
+                            PorProducto p = (PorProducto) com;
+                            for (Producto detalle : p.getComisionPorProducto()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    //Cantidad de ventas que hizo
+                                    vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Venta"),
+                                    detalle.getPorcentajeComision(),
+                                    p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria())
+                                // o si es por detalle, ajusta aquí
+                                });
+                                prueba += p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria());
+                            }
+                        }
+                    }
+
+                    //Calcular comisiones
+                    String ventas = ventasFiltradas.size() + "";
+                    JText_VentasPeriodo.setText(ventas);
+                    double comisiones = 0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorProducto) {
+                            PorProducto c = (PorProducto) com;
+                            comisiones += c.calcularComisionFinalFiltrada(ventasFiltradas);
+                        } else if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            comisiones += c.calcularComisionFinalFiltrada(clientesFiltrados);
+                        } else if (com instanceof PorIndirecta) {
+                            PorIndirecta c = (PorIndirecta) com;
+                            comisiones += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursal, tipo));
+                        } else if (com instanceof Comision) {
+                            if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                                comisiones += com.comisionSinImportar(ventasFiltradasSinSucural);
+                            } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                                comisiones += com.comisionPorCobro(clientesFiltradosSinSucursal);
+                            }
+                        }
+
+                    }
+                    String comisionFinal = (comisiones / 2.0) + "";
+                    JText_ComisionesGeneradas.setText(comisionFinal);
+                    DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                    modelo2.setRowCount(0);
+                    for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                        Meta m = vendedorActivo.getMetas().get(i);
+                        modelo2.addRow(new Object[]{
+                            m.getMeta(),
+                            m.getBono(),
+                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        });
+                    }
+
+                    double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
+                    jTextField5.setText(calculofinal + "");
+
+                } else {
+                    String ventas = vendedorActivo.getVentas().size() + "";
+                    double comisiones = 0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorProducto) {
+                            PorProducto c = (PorProducto) com;
+                            comisiones += c.calcularComisionFinal(vendedorActivo);
+                        } else if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            comisiones += c.calcularComisionFinal(vendedorActivo);
+                        } else if (com instanceof PorIndirecta) {
+                            PorIndirecta c = (PorIndirecta) com;
+                            comisiones += c.calcularComisionFinal(c.getVendedorDelQueRecibe().getVentas());
+                        } else if (com instanceof Comision) {
+                            if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                                comisiones += com.comisionSinImportar(vendedorActivo.getVentas());
+                            } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                                comisiones += com.comisionPorCobro(vendedorActivo.getClientes());
+                            }
+                        }
+
+                    }
+                    String comisionFinal = (comisiones / 2.0) + "";
+                    JText_ComisionesGeneradas.setText(comisionFinal);
+
+                    JText_VentasPeriodo.setText(ventas);
+
+                    //Llenar la tabla 
+                    DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                    modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            for (Cliente detalle : c.getClientes()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Cliente"),
+                                    detalle.getPorcentaje(),
+                                    c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                                });
+                            }
+                        } else if (com instanceof PorProducto) {
+                            PorProducto p = (PorProducto) com;
+                            for (Producto detalle : p.getComisionPorProducto()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    //Cantidad de ventas que hizo
+                                    vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Venta"),
+                                    detalle.getPorcentajeComision(),
+                                    p.calcularComisionPorProducto(vendedorActivo.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                                });
+                            }
+                        }
+                    }
+
+                    DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                    modelo2.setRowCount(0);
+                    for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                        Meta m = vendedorActivo.getMetas().get(i);
+                        modelo2.addRow(new Object[]{
+                            m.getMeta(),
+                            m.getBono(),
+                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        });
+                    }
+
+                    double calculofinal = calcularFinalAPagar();
+                    jTextField5.setText(calculofinal + "");
+
+                }
+            });
+        } else {
             String sucursal = "";
             if (jComboBox2.getSelectedItem().equals("Kennedy")) {
                 sucursal = "1";
@@ -1693,7 +1864,7 @@ public class Main extends javax.swing.JFrame {
                     }
 
                 }
-                String comisionFinal = (comisiones / 2.0) + "";
+                String comisionFinal = comisiones + "";
                 JText_ComisionesGeneradas.setText(comisionFinal);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
@@ -1706,7 +1877,7 @@ public class Main extends javax.swing.JFrame {
                     });
                 }
 
-                double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
+                double calculofinal = OtrocalculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
                 jTextField5.setText(calculofinal + "");
 
             } else {
@@ -1732,7 +1903,7 @@ public class Main extends javax.swing.JFrame {
                     }
 
                 }
-                String comisionFinal = comisiones + "";
+                String comisionFinal = (comisiones) + "";
                 JText_ComisionesGeneradas.setText(comisionFinal);
 
                 JText_VentasPeriodo.setText(ventas);
@@ -1782,7 +1953,8 @@ public class Main extends javax.swing.JFrame {
                 jTextField5.setText(calculofinal + "");
 
             }
-        });
+        }
+
         //Buscar Vendedor
 
     }//GEN-LAST:event_jLabel25MouseClicked
@@ -1854,7 +2026,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        String nombre = JTextField_BuscarVendedorReporte.getText();
+                String nombre = JTextField_BuscarVendedorReporte.getText();
         vendedorActivo = binario.buscarVendedor(nombre);
         jComboBox2.removeAllItems();
         jComboBox3.removeAllItems();// Limpia los elementos previos
@@ -1884,164 +2056,337 @@ public class Main extends javax.swing.JFrame {
                     break;
             }
         }
-        String sucursal = "";
-        
-        String tipo = "";
 
-        if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
-            String fecha1 = JTextField_Fecha1.getText();
-            String fecha2 = JTextField_fecha2.getText();
-            jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
-            ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
-            ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
-            ArrayList<Cliente> clientesFiltradosSinSucursal = calculandoSinImportarCliente(vendedorActivo, fecha1, fecha2);
-            ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
-            //Llenar tabla
-            DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
-            modelo.setRowCount(0); // Limpia la tabla antes de llenarla
-
-            double prueba = 0.0;
-            for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
-                Comision com = vendedorActivo.getComisiones().get(i);
-                if (com instanceof PorCliente) {
-                    PorCliente c = (PorCliente) com;
-                    for (Cliente detalle : c.getClientes()) {
-                        modelo.addRow(new Object[]{
-                            detalle.getCategoria(),
-                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Cliente"),
-                            detalle.getPorcentaje(),
-                            c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria()), // o si es por detalle, ajusta aquí
-                        });
-                        prueba += c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria());
-                    }
-                } else if (com instanceof PorProducto) {
-                    PorProducto p = (PorProducto) com;
-                    for (Producto detalle : p.getComisionPorProducto()) {
-                        modelo.addRow(new Object[]{
-                            detalle.getCategoria(),
-                            //Cantidad de ventas que hizo
-                            vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Venta"),
-                            detalle.getPorcentajeComision(),
-                            p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria())
-                        // o si es por detalle, ajusta aquí
-                        });
-                        prueba += p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria());
-                    }
+        if (jComboBox2.getItemCount() != 0) {
+            jComboBox2.addActionListener(e -> {
+                String sucursal = "";
+                if (jComboBox2.getSelectedItem().equals("Kennedy")) {
+                    sucursal = "1";
+                } else if (jComboBox2.getSelectedItem().equals("San Angel")) {
+                    sucursal = "2";
+                } else if (jComboBox2.getSelectedItem().equals("Ruben Dario")) {
+                    sucursal = "3";
+                } else if (jComboBox2.getSelectedItem().equals("City Mall")) {
+                    sucursal = "4";
                 }
-            }
+                String tipo = (String) jComboBox3.getSelectedItem();
 
-            //Calcular comisiones
-            String ventas = ventasFiltradas.size() + "";
-            JText_VentasPeriodo.setText(ventas);
-            double comisiones = 0;
-            for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
-                Comision com = vendedorActivo.getComisiones().get(i);
-                if (com instanceof PorProducto) {
-                    PorProducto c = (PorProducto) com;
-                    comisiones += c.calcularComisionFinalFiltrada(ventasFiltradas);
-                } else if (com instanceof PorCliente) {
-                    PorCliente c = (PorCliente) com;
-                    comisiones += c.calcularComisionFinalFiltrada(clientesFiltrados);
-                } else if (com instanceof PorIndirecta) {
-                    PorIndirecta c = (PorIndirecta) com;
-                    comisiones += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursal, tipo));
-                } else if (com instanceof Comision) {
-                    if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
-                        comisiones += com.comisionSinImportar(ventasFiltradasSinSucural);
-                    } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
-                        comisiones += com.comisionPorCobro(clientesFiltradosSinSucursal);
+                if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
+                    String fecha1 = JTextField_Fecha1.getText();
+                    String fecha2 = JTextField_fecha2.getText();
+                    jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
+                    ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                    ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                    ArrayList<Cliente> clientesFiltradosSinSucursal = calculandoSinImportarCliente(vendedorActivo, fecha1, fecha2);
+                    ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
+                    //Llenar tabla
+                    DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                    modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                    double prueba = 0.0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            for (Cliente detalle : c.getClientes()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Cliente"),
+                                    detalle.getPorcentaje(),
+                                    c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria()), // o si es por detalle, ajusta aquí
+                                });
+                                prueba += c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria());
+                            }
+                        } else if (com instanceof PorProducto) {
+                            PorProducto p = (PorProducto) com;
+                            for (Producto detalle : p.getComisionPorProducto()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    //Cantidad de ventas que hizo
+                                    vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Venta"),
+                                    detalle.getPorcentajeComision(),
+                                    p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria())
+                                // o si es por detalle, ajusta aquí
+                                });
+                                prueba += p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria());
+                            }
+                        }
                     }
+
+                    //Calcular comisiones
+                    String ventas = ventasFiltradas.size() + "";
+                    JText_VentasPeriodo.setText(ventas);
+                    double comisiones = 0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorProducto) {
+                            PorProducto c = (PorProducto) com;
+                            comisiones += c.calcularComisionFinalFiltrada(ventasFiltradas);
+                        } else if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            comisiones += c.calcularComisionFinalFiltrada(clientesFiltrados);
+                        } else if (com instanceof PorIndirecta) {
+                            PorIndirecta c = (PorIndirecta) com;
+                            comisiones += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursal, tipo));
+                        } else if (com instanceof Comision) {
+                            if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                                comisiones += com.comisionSinImportar(ventasFiltradasSinSucural);
+                            } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                                comisiones += com.comisionPorCobro(clientesFiltradosSinSucursal);
+                            }
+                        }
+
+                    }
+                    String comisionFinal = (comisiones / 2.0) + "";
+                    JText_ComisionesGeneradas.setText(comisionFinal);
+                    DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                    modelo2.setRowCount(0);
+                    for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                        Meta m = vendedorActivo.getMetas().get(i);
+                        modelo2.addRow(new Object[]{
+                            m.getMeta(),
+                            m.getBono(),
+                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        });
+                    }
+
+                    double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
+                    jTextField5.setText(calculofinal + "");
+
+                } else {
+                    String ventas = vendedorActivo.getVentas().size() + "";
+                    double comisiones = 0;
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorProducto) {
+                            PorProducto c = (PorProducto) com;
+                            comisiones += c.calcularComisionFinal(vendedorActivo);
+                        } else if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            comisiones += c.calcularComisionFinal(vendedorActivo);
+                        } else if (com instanceof PorIndirecta) {
+                            PorIndirecta c = (PorIndirecta) com;
+                            comisiones += c.calcularComisionFinal(c.getVendedorDelQueRecibe().getVentas());
+                        } else if (com instanceof Comision) {
+                            if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                                comisiones += com.comisionSinImportar(vendedorActivo.getVentas());
+                            } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                                comisiones += com.comisionPorCobro(vendedorActivo.getClientes());
+                            }
+                        }
+
+                    }
+                    String comisionFinal = (comisiones / 2.0) + "";
+                    JText_ComisionesGeneradas.setText(comisionFinal);
+
+                    JText_VentasPeriodo.setText(ventas);
+
+                    //Llenar la tabla 
+                    DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                    modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                    for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                        Comision com = vendedorActivo.getComisiones().get(i);
+                        if (com instanceof PorCliente) {
+                            PorCliente c = (PorCliente) com;
+                            for (Cliente detalle : c.getClientes()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Cliente"),
+                                    detalle.getPorcentaje(),
+                                    c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                                });
+                            }
+                        } else if (com instanceof PorProducto) {
+                            PorProducto p = (PorProducto) com;
+                            for (Producto detalle : p.getComisionPorProducto()) {
+                                modelo.addRow(new Object[]{
+                                    detalle.getCategoria(),
+                                    //Cantidad de ventas que hizo
+                                    vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Venta"),
+                                    detalle.getPorcentajeComision(),
+                                    p.calcularComisionPorProducto(vendedorActivo.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                                });
+                            }
+                        }
+                    }
+
+                    DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                    modelo2.setRowCount(0);
+                    for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                        Meta m = vendedorActivo.getMetas().get(i);
+                        modelo2.addRow(new Object[]{
+                            m.getMeta(),
+                            m.getBono(),
+                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        });
+                    }
+
+                    double calculofinal = calcularFinalAPagar();
+                    jTextField5.setText(calculofinal + "");
+
                 }
-
-            }
-            String comisionFinal = (comisiones / 2.0) + "";
-            JText_ComisionesGeneradas.setText(comisionFinal);
-            DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
-            modelo2.setRowCount(0);
-            for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
-                Meta m = vendedorActivo.getMetas().get(i);
-                modelo2.addRow(new Object[]{
-                    m.getMeta(),
-                    m.getBono(),
-                    vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
-                });
-            }
-
-            double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
-            jTextField5.setText(calculofinal + "");
-
+            });
         } else {
-            String ventas = vendedorActivo.getVentas().size() + "";
-            double comisiones = 0;
-            for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
-                Comision com = vendedorActivo.getComisiones().get(i);
-                if (com instanceof PorProducto) {
-                    PorProducto c = (PorProducto) com;
-                    comisiones += c.calcularComisionFinal(vendedorActivo);
-                } else if (com instanceof PorCliente) {
-                    PorCliente c = (PorCliente) com;
-                    comisiones += c.calcularComisionFinal(vendedorActivo);
-                } else if (com instanceof PorIndirecta) {
-                    PorIndirecta c = (PorIndirecta) com;
-                    comisiones += c.calcularComisionFinal(c.getVendedorDelQueRecibe().getVentas());
-                } else if (com instanceof Comision) {
-                    if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
-                        comisiones += com.comisionSinImportar(vendedorActivo.getVentas());
-                    } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
-                        comisiones += com.comisionPorCobro(vendedorActivo.getClientes());
+            String sucursal = "";
+            
+            String tipo = "";
+
+            if (!JTextField_Fecha1.getText().trim().isEmpty() || !JTextField_fecha2.getText().trim().isEmpty()) {
+                String fecha1 = JTextField_Fecha1.getText();
+                String fecha2 = JTextField_fecha2.getText();
+                jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
+                ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursal, tipo);
+                ArrayList<Cliente> clientesFiltradosSinSucursal = calculandoSinImportarCliente(vendedorActivo, fecha1, fecha2);
+                ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
+                //Llenar tabla
+                DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                double prueba = 0.0;
+                for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                    Comision com = vendedorActivo.getComisiones().get(i);
+                    if (com instanceof PorCliente) {
+                        PorCliente c = (PorCliente) com;
+                        for (Cliente detalle : c.getClientes()) {
+                            modelo.addRow(new Object[]{
+                                detalle.getCategoria(),
+                                vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Cliente"),
+                                detalle.getPorcentaje(),
+                                c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria()), // o si es por detalle, ajusta aquí
+                            });
+                            prueba += c.calcularComisionPorCliente(clientesFiltrados, detalle.getCategoria());
+                        }
+                    } else if (com instanceof PorProducto) {
+                        PorProducto p = (PorProducto) com;
+                        for (Producto detalle : p.getComisionPorProducto()) {
+                            modelo.addRow(new Object[]{
+                                detalle.getCategoria(),
+                                //Cantidad de ventas que hizo
+                                vendedorActivo.obtenerCantidadVentaPorCategoriaFiltrada(ventasFiltradas, clientesFiltrados, detalle.getCategoria(), "Venta"),
+                                detalle.getPorcentajeComision(),
+                                p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria())
+                            // o si es por detalle, ajusta aquí
+                            });
+                            prueba += p.calcularComisionPorProducto(ventasFiltradas, detalle.getCategoria());
+                        }
                     }
                 }
 
-            }
-            String comisionFinal = comisiones + "";
-            JText_ComisionesGeneradas.setText(comisionFinal);
-
-            JText_VentasPeriodo.setText(ventas);
-
-            //Llenar la tabla 
-            DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
-            modelo.setRowCount(0); // Limpia la tabla antes de llenarla
-
-            for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
-                Comision com = vendedorActivo.getComisiones().get(i);
-                if (com instanceof PorCliente) {
-                    PorCliente c = (PorCliente) com;
-                    for (Cliente detalle : c.getClientes()) {
-                        modelo.addRow(new Object[]{
-                            detalle.getCategoria(),
-                            vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Cliente"),
-                            detalle.getPorcentaje(),
-                            c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
-                        });
+                //Calcular comisiones
+                String ventas = ventasFiltradasSinSucural.size() + "";
+                JText_VentasPeriodo.setText(ventas);
+                double comisiones = 0;
+                for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                    Comision com = vendedorActivo.getComisiones().get(i);
+                    if (com instanceof PorProducto) {
+                        PorProducto c = (PorProducto) com;
+                        comisiones += c.calcularComisionFinalFiltrada(ventasFiltradas);
+                    } else if (com instanceof PorCliente) {
+                        PorCliente c = (PorCliente) com;
+                        comisiones += c.calcularComisionFinalFiltrada(clientesFiltrados);
+                    } else if (com instanceof PorIndirecta) {
+                        PorIndirecta c = (PorIndirecta) com;
+                        comisiones += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursal, tipo));
+                    } else if (com instanceof Comision) {
+                        if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                            comisiones += com.comisionSinImportar(ventasFiltradasSinSucural);
+                        } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                            comisiones += com.comisionPorCobro(clientesFiltradosSinSucursal);
+                        }
                     }
-                } else if (com instanceof PorProducto) {
-                    PorProducto p = (PorProducto) com;
-                    for (Producto detalle : p.getComisionPorProducto()) {
-                        modelo.addRow(new Object[]{
-                            detalle.getCategoria(),
-                            //Cantidad de ventas que hizo
-                            vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Venta"),
-                            detalle.getPorcentajeComision(),
-                            p.calcularComisionPorProducto(vendedorActivo.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
-                        });
+
+                }
+                String comisionFinal = comisiones + "";
+                JText_ComisionesGeneradas.setText(comisionFinal);
+                DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                modelo2.setRowCount(0);
+                for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                    Meta m = vendedorActivo.getMetas().get(i);
+                    modelo2.addRow(new Object[]{
+                        m.getMeta(),
+                        m.getBono(),
+                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                    });
+                }
+
+                double calculofinal = comisiones / 1.15;
+                jTextField5.setText(calculofinal + "");
+
+            } else {
+                String ventas = vendedorActivo.getVentas().size() + "";
+                double comisiones = 0;
+                for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                    Comision com = vendedorActivo.getComisiones().get(i);
+                    if (com instanceof PorProducto) {
+                        PorProducto c = (PorProducto) com;
+                        comisiones += c.calcularComisionFinal(vendedorActivo);
+                    } else if (com instanceof PorCliente) {
+                        PorCliente c = (PorCliente) com;
+                        comisiones += c.calcularComisionFinal(vendedorActivo);
+                    } else if (com instanceof PorIndirecta) {
+                        PorIndirecta c = (PorIndirecta) com;
+                        comisiones += c.calcularComisionFinal(c.getVendedorDelQueRecibe().getVentas());
+                    } else if (com instanceof Comision) {
+                        if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                            comisiones += com.comisionSinImportar(vendedorActivo.getVentas());
+                        } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                            comisiones += com.comisionPorCobro(vendedorActivo.getClientes());
+                        }
+                    }
+
+                }
+                String comisionFinal = (comisiones) + "";
+                JText_ComisionesGeneradas.setText(comisionFinal);
+
+                JText_VentasPeriodo.setText(ventas);
+
+                //Llenar la tabla 
+                DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
+                modelo.setRowCount(0); // Limpia la tabla antes de llenarla
+
+                for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+                    Comision com = vendedorActivo.getComisiones().get(i);
+                    if (com instanceof PorCliente) {
+                        PorCliente c = (PorCliente) com;
+                        for (Cliente detalle : c.getClientes()) {
+                            modelo.addRow(new Object[]{
+                                detalle.getCategoria(),
+                                vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Cliente"),
+                                detalle.getPorcentaje(),
+                                c.calcularComisionPorCliente(vendedorActivo.getClientes(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                            });
+                        }
+                    } else if (com instanceof PorProducto) {
+                        PorProducto p = (PorProducto) com;
+                        for (Producto detalle : p.getComisionPorProducto()) {
+                            modelo.addRow(new Object[]{
+                                detalle.getCategoria(),
+                                //Cantidad de ventas que hizo
+                                vendedorActivo.obtenerCantidadVentaPorCategoria(detalle.getCategoria(), "Venta"),
+                                detalle.getPorcentajeComision(),
+                                p.calcularComisionPorProducto(vendedorActivo.getVentas(), detalle.getCategoria()) // o si es por detalle, ajusta aquí
+                            });
+                        }
                     }
                 }
+
+                DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
+                modelo2.setRowCount(0);
+                for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+                    Meta m = vendedorActivo.getMetas().get(i);
+                    modelo2.addRow(new Object[]{
+                        m.getMeta(),
+                        m.getBono(),
+                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                    });
+                }
+
+                double calculofinal = calcularFinalAPagar();
+                jTextField5.setText(calculofinal + "");
+
             }
-
-            DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
-            modelo2.setRowCount(0);
-            for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
-                Meta m = vendedorActivo.getMetas().get(i);
-                modelo2.addRow(new Object[]{
-                    m.getMeta(),
-                    m.getBono(),
-                    vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
-                });
-            }
-
-            double calculofinal = calcularFinalAPagar();
-            jTextField5.setText(calculofinal + "");
-
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
@@ -2859,6 +3204,7 @@ public class Main extends javax.swing.JFrame {
 
     public ArrayList<Cliente> calculandoSinImportarCliente(Vendedor vendedorActivo, String fecha1, String fecha2) {
         ArrayList<Cliente> v = new ArrayList();
+        double m = 0.0;
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         LocalDate fechaPrimera = LocalDate.parse(fecha1, formato);
@@ -2869,11 +3215,41 @@ public class Main extends javax.swing.JFrame {
             String fechaLimpia = fechaOriginal.split(" ")[0];
             LocalDate finObj = LocalDate.parse(fechaLimpia, formato);
             if ((!finObj.isBefore(fechaPrimera)) && (!finObj.isAfter(fechaSegunda))) {
-                System.out.println(vendedorActivo.getClientes().get(i));
+
                 v.add(vendedorActivo.getClientes().get(i));
             }
         }
 
         return v;
+    }
+
+    public double OtrocalculoFinalFiltrado(ArrayList<Venta> ventas, ArrayList<Cliente> clientes, String fecha1, String fecha2, String sucursal, String tipo) {
+        double FinalAPagar = 0.0;
+        for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
+            Comision com = vendedorActivo.getComisiones().get(i);
+            if (com instanceof PorProducto) {
+                PorProducto c = (PorProducto) com;
+                FinalAPagar += c.calcularComisionFinalFiltrada(ventas);
+            } else if (com instanceof PorCliente) {
+                PorCliente c = (PorCliente) com;
+                FinalAPagar += c.calcularComisionFinalFiltrada(clientes);
+            } else if (com instanceof PorIndirecta) {
+                PorIndirecta c = (PorIndirecta) com;
+                FinalAPagar += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursal, tipo));
+            } else if (com instanceof Comision) {
+                if (vendedorActivo.getComisiones().get(i).isPorVenta()) {
+                    FinalAPagar += com.comisionSinImportar(ventas);
+                } else if (vendedorActivo.getComisiones().get(i).isPorCobro()) {
+                    FinalAPagar += com.comisionPorCobro(clientes);
+                }
+            }
+        }
+        for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
+            if (vendedorActivo.getMetas().get(i).isCompletado()) {
+                FinalAPagar += vendedorActivo.getMetas().get(i).getBono();
+            }
+        }
+
+        return FinalAPagar / 1.15;
     }
 }

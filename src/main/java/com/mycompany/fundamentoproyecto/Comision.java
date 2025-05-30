@@ -60,7 +60,7 @@ public class Comision implements Serializable {
         for (int i = 0; i < ventas.size(); i++) {
             temp += ventas.get(i).getMonto();
         }
-        comisionFinal = temp * porcentaje;
+        comisionFinal = (temp * porcentaje);
         return comisionFinal;
     }
     public double comisionPorCobro(ArrayList <Cliente> clientes){
@@ -68,7 +68,7 @@ public class Comision implements Serializable {
         for (int i = 0; i < clientes.size(); i++) {
             temp += clientes.get(i).getCantidad();
         }
-        comisionFinal = temp * porcentaje;
+        comisionFinal = (temp * porcentaje);
         return comisionFinal;
     }
 
