@@ -196,6 +196,7 @@ public class Main extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         JFrame_ReporteGerencialTotal = new javax.swing.JFrame();
         JPanel_ReporteGerencialTotal = new javax.swing.JPanel();
@@ -1094,6 +1095,15 @@ public class Main extends javax.swing.JFrame {
         JPanel_ReporteGerencial.add(jButton2);
         jButton2.setBounds(811, 30, 120, 40);
 
+        jButton4.setText("Exportar Excel Y PDF");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+        JPanel_ReporteGerencial.add(jButton4);
+        jButton4.setBounds(630, 30, 170, 40);
+
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
         JPanel_ReporteGerencial.add(jLabel21);
         jLabel21.setBounds(0, -20, 957, 600);
@@ -1190,7 +1200,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_ReporteGerencialTotal.add(jButton3);
-        jButton3.setBounds(791, 100, 90, 30);
+        jButton3.setBounds(760, 90, 120, 40);
 
         jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
         JPanel_ReporteGerencialTotal.add(jLabel48);
@@ -2590,6 +2600,7 @@ public class Main extends javax.swing.JFrame {
         sucursales.add("4");
 
         ArrayList<Double> ventasPorSucursal = new ArrayList();
+        ArrayList <Double> MontoPorSucursal = new ArrayList();
         for (int i = 0; i < sucursales.size(); i++) {
             ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursales.get(i), "");
             ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursales.get(i), "");
@@ -2616,7 +2627,16 @@ public class Main extends javax.swing.JFrame {
 
             }
             ventasPorSucursal.add(comisiones);
+            double montoPorSucursal = 0.0;
+            for (int j = 0; j < ventasFiltradas.size(); j++) {
+                montoPorSucursal += ventasFiltradas.get(i).getMonto();
+            }
+            for (int j = 0; j < clientesFiltrados.size(); j++) {
+                montoPorSucursal += clientesFiltrados.get(i).getCantidad();
+            }
         }
+        
+        
         DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte1.getModel();
         modelo.setRowCount(0); // Limpiar tabla
         int totalFilas = Math.min(sucursales.size(), Math.min(ventasPorSucursal.size(), ventasPorSucursal.size()));
@@ -2647,6 +2667,17 @@ public class Main extends javax.swing.JFrame {
         JFrame_ReporteGerencialTotal.add(JPanel_ReporteGerencialTotal);
         JFrame_ReporteGerencialTotal.setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        ExportarExcel obj;
+        try {
+            obj = new ExportarExcel();
+            obj.exportarExcel(JTable_CategoriaReporte);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -2775,6 +2806,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
