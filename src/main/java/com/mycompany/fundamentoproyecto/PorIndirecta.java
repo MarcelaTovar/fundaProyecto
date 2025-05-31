@@ -80,4 +80,17 @@ public class PorIndirecta extends Comision {
         return totalGanado;
     }
 
+    public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList<Venta> ventas, String nombre, String clienteOVenta) {
+        //El arraylist cliente y el arraylist venta deben ser los del vendedorActivo
+        double cantidadFinal = 0.0;
+         if (clienteOVenta.equalsIgnoreCase("Venta")) {
+            for (int i = 0; i < ventas.size(); i++) {
+                if (ventas.get(i).getCategoria().equals(nombre)) {
+                    cantidadFinal += ventas.get(i).getMonto();
+                }
+            }
+        }
+        return cantidadFinal;
+    }
+
 }
