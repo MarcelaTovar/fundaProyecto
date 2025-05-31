@@ -1837,7 +1837,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                     }
-                    String comisionFinal = (comisiones / 2.0) + "";
+                    String comisionFinal = comisiones  + "";
                     JText_ComisionesGeneradas.setText(comisionFinal);
                     DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                     modelo2.setRowCount(0);
@@ -1876,7 +1876,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                     }
-                    String comisionFinal = (comisiones / 2.0) + "";
+                    String comisionFinal = comisiones + "";
                     JText_ComisionesGeneradas.setText(comisionFinal);
 
                     JText_VentasPeriodo.setText(ventas);
@@ -3123,7 +3123,6 @@ public class Main extends javax.swing.JFrame {
             LocalDate finObj = LocalDate.parse(fechaLimpia, formato);
             if ((!finObj.isBefore(fechaPrimera)) && (!finObj.isAfter(fechaSegunda)) && vendedorActivo.getVentas().get(i).getSucursal().equals(sucursal)) {
                 v.add(vendedorActivo.getVentas().get(i));
-
             }
 
         }
