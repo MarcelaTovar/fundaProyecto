@@ -160,10 +160,29 @@ public class SQLManagement {
                 String nombre = rs.getString("SlpName");
                 double monto = rs.getDouble("Monto");
 
+                int suc = rs.getInt("docnum");
+                String sucursal = "";
+                switch (Integer.parseInt(Integer.toString(suc).substring(0, 1))) {
+                    case 1:
+                        sucursal = "1";
+                        break;
+                    case 2:
+                        sucursal = "2";
+                        break;
+                    case 3:
+                        sucursal = "3";
+                        break;
+                    case 4:
+                        sucursal = "4";
+                        break;
+                    default:
+                        break;
+                }
+
                 String nombreLimpio = nombre.trim();
                 if (vendedores.containsKey(nombreLimpio)) {
                     Vendedor v = vendedores.get(nombreLimpio);
-                    Venta venta = new Venta(tipo, fecha, monto);
+                    Venta venta = new Venta(tipo, fecha, monto,sucursal);
                     v.getVentas().add(venta);
                     System.out.println("➕ Venta agregada a: " + nombre + " → " + tipo + ", " + fecha + ", L " + monto);
                 }

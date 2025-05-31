@@ -72,8 +72,8 @@ public class PorProducto extends Comision implements Serializable {
                 }
             }
         }
-
-        return totalGanado;
+        double num = Math.round(totalGanado * 100.0) / 100.0;
+        return num;
     }
     public double calcularComisionFinalFiltrada(ArrayList <Venta> v) {
           double totalGanado = 0.0;

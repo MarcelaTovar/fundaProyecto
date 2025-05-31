@@ -1,6 +1,7 @@
 package com.mycompany.fundamentoproyecto;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,9 +29,9 @@ public class ManejarArchivos {
 
     public void guardarComoBinario(String rutaTexto, String rutaBinario) {
         ArrayList<Producto> productos = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(rutaTexto), StandardCharsets.UTF_8))) {
 
-        // 1. Leer el archivo de texto
-        try (BufferedReader br = new BufferedReader(new FileReader(rutaTexto))) {
             String linea;
 
             while ((linea = br.readLine()) != null) {
@@ -49,7 +50,7 @@ public class ManejarArchivos {
             return;
         }
 
-        // 2. Escribir el ArrayList en un archivo binario
+// 2. Escribir el ArrayList en un archivo binario
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaBinario))) {
             oos.writeObject(productos);
             System.out.println("✅ Datos guardados exitosamente en binario.");

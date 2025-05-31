@@ -150,6 +150,7 @@ public class Vendedor implements Serializable {
     }
     
     public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList <Venta> ventas,ArrayList<Cliente> clientes,String nombre, String clienteOVenta){
+        //El arraylist cliente y el arraylist venta deben ser los del vendedorActivo
         double cantidadFinal = 0.0;
         if (clienteOVenta.equalsIgnoreCase("Cliente")) {
             for (int i = 0; i < clientes.size(); i++) {
