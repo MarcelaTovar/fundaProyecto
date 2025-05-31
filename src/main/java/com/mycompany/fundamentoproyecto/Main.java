@@ -2673,7 +2673,7 @@ public class Main extends javax.swing.JFrame {
         ExportarExcel obj;
         try {
             obj = new ExportarExcel();
-            obj.exportarExcel(JTable_CategoriaReporte);
+            obj.exportarExcel(JTable_CategoriaReporte, JTable_Metas);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
         }
