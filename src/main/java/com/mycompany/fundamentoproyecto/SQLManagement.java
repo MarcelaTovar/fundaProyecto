@@ -86,16 +86,7 @@ public class SQLManagement {
     }
 
     public Connection conect() {
-        Connection conn = null;
-        try {
-            URL = "jdbc:sqlserver://" + servidor + ":" + puerto + ";databaseName=" + nombreBase;
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            JOptionPane.showMessageDialog(null, "✅ Conexión exitosa a la base de datos", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
-            JOptionPane.showMessageDialog(null, "❌ Error al conectar a la base de datos:\n" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        return conn;
+        return Conexion.conectorcito();  // nueva forma de conectar
     }
 
     public HashMap<String, Vendedor> cargarVendedores(Connection conn) {
