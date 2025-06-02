@@ -2150,9 +2150,10 @@ public class Main extends javax.swing.JFrame {
         addExpandListener(c2, "Ventas Por Sucursal");  // 👈 También aquí
         //Categorias de productos con mas ingresos
         
-        double[] x = {1000, 2000, 3000, 4000, 5000}; // ventas
-        String[] y = {"12", "15", "13", "17", "18"}; // comisiones (como texto para que encaje con el sistema actual)
-
+           
+          ArrayList <Double> montos = obtenerTodo(categorias);
+          
+          
         ChartAdminPanel cScatter = new ChartAdminPanel(jPanel4);
         cScatter.setNames("Ventas vs Comisión", "Ventas", "Comisión");
         cScatter.setValues(x, y);
