@@ -1789,9 +1789,22 @@ public class Main extends javax.swing.JFrame {
         c4.showLineChart();
         addExpandListener(c4, "Ventas a lo Largo del Tiempo");
 
+        int cumplio = 0;
+        int nocumplio = 0;
+
+        // Supongamos que esta nueva función devuelve un arreglo [cumplio, nocumplio]
+        int[] resultados = contarCumplimientoMetas("vendedores.bin");
+        cumplio = resultados[0];
+        nocumplio = resultados[1];
+
         ChartAdminPanel c5 = new ChartAdminPanel(jPanel6);
-        c5.setNames("Vendedores vs Metas", "xname", "yname");
-        c5.showHistogram();
+        c5.setNames("Vendedores vs Metas", "Cantidad", "Estado");
+
+        double[] valores = {cumplio, nocumplio};
+        String[] etiquetas = {"Cumplió", "No Cumplió"};
+        c5.setValues(valores, etiquetas);
+
+        c5.showBarChart();  // ✅ BarChart en vez de Histogram
         addExpandListener(c5, "Vendedores vs Metas");
 
         ChartAdminPanel c6 = new ChartAdminPanel(jPanel7);
@@ -3023,6 +3036,37 @@ public class Main extends javax.swing.JFrame {
         }
 
         return FinalAPagar / 1.15;
+    }
+
+    public int[] contarCumplimientoMetas(String rutaBinario) {
+        int cumplio = 0;
+        int noCumplio = 0;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaBinario))) {
+            Map<String, Vendedor> mapaVendedores = (Map<String, Vendedor>) ois.readObject();
+
+            for (Vendedor v : mapaVendedores.values()) {
+                boolean cumplioAlMenosUna = false;
+
+                for (Meta m : v.getMetas()) {
+                    if (v.cumplioMeta(m,v.getVentas())) {
+                        cumplioAlMenosUna = true;
+                        break;
+                    }
+                }
+
+                if (cumplioAlMenosUna) {
+                    cumplio++;
+                } else {
+                    noCumplio++;
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("❌ Error al leer el archivo binario: " + e.getMessage());
+        }
+
+        return new int[]{cumplio, noCumplio};
     }
 
 }
