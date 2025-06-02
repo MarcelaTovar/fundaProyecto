@@ -199,7 +199,7 @@ public class Vendedor implements Serializable {
         return cantidadFinal;
     }
 
-    public boolean cumplioMeta(Meta m) {
+    public boolean cumplioMeta(Meta m, ArrayList <Venta> ventas) {
         double totalVentas = 0.0;
 
         for (Venta venta : ventas) {

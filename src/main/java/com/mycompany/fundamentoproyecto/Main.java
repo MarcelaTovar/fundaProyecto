@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -75,48 +76,12 @@ public class Main extends javax.swing.JFrame {
         JMenu_Ficha = new javax.swing.JMenu();
         JFrame_Base = new javax.swing.JFrame();
         JPanel_Base = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        JText_Usuario = new javax.swing.JTextField();
-        JText_Contraseña = new javax.swing.JTextField();
-        JText_Puerto = new javax.swing.JTextField();
-        JText_Base = new javax.swing.JTextField();
-        JText_Servidor = new javax.swing.JTextField();
         JButton_Conexion = new javax.swing.JButton();
         JButton_Conexion1 = new javax.swing.JButton();
         JLabel_Base = new javax.swing.JLabel();
         JFrame_Ficha = new javax.swing.JFrame();
         JTabPane_Vendedores = new javax.swing.JTabbedPane();
-        JPanel_VendedoresImpresion = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JTable_ImpresionVendedores = new javax.swing.JTable();
-        JLabel_Buscar = new javax.swing.JLabel();
-        JText_BuscarVendedor = new javax.swing.JTextField();
-        JLable_ImpresionVendedores = new javax.swing.JLabel();
-        JTabPane_FichaPorVendedor = new javax.swing.JPanel();
-        JLabel_FichaVendedor = new javax.swing.JLabel();
-        JPanel_BuscarFicha = new javax.swing.JPanel();
-        JText_BuscarFicha = new javax.swing.JTextField();
-        JLabel_BuscarFicha = new javax.swing.JLabel();
-        JLabel_TipoFicha = new javax.swing.JLabel();
-        JLabel_Metas = new javax.swing.JLabel();
-        JLabel_Porcentajes = new javax.swing.JLabel();
-        JLabel_FirmaPago = new javax.swing.JLabel();
-        JText_Firma = new javax.swing.JTextField();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        JTable_ficha = new javax.swing.JTable();
-        jLabel16 = new javax.swing.JLabel();
-        JComboBox_SucursalFicha = new javax.swing.JComboBox<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        JList_metas = new javax.swing.JList<>();
-        jLabel34 = new javax.swing.JLabel();
-        JTextField_ComisionTotalVendedor = new javax.swing.JTextField();
-        JCombo_TipoFicha = new javax.swing.JComboBox<>();
-        JLabel_Ficha = new javax.swing.JLabel();
         JPanel_EditarVendedor = new javax.swing.JPanel();
         JLabel_EditarVendedorPrincipal = new javax.swing.JLabel();
         JLabel_SucursalEditar = new javax.swing.JLabel();
@@ -133,6 +98,12 @@ public class Main extends javax.swing.JFrame {
         JTB_comisionVendido = new javax.swing.JToggleButton();
         JTB_comisionVendido1 = new javax.swing.JToggleButton();
         JLabel_EditarVendedor = new javax.swing.JLabel();
+        JPanel_VendedoresImpresion = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        JTable_ImpresionVendedores = new javax.swing.JTable();
+        JLabel_Buscar = new javax.swing.JLabel();
+        JText_BuscarVendedor = new javax.swing.JTextField();
+        JLable_ImpresionVendedores = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         JLabel_BuscarMeta = new javax.swing.JLabel();
@@ -193,21 +164,6 @@ public class Main extends javax.swing.JFrame {
         jScrollPane10 = new javax.swing.JScrollPane();
         JTable_Total = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
-        JFrame_ReporteGerencialTotal = new javax.swing.JFrame();
-        JPanel_ReporteGerencialTotal = new javax.swing.JPanel();
-        jLabel36 = new javax.swing.JLabel();
-        JTextField_BuscarVendedorReporte1 = new javax.swing.JTextField();
-        jLabel39 = new javax.swing.JLabel();
-        JTextField_fecha3 = new javax.swing.JTextField();
-        jLabel40 = new javax.swing.JLabel();
-        JTextField_Fecha2 = new javax.swing.JTextField();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        JTable_CategoriaReporte1 = new javax.swing.JTable();
-        jLabel45 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel48 = new javax.swing.JLabel();
         Button_IniciarSesion = new javax.swing.JButton();
         PaginaInicio = new javax.swing.JLabel();
 
@@ -307,55 +263,10 @@ public class Main extends javax.swing.JFrame {
         JPanel_Base.setMinimumSize(new java.awt.Dimension(734, 394));
         JPanel_Base.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel3.setText("Contraseña de la base:");
-        JPanel_Base.add(jLabel3);
-        jLabel3.setBounds(140, 210, 140, 19);
-
-        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel2.setText("Usuario de la base:");
-        JPanel_Base.add(jLabel2);
-        jLabel2.setBounds(140, 160, 130, 20);
-
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel4.setText("Nombre de la base:");
-        JPanel_Base.add(jLabel4);
-        jLabel4.setBounds(140, 250, 130, 19);
-
         jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 36)); // NOI18N
         jLabel1.setText("Conexion a la Base de Datos");
         JPanel_Base.add(jLabel1);
         jLabel1.setBounds(120, 80, 530, 70);
-
-        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel5.setText("Puerto:");
-        JPanel_Base.add(jLabel5);
-        jLabel5.setBounds(140, 330, 41, 19);
-
-        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel6.setText("Servidor:");
-        JPanel_Base.add(jLabel6);
-        jLabel6.setBounds(140, 290, 51, 19);
-
-        JText_Usuario.setForeground(new java.awt.Color(204, 204, 204));
-        JPanel_Base.add(JText_Usuario);
-        JText_Usuario.setBounds(310, 160, 270, 30);
-
-        JText_Contraseña.setForeground(new java.awt.Color(204, 204, 204));
-        JPanel_Base.add(JText_Contraseña);
-        JText_Contraseña.setBounds(310, 200, 270, 30);
-
-        JText_Puerto.setForeground(new java.awt.Color(204, 204, 204));
-        JPanel_Base.add(JText_Puerto);
-        JText_Puerto.setBounds(310, 330, 270, 30);
-
-        JText_Base.setForeground(new java.awt.Color(204, 204, 204));
-        JPanel_Base.add(JText_Base);
-        JText_Base.setBounds(310, 250, 270, 30);
-
-        JText_Servidor.setForeground(new java.awt.Color(204, 204, 204));
-        JPanel_Base.add(JText_Servidor);
-        JText_Servidor.setBounds(310, 290, 270, 30);
 
         JButton_Conexion.setBackground(new java.awt.Color(255, 255, 255));
         JButton_Conexion.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
@@ -366,7 +277,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_Base.add(JButton_Conexion);
-        JButton_Conexion.setBounds(150, 390, 120, 40);
+        JButton_Conexion.setBounds(250, 200, 120, 40);
 
         JButton_Conexion1.setBackground(new java.awt.Color(255, 255, 255));
         JButton_Conexion1.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
@@ -377,7 +288,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_Base.add(JButton_Conexion1);
-        JButton_Conexion1.setBounds(430, 390, 120, 40);
+        JButton_Conexion1.setBounds(420, 200, 120, 40);
 
         JLabel_Base.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bases.jpg"))); // NOI18N
         JPanel_Base.add(JLabel_Base);
@@ -415,174 +326,6 @@ public class Main extends javax.swing.JFrame {
                 JTabPane_VendedoresMouseClicked(evt);
             }
         });
-
-        JPanel_VendedoresImpresion.setMaximumSize(new java.awt.Dimension(957, 569));
-        JPanel_VendedoresImpresion.setMinimumSize(new java.awt.Dimension(957, 569));
-        JPanel_VendedoresImpresion.setPreferredSize(new java.awt.Dimension(957, 569));
-        JPanel_VendedoresImpresion.setLayout(null);
-
-        JTable_ImpresionVendedores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Nombre", "Comision"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(JTable_ImpresionVendedores);
-
-        JPanel_VendedoresImpresion.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 40, 540, 390);
-
-        JLabel_Buscar.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        JLabel_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
-        JLabel_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JLabel_BuscarMouseClicked(evt);
-            }
-        });
-        JPanel_VendedoresImpresion.add(JLabel_Buscar);
-        JLabel_Buscar.setBounds(600, 40, 30, 30);
-        JPanel_VendedoresImpresion.add(JText_BuscarVendedor);
-        JText_BuscarVendedor.setBounds(640, 40, 230, 30);
-
-        JLable_ImpresionVendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vendedores.png"))); // NOI18N
-        JPanel_VendedoresImpresion.add(JLable_ImpresionVendedores);
-        JLable_ImpresionVendedores.setBounds(0, 0, 957, 548);
-
-        JTabPane_Vendedores.addTab("Vendedores", JPanel_VendedoresImpresion);
-
-        JTabPane_FichaPorVendedor.setLayout(null);
-
-        JLabel_FichaVendedor.setFont(new java.awt.Font("Sylfaen", 0, 36)); // NOI18N
-        JLabel_FichaVendedor.setText("Ficha de Vendedor");
-        JTabPane_FichaPorVendedor.add(JLabel_FichaVendedor);
-        JLabel_FichaVendedor.setBounds(330, 40, 340, 48);
-
-        JPanel_BuscarFicha.setBackground(new java.awt.Color(255, 255, 255));
-
-        JText_BuscarFicha.setBorder(null);
-
-        JLabel_BuscarFicha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
-        JLabel_BuscarFicha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JLabel_BuscarFichaMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout JPanel_BuscarFichaLayout = new javax.swing.GroupLayout(JPanel_BuscarFicha);
-        JPanel_BuscarFicha.setLayout(JPanel_BuscarFichaLayout);
-        JPanel_BuscarFichaLayout.setHorizontalGroup(
-            JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel_BuscarFichaLayout.createSequentialGroup()
-                .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLabel_BuscarFicha))
-        );
-        JPanel_BuscarFichaLayout.setVerticalGroup(
-            JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanel_BuscarFichaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(JPanel_BuscarFichaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JLabel_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JText_BuscarFicha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-
-        JTabPane_FichaPorVendedor.add(JPanel_BuscarFicha);
-        JPanel_BuscarFicha.setBounds(260, 90, 400, 30);
-
-        JLabel_TipoFicha.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        JLabel_TipoFicha.setText("Tipo de Vendedor");
-        JTabPane_FichaPorVendedor.add(JLabel_TipoFicha);
-        JLabel_TipoFicha.setBounds(80, 210, 140, 19);
-
-        JLabel_Metas.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        JLabel_Metas.setText("Metas del Vendedor");
-        JTabPane_FichaPorVendedor.add(JLabel_Metas);
-        JLabel_Metas.setBounds(80, 260, 114, 19);
-
-        JLabel_Porcentajes.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        JLabel_Porcentajes.setText("Porcentajes");
-        JTabPane_FichaPorVendedor.add(JLabel_Porcentajes);
-        JLabel_Porcentajes.setBounds(550, 230, 100, 14);
-
-        JLabel_FirmaPago.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        JLabel_FirmaPago.setText("Firma de Autorizacion de Pago");
-        JTabPane_FichaPorVendedor.add(JLabel_FirmaPago);
-        JLabel_FirmaPago.setBounds(550, 170, 180, 19);
-
-        JText_Firma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JText_FirmaActionPerformed(evt);
-            }
-        });
-        JTabPane_FichaPorVendedor.add(JText_Firma);
-        JText_Firma.setBounds(760, 170, 160, 30);
-
-        JTable_ficha.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Tipo", "Porcentaje", "Comision Calculada"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(JTable_ficha);
-
-        JTabPane_FichaPorVendedor.add(jScrollPane4);
-        jScrollPane4.setBounds(630, 230, 290, 290);
-
-        jLabel16.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel16.setText("Sucursal");
-        JTabPane_FichaPorVendedor.add(jLabel16);
-        jLabel16.setBounds(80, 170, 70, 19);
-
-        JComboBox_SucursalFicha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kennedy", "San Angel", "Ruben Dario", "City Mall", " " }));
-        JTabPane_FichaPorVendedor.add(JComboBox_SucursalFicha);
-        JComboBox_SucursalFicha.setBounds(220, 160, 100, 30);
-
-        jScrollPane7.setViewportView(JList_metas);
-
-        JTabPane_FichaPorVendedor.add(jScrollPane7);
-        jScrollPane7.setBounds(80, 290, 340, 180);
-
-        jLabel34.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel34.setText("Comision Total: ");
-        JTabPane_FichaPorVendedor.add(jLabel34);
-        jLabel34.setBounds(90, 490, 120, 19);
-        JTabPane_FichaPorVendedor.add(JTextField_ComisionTotalVendedor);
-        JTextField_ComisionTotalVendedor.setBounds(200, 490, 220, 30);
-
-        JTabPane_FichaPorVendedor.add(JCombo_TipoFicha);
-        JCombo_TipoFicha.setBounds(220, 210, 100, 30);
-
-        JLabel_Ficha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ficha.png"))); // NOI18N
-        JTabPane_FichaPorVendedor.add(JLabel_Ficha);
-        JLabel_Ficha.setBounds(0, 0, 957, 548);
-
-        JTabPane_Vendedores.addTab("Ficha Por Vendedor", JTabPane_FichaPorVendedor);
 
         JPanel_EditarVendedor.setMaximumSize(new java.awt.Dimension(957, 569));
         JPanel_EditarVendedor.setMinimumSize(new java.awt.Dimension(957, 569));
@@ -714,6 +457,53 @@ public class Main extends javax.swing.JFrame {
 
         JTabPane_Vendedores.addTab("Comision Por Producto", JPanel_EditarVendedor);
 
+        JPanel_VendedoresImpresion.setMaximumSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setMinimumSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setPreferredSize(new java.awt.Dimension(957, 569));
+        JPanel_VendedoresImpresion.setLayout(null);
+
+        JTable_ImpresionVendedores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Comision"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(JTable_ImpresionVendedores);
+
+        JPanel_VendedoresImpresion.add(jScrollPane1);
+        jScrollPane1.setBounds(40, 40, 540, 390);
+
+        JLabel_Buscar.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        JLabel_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
+        JLabel_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JLabel_BuscarMouseClicked(evt);
+            }
+        });
+        JPanel_VendedoresImpresion.add(JLabel_Buscar);
+        JLabel_Buscar.setBounds(600, 40, 30, 30);
+        JPanel_VendedoresImpresion.add(JText_BuscarVendedor);
+        JText_BuscarVendedor.setBounds(640, 40, 230, 30);
+
+        JLable_ImpresionVendedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vendedores.png"))); // NOI18N
+        JPanel_VendedoresImpresion.add(JLable_ImpresionVendedores);
+        JLable_ImpresionVendedores.setBounds(0, 0, 957, 548);
+
+        JTabPane_Vendedores.addTab("Vendedores", JPanel_VendedoresImpresion);
+
         jPanel1.setLayout(null);
 
         jLabel20.setFont(new java.awt.Font("Sylfaen", 0, 48)); // NOI18N
@@ -802,7 +592,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_NuevaCom.add(jButton1);
-        jButton1.setBounds(340, 410, 135, 30);
+        jButton1.setBounds(340, 410, 117, 30);
 
         jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel13.setText("Sucursal");
@@ -820,12 +610,12 @@ public class Main extends javax.swing.JFrame {
         jCheckBox1.setText("Comision Por Todo Lo Vendido");
         jCheckBox1.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox1);
-        jCheckBox1.setBounds(530, 50, 180, 25);
+        jCheckBox1.setBounds(530, 50, 180, 23);
 
         jCheckBox2.setText("Monto Total del Periodo");
         jCheckBox2.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox2);
-        jCheckBox2.setBounds(530, 20, 160, 25);
+        jCheckBox2.setBounds(530, 20, 160, 23);
 
         JTable_ComisionCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1066,102 +856,6 @@ public class Main extends javax.swing.JFrame {
             .addComponent(JPanel_ReporteGerencial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        JFrame_ReporteGerencialTotal.setMinimumSize(new java.awt.Dimension(957, 569));
-
-        JPanel_ReporteGerencialTotal.setBackground(new java.awt.Color(255, 255, 255));
-        JPanel_ReporteGerencialTotal.setMaximumSize(new java.awt.Dimension(957, 569));
-        JPanel_ReporteGerencialTotal.setMinimumSize(new java.awt.Dimension(957, 569));
-        JPanel_ReporteGerencialTotal.setLayout(null);
-
-        jLabel36.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
-        jLabel36.setText("Cumplimiento de Metas");
-        JPanel_ReporteGerencialTotal.add(jLabel36);
-        jLabel36.setBounds(70, 50, 570, 33);
-
-        JTextField_BuscarVendedorReporte1.setBackground(new java.awt.Color(255, 181, 167));
-        JTextField_BuscarVendedorReporte1.setBorder(null);
-        JPanel_ReporteGerencialTotal.add(JTextField_BuscarVendedorReporte1);
-        JTextField_BuscarVendedorReporte1.setBounds(70, 90, 300, 40);
-
-        jLabel39.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel39.setText("a");
-        JPanel_ReporteGerencialTotal.add(jLabel39);
-        jLabel39.setBounds(560, 100, 20, 19);
-
-        JTextField_fecha3.setBackground(new java.awt.Color(255, 181, 167));
-        JTextField_fecha3.setForeground(new java.awt.Color(255, 255, 255));
-        JTextField_fecha3.setBorder(null);
-        JPanel_ReporteGerencialTotal.add(JTextField_fecha3);
-        JTextField_fecha3.setBounds(590, 90, 80, 30);
-
-        jLabel40.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel40.setText("Fecha: ");
-        JPanel_ReporteGerencialTotal.add(jLabel40);
-        jLabel40.setBounds(400, 100, 70, 24);
-
-        JTextField_Fecha2.setBackground(new java.awt.Color(255, 181, 167));
-        JTextField_Fecha2.setForeground(new java.awt.Color(255, 255, 255));
-        JTextField_Fecha2.setBorder(null);
-        JTextField_Fecha2.setCaretColor(new java.awt.Color(255, 255, 255));
-        JPanel_ReporteGerencialTotal.add(JTextField_Fecha2);
-        JTextField_Fecha2.setBounds(460, 90, 80, 30);
-
-        JTable_CategoriaReporte1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Bodega", "Monto Vendido ", "Comision aplicada", "Total", "Meta", "Cumplio"
-            }
-        ));
-        jScrollPane9.setViewportView(JTable_CategoriaReporte1);
-
-        JPanel_ReporteGerencialTotal.add(jScrollPane9);
-        jScrollPane9.setBounds(60, 150, 830, 270);
-
-        jLabel45.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel45.setText("Total Final a Pagar: ");
-        JPanel_ReporteGerencialTotal.add(jLabel45);
-        jLabel45.setBounds(510, 450, 120, 19);
-
-        jTextField6.setBackground(new java.awt.Color(255, 181, 167));
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setBorder(null);
-        JPanel_ReporteGerencialTotal.add(jTextField6);
-        jTextField6.setBounds(670, 450, 130, 30);
-
-        jLabel46.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel46.setText("Firma de autorizacion:");
-        JPanel_ReporteGerencialTotal.add(jLabel46);
-        jLabel46.setBounds(510, 500, 140, 19);
-
-        jButton3.setText("Calcular");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
-            }
-        });
-        JPanel_ReporteGerencialTotal.add(jButton3);
-        jButton3.setBounds(760, 90, 120, 40);
-
-        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
-        JPanel_ReporteGerencialTotal.add(jLabel48);
-        jLabel48.setBounds(0, -20, 957, 600);
-
-        javax.swing.GroupLayout JFrame_ReporteGerencialTotalLayout = new javax.swing.GroupLayout(JFrame_ReporteGerencialTotal.getContentPane());
-        JFrame_ReporteGerencialTotal.getContentPane().setLayout(JFrame_ReporteGerencialTotalLayout);
-        JFrame_ReporteGerencialTotalLayout.setHorizontalGroup(
-            JFrame_ReporteGerencialTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPanel_ReporteGerencialTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        JFrame_ReporteGerencialTotalLayout.setVerticalGroup(
-            JFrame_ReporteGerencialTotalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JPanel_ReporteGerencialTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("jframe");
         getContentPane().setLayout(null);
@@ -1180,9 +874,9 @@ public class Main extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Button_IniciarSesion);
-        Button_IniciarSesion.setBounds(220, 430, 200, 50);
+        Button_IniciarSesion.setBounds(400, 410, 200, 50);
 
-        PaginaInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Bienvenido.png"))); // NOI18N
+        PaginaInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ferco.png"))); // NOI18N
         getContentPane().add(PaginaInicio);
         PaginaInicio.setBounds(0, 0, 957, 548);
 
@@ -1212,17 +906,12 @@ public class Main extends javax.swing.JFrame {
 
     private void JButton_ConexionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_ConexionMouseClicked
         // TODO add your handling code here:
-        String nombre = JText_Usuario.getText();
-        String contraseña = JText_Contraseña.getText();
-        String base = JText_Base.getText();
-        String servidor = JText_Servidor.getText();
-        String puerto = JText_Puerto.getText();
 
-        sql.setNombreBase(base);
-        sql.setPASSWORD(contraseña);
-        sql.setUSER(nombre);
-        sql.setServidor(servidor);
-        sql.setPuerto(puerto);
+        sql.setNombreBase("");
+        sql.setPASSWORD("");
+        sql.setUSER("");
+        sql.setServidor("");
+        sql.setPuerto("");
 
         conn = sql.conect();
 
@@ -1231,20 +920,25 @@ public class Main extends javax.swing.JFrame {
         File archivo = new File("vendedores.bin");
         if (!archivo.exists()) {
             binario.escribirArchivo(vendedores);
-            new Thread(() -> {
+            Thread ventasThread = new Thread(() -> {
                 System.out.println("⏳ Consultando base de datos...");
                 sql.cargarventas("vendedores.bin", conn);
-                System.out.println("✅ Consulta finalizada y binario actualizado.");
+                System.out.println("✅ Consulta finalizada y binario creado.");
+            });
+            ventasThread.start();
+            new Thread(() -> {
+                try {
+                    ventasThread.join();
+                    JOptionPane.showMessageDialog(null, "✅ El archivo se creó y los datos se cargaron correctamente.");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }).start();
         } else {
-            int opcion = JOptionPane.showConfirmDialog(null, "El archivo ya existe. ¿Deseas sobrescribirlo?", "Archivo existente", JOptionPane.YES_NO_OPTION);
-            if (opcion == JOptionPane.YES_OPTION) {
-                binario.escribirArchivo(vendedores);
-                System.out.println("✅ Archivo sobrescrito.");
-            } else {
-                System.out.println("❌ No se modificó el archivo.");
-            }
+            System.out.println("ℹ️ El archivo ya existe. No se realizaron cambios.");
         }
+
+
     }//GEN-LAST:event_JButton_ConexionMouseClicked
 
     private void ConectarBaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConectarBaseMouseClicked
@@ -1411,114 +1105,6 @@ public class Main extends javax.swing.JFrame {
         binario.buscarYMostrarVendedorEnTabla(JText_BuscarVendedor.getText(), JTable_ImpresionVendedores);
     }//GEN-LAST:event_JLabel_BuscarMouseClicked
 
-    private void JLabel_BuscarFichaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JLabel_BuscarFichaMouseClicked
-        // TODO add your handling code here:
-        String nombre = JText_BuscarFicha.getText();
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(null,
-                    "Por favor seleccione un vendedor antes",
-                    "Campo vacío",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        vendedorActivo = binario.buscarVendedor(nombre);
-        for (String tipo : vendedorActivo.getTipo()) {
-            JCombo_TipoFicha.addItem(tipo);
-        }
-        JCombo_TipoFicha.addActionListener(e -> {
-
-            String sucursal = "";
-            switch ((String) JComboBox_SucursalEditar1.getSelectedItem()) {
-                case "Kennedy": {
-                    sucursal = "1";
-                    break;
-                }
-                case "San Angel": {
-                    sucursal = "2";
-                    break;
-                }
-                case "Ruben Dario": {
-                    sucursal = "3";
-                    break;
-                }
-                case "City Mall": {
-                    sucursal = "4";
-                    break;
-                }
-                default:
-                    break;
-            }
-            int indexDeLaInformacion = 0;
-            String comisionF = "";
-
-            if (vendedorActivo.getComisiones().size() == 1) {
-
-                if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorProducto) {
-                    PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
-                    PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorIndirecta) {
-                    PorIndirecta com = (PorIndirecta) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo.getVentas()) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof Comision) {
-                    if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorVenta()) {
-                        Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                        comisionF = com.comisionSinImportar(vendedorActivo.getVentas()) + "";
-                        JTextField_ComisionTotalVendedor.setText(comisionF);
-                    } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorCobro()) {
-                        Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                        comisionF = com.comisionPorCobro(vendedorActivo.getClientes()) + "";
-                        JTextField_ComisionTotalVendedor.setText(comisionF);
-                    }
-                }
-                Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
-            } else {
-                for (int i = 0; i < vendedorActivo.getSucursal().size(); i++) {
-                    if (vendedorActivo.getSucursal().get(i).equalsIgnoreCase(sucursal) && vendedorActivo.getTipo().get(i).equalsIgnoreCase((String) JCombo_TipoFicha.getSelectedItem())) {
-                        indexDeLaInformacion = i;
-                    }
-                }
-
-                if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorProducto) {
-                    PorProducto com = (PorProducto) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorCliente) {
-                    PorCliente com = (PorCliente) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof PorIndirecta) {
-                    PorIndirecta com = (PorIndirecta) vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                    comisionF = com.calcularComisionFinal(vendedorActivo.getVentas()) + "";
-                    JTextField_ComisionTotalVendedor.setText(comisionF);
-                } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion) instanceof Comision) {
-                    if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorVenta()) {
-                        Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                        comisionF = com.comisionSinImportar(vendedorActivo.getVentas()) + "";
-                        JTextField_ComisionTotalVendedor.setText(comisionF);
-                    } else if (vendedorActivo.getComisiones().get(indexDeLaInformacion).isPorCobro()) {
-                        Comision com = vendedorActivo.getComisiones().get(indexDeLaInformacion);
-                        comisionF = com.comisionPorCobro(vendedorActivo.getClientes()) + "";
-                        JTextField_ComisionTotalVendedor.setText(comisionF);
-                    }
-                }
-
-                Llenar_Tabla_Ficha(JTable_ficha, "vendedores.bin", indexDeLaInformacion);
-            }
-        });
-
-    }//GEN-LAST:event_JLabel_BuscarFichaMouseClicked
-
-    private void JText_FirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JText_FirmaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JText_FirmaActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         if (JComboBox_TipoEnCliente.getSelectedItem().equals("Pista")) {
@@ -1544,11 +1130,20 @@ public class Main extends javax.swing.JFrame {
 
     private void JButton_Conexion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_Conexion1MouseClicked
         // TODO add your handling code here:
-        new Thread(() -> {
+        Thread clientesThread = new Thread(() -> {
             System.out.println("⏳ Consultando base de datos...");
             sql.cargarClientes("vendedores.bin", conn);
             System.out.println("✅ Consulta finalizada y binario actualizado.");
             binario.leerArchivo();
+        });
+        clientesThread.start();
+        new Thread(() -> {
+            try {
+                clientesThread.join();
+                JOptionPane.showMessageDialog(null, "✅ El archivo se creó y los datos se cargaron correctamente.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }).start();
     }//GEN-LAST:event_JButton_Conexion1MouseClicked
 
@@ -1790,7 +1385,7 @@ public class Main extends javax.swing.JFrame {
 
                     //Calcular comisiones
                     String ventas = ventasFiltradas.size() + "";
-                    
+
                     double comisiones = 0;
                     for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
                         Comision com = vendedorActivo.getComisiones().get(i);
@@ -1821,7 +1416,7 @@ public class Main extends javax.swing.JFrame {
                         modelo2.addRow(new Object[]{
                             m.getMeta(),
                             m.getBono(),
-                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                            vendedorActivo.cumplioMeta(m, ventasFiltradas) ? "Sí" : "No"
                         });
                     }
                     double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
@@ -1829,15 +1424,12 @@ public class Main extends javax.swing.JFrame {
                     DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
                     modelo3.setRowCount(0);
                     modelo3.addRow(new Object[]{
-                            comisionFinal,
-                            calculofinal,
-                           ventas,
-                           "Mario Garcia",
-                           "Jordi Roig"
-                        });
-                    
-
-                    
+                        comisionFinal,
+                        calculofinal,
+                        ventas,
+                        "Mario Garcia",
+                        "Jordi Roig"
+                    });
 
                 } else {
                     String ventas = vendedorActivo.getVentas().size() + "";
@@ -1893,7 +1485,7 @@ public class Main extends javax.swing.JFrame {
                             }
                         }
                     }
-
+                    //ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
                     DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                     modelo2.setRowCount(0);
                     for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -1901,21 +1493,20 @@ public class Main extends javax.swing.JFrame {
                         modelo2.addRow(new Object[]{
                             m.getMeta(),
                             m.getBono(),
-                            vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                            vendedorActivo.cumplioMeta(m, vendedorActivo.getVentas()) ? "Sí" : "No"
                         });
                     }
 
                     double calculofinal = calcularFinalAPagar();
-                     DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                    DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
                     modelo3.setRowCount(0);
                     modelo3.addRow(new Object[]{
-                            comisionFinal,
-                            calculofinal,
-                           ventas,
-                           "Mario Garcia",
-                           "Jordi Roig"
-                        });
-                    
+                        comisionFinal,
+                        calculofinal,
+                        ventas,
+                        "Mario Garcia",
+                        "Jordi Roig"
+                    });
 
                 }
             });
@@ -2014,22 +1605,21 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, ventasFiltradas) ? "Sí" : "No"
                     });
                 }
 
                 double calculofinal = OtrocalculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
                 //jTextField5.setText(calculofinal + "");
-                 DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
-                    modelo3.setRowCount(0);
-                    modelo3.addRow(new Object[]{
-                            comisionFinal,
-                            calculofinal,
-                           ventas,
-                           "Mario Garcia",
-                           "Jordi Roig"
-                        });
-                    
+                DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                modelo3.setRowCount(0);
+                modelo3.addRow(new Object[]{
+                    comisionFinal,
+                    calculofinal,
+                    ventas,
+                    "Mario Garcia",
+                    "Jordi Roig"
+                });
 
             } else {
                 String ventas = vendedorActivo.getVentas().size() + "";
@@ -2058,7 +1648,6 @@ public class Main extends javax.swing.JFrame {
                 //JText_ComisionesGeneradas.setText(comisionFinal);
 
                 //JText_VentasPeriodo.setText(ventas);
-
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
                 modelo.setRowCount(0); // Limpia la tabla antes de llenarla
@@ -2088,7 +1677,7 @@ public class Main extends javax.swing.JFrame {
                         }
                     }
                 }
-
+                //ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
                 for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -2096,22 +1685,21 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, vendedorActivo.getVentas()) ? "Sí" : "No"
                     });
                 }
 
                 double calculofinal = calcularFinalAPagar();
                 //jTextField5.setText(calculofinal + "");
-                 DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
-                    modelo3.setRowCount(0);
-                    modelo3.addRow(new Object[]{
-                            comisionFinal,
-                            calculofinal,
-                           ventas,
-                           "Mario Garcia",
-                           "Jordi Roig"
-                        });
-                    
+                DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                modelo3.setRowCount(0);
+                modelo3.addRow(new Object[]{
+                    comisionFinal,
+                    calculofinal,
+                    ventas,
+                    "Mario Garcia",
+                    "Jordi Roig"
+                });
 
             }
         }
@@ -2119,19 +1707,19 @@ public class Main extends javax.swing.JFrame {
         //Buscar Vendedor
 
     }//GEN-LAST:event_jLabel25MouseClicked
-  private void addExpandListener(ChartAdminPanel chartPanelObj, String title) {
-    ChartPanel cp = chartPanelObj.getChartPanel();
-    if (cp != null) {
-        cp.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                JFreeChart chart = cp.getChart();
-                ExpandedChartWindow window = new ExpandedChartWindow(chart, title);
-                window.setVisible(true);
-            }
-        });
+    private void addExpandListener(ChartAdminPanel chartPanelObj, String title) {
+        ChartPanel cp = chartPanelObj.getChartPanel();
+        if (cp != null) {
+            cp.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent e) {
+                    JFreeChart chart = cp.getChart();
+                    ExpandedChartWindow window = new ExpandedChartWindow(chart, title);
+                    window.setVisible(true);
+                }
+            });
+        }
     }
-}
 
     private void JButton_InsertarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JButton_InsertarPanelMouseClicked
         // Primer Grafico
@@ -2147,25 +1735,43 @@ public class Main extends javax.swing.JFrame {
         c2.setValues(valoresVentasSucursal, sucursales);
         c2.setOrientacionHorizontal();
         c2.showPieChart();
+
         addExpandListener(c2, "Ventas Por Sucursal");  // 👈 También aquí
         //Categorias de productos con mas ingresos
-        
-           
-     
-          
-        double[] x = {1000, 2000, 3000, 4000, 5000}; // ventas
-        String[] y = {"12", "15", "13", "17", "18"}; // comisiones (como texto para que encaje con el sistema actual)
+
+        double[] x = obtnerVentasPorSCategorias("vendedores.bin"); // ventas
+        String[] y = {
+            "Accesorios",
+            "Aceites y Lubricante",
+            "Bujías",
+            "Filtros de Aire",
+            "Equipo",
+            "Filtros de Aceite",
+            "Filtros Otros",
+            "Fricciones pastilla",
+            "Liquido y Aditivos",
+            "Llantas Importadas",
+            "Fricciones en bloque",
+            "Plomo",
+            "Tubos y Protectores",
+            "Remaches",
+            "Repuestos",
+            "Rines",
+            "Servicios",
+            "Fricciones en rollo",
+            "Baterías",
+            "Llanta Local",
+            "Combustible",
+            "Alquiler",
+            "Lubricantes Importad"}; // comisiones (como texto para que encaje con el sistema actual)
 
         ChartAdminPanel cScatter = new ChartAdminPanel(jPanel4);
         cScatter.setNames("Ventas vs Comisión", "Ventas", "Comisión");
         cScatter.setValues(x, y);
         cScatter.setOrientacionVertical();
-        cScatter.showScatterPlot();
+        cScatter.showPieChart();
         addExpandListener(cScatter, "Ventas vs Comisión");
 
-
-
-           
         // Ventas a lo largo del tiempo (ocupo la venta y su fecha)
         ChartAdminPanel c4 = new ChartAdminPanel(jPanel5);
         Map<String, Double> ventasPorFecha = obtnerVentasTiempo("vendedores.bin");
@@ -2181,17 +1787,17 @@ public class Main extends javax.swing.JFrame {
         c4.setValues(yvalues, xvalues);
         c4.setNames("Ventas a lo Largo del Tiempo", "Fecha", "Ventas");
         c4.showLineChart();
-        addExpandListener(c4, "Ventas a lo Largo del Tiempo"); 
+        addExpandListener(c4, "Ventas a lo Largo del Tiempo");
 
         ChartAdminPanel c5 = new ChartAdminPanel(jPanel6);
         c5.setNames("Vendedores vs Metas", "xname", "yname");
         c5.showHistogram();
-        addExpandListener(c5, "Vendedores vs Metas"); 
+        addExpandListener(c5, "Vendedores vs Metas");
 
         ChartAdminPanel c6 = new ChartAdminPanel(jPanel7);
         c6.setNames("Como Sale Mas Rentable", "xname", "yname");
         c6.showPieChart();
-        addExpandListener(c6, "Como Sale Mas Rentable"); 
+        addExpandListener(c6, "Como Sale Mas Rentable");
     }//GEN-LAST:event_JButton_InsertarPanelMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -2306,7 +1912,7 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = (comisiones) + "";
-               // JText_ComisionesGeneradas.setText(comisionFinal);
+                // JText_ComisionesGeneradas.setText(comisionFinal);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
                 for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -2314,7 +1920,7 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, ventasFiltradas) ? "Sí" : "No"
                     });
                 }
 
@@ -2348,7 +1954,6 @@ public class Main extends javax.swing.JFrame {
                 //JText_ComisionesGeneradas.setText(comisionFinal);
 
                 //JText_VentasPeriodo.setText(ventas);
-
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
                 modelo.setRowCount(0); // Limpia la tabla antes de llenarla
@@ -2386,12 +1991,12 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, vendedorActivo.getVentas()) ? "Sí" : "No"
                     });
                 }
 
                 double calculofinal = calcularFinalAPagar();
-               // jTextField5.setText(calculofinal + "");
+                // jTextField5.setText(calculofinal + "");
 
             }
         } else {
@@ -2497,7 +2102,7 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, ventasFiltradas) ? "Sí" : "No"
                     });
                 }
 
@@ -2530,8 +2135,7 @@ public class Main extends javax.swing.JFrame {
                 String comisionFinal = (comisiones) + "";
                 //JText_ComisionesGeneradas.setText(comisionFinal);
 
-               // JText_VentasPeriodo.setText(ventas);
-
+                // JText_VentasPeriodo.setText(ventas);
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
                 modelo.setRowCount(0); // Limpia la tabla antes de llenarla
@@ -2569,7 +2173,7 @@ public class Main extends javax.swing.JFrame {
                     modelo2.addRow(new Object[]{
                         m.getMeta(),
                         m.getBono(),
-                        vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
+                        vendedorActivo.cumplioMeta(m, vendedorActivo.getVentas()) ? "Sí" : "No"
                     });
                 }
 
@@ -2580,87 +2184,19 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-        String nombre = JTextField_BuscarVendedorReporte1.getText();
-        String fecha1 = JTextField_Fecha2.getText();
-        String fecha2 = JTextField_fecha3.getText();
-        jLabel24.setText("Cumplimiento de Metas del " + fecha1 + " al " + fecha2);
-
-        vendedorActivo = binario.buscarVendedor(nombre);
-
-        double comisiones = 0.0;
-        ArrayList<String> sucursales = new ArrayList();
-        sucursales.add("1");
-        sucursales.add("2");
-        sucursales.add("3");
-        sucursales.add("4");
-
-        ArrayList<Double> ventasPorSucursal = new ArrayList();
-        ArrayList<Double> MontoPorSucursal = new ArrayList();
-        for (int i = 0; i < sucursales.size(); i++) {
-            ArrayList<Venta> ventasFiltradas = ventaFiltradaPorFecha(vendedorActivo, fecha1, fecha2, sucursales.get(i), "");
-            ArrayList<Cliente> clientesFiltrados = clienteFiltradoPorFecha(vendedorActivo, fecha1, fecha2, sucursales.get(i), "");
-            ArrayList<Cliente> clientesFiltradosSinSucursal = calculandoSinImportarCliente(vendedorActivo, fecha1, fecha2);
-            ArrayList<Venta> ventasFiltradasSinSucural = calculandoSinImportarVenta(vendedorActivo, fecha1, fecha2);
-            for (int j = 0; j < vendedorActivo.getComisiones().size(); j++) {
-                Comision com = vendedorActivo.getComisiones().get(j);
-                if (com instanceof PorProducto) {
-                    PorProducto c = (PorProducto) com;
-                    comisiones += c.calcularComisionFinalFiltrada(ventasFiltradas);
-                } else if (com instanceof PorCliente) {
-                    PorCliente c = (PorCliente) com;
-                    comisiones += c.calcularComisionFinalFiltrada(clientesFiltrados);
-                } else if (com instanceof PorIndirecta) {
-                    PorIndirecta c = (PorIndirecta) com;
-                    comisiones += c.calcularComisionFinal(ventaFiltradaPorFecha(c.getVendedorDelQueRecibe(), fecha1, fecha2, sucursales.get(i), ""));
-                } else if (com instanceof Comision) {
-                    if (vendedorActivo.getComisiones().get(j).isPorVenta()) {
-                        comisiones += com.comisionSinImportar(ventasFiltradasSinSucural);
-                    } else if (vendedorActivo.getComisiones().get(j).isPorCobro()) {
-                        comisiones += com.comisionPorCobro(clientesFiltradosSinSucursal);
-                    }
-                }
-
-            }
-            ventasPorSucursal.add(comisiones);
-            double montoPorSucursal = 0.0;
-            for (int j = 0; j < ventasFiltradas.size(); j++) {
-                montoPorSucursal += ventasFiltradas.get(i).getMonto();
-            }
-            for (int j = 0; j < clientesFiltrados.size(); j++) {
-                montoPorSucursal += clientesFiltrados.get(i).getCantidad();
-            }
-        }
-
-        DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte1.getModel();
-        modelo.setRowCount(0); // Limpiar tabla
-        int totalFilas = Math.min(sucursales.size(), Math.min(ventasPorSucursal.size(), ventasPorSucursal.size()));
-
-        for (int i = 0; i < totalFilas; i++) {
-            Object[] fila = {
-                sucursales.get(i),
-                ventasPorSucursal.get(i),
-                ventasPorSucursal.get(i)
-            };
-            modelo.addRow(fila);
-        }
-
-    }//GEN-LAST:event_jButton3MouseClicked
-
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         ExportarExcel obj;
         ExportarPDF obj2;
         try {
             obj = new ExportarExcel();
-            obj.exportarExcel(JTable_CategoriaReporte, JTable_Metas,JTable_Total);
+            obj.exportarExcel(JTable_CategoriaReporte, JTable_Metas, JTable_Total);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
         }
-       
-            obj2 = new ExportarPDF();
-            obj2.exportarPDF(JTable_CategoriaReporte, JTable_Metas,JTable_Total);
+
+        obj2 = new ExportarPDF();
+        obj2.exportarPDF(JTable_CategoriaReporte, JTable_Metas, JTable_Total);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void Button_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_IniciarSesionActionPerformed
@@ -2713,86 +2249,58 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JButton_InsertarPanel;
     private javax.swing.JComboBox<String> JComboBox_SucursalCliente;
     private javax.swing.JComboBox<String> JComboBox_SucursalEditar1;
-    private javax.swing.JComboBox<String> JComboBox_SucursalFicha;
     private javax.swing.JComboBox<String> JComboBox_Tipo;
     private javax.swing.JComboBox<String> JComboBox_TipoEnCliente;
     private javax.swing.JComboBox<String> JComboBox_TipoIndirecto;
-    private javax.swing.JComboBox<String> JCombo_TipoFicha;
     private javax.swing.JFrame JFrame_Base;
     private javax.swing.JFrame JFrame_Ficha;
     private javax.swing.JFrame JFrame_NuevaCom;
     private javax.swing.JFrame JFrame_PaginaPrincipal;
     private javax.swing.JFrame JFrame_ReporteGerencial;
-    private javax.swing.JFrame JFrame_ReporteGerencialTotal;
     private javax.swing.JLabel JLabel_Base;
     private javax.swing.JLabel JLabel_Buscar;
-    private javax.swing.JLabel JLabel_BuscarFicha;
     private javax.swing.JLabel JLabel_BuscarFicha1;
     private javax.swing.JLabel JLabel_BuscarMeta;
     private javax.swing.JLabel JLabel_ComisionEspecial;
     private javax.swing.JLabel JLabel_EditarVendedor;
     private javax.swing.JLabel JLabel_EditarVendedorPrincipal;
-    private javax.swing.JLabel JLabel_Ficha;
-    private javax.swing.JLabel JLabel_FichaVendedor;
-    private javax.swing.JLabel JLabel_FirmaPago;
-    private javax.swing.JLabel JLabel_Metas;
     private javax.swing.JLabel JLabel_NuevaCom;
     private javax.swing.JLabel JLabel_PorCliente;
-    private javax.swing.JLabel JLabel_Porcentajes;
     private javax.swing.JLabel JLabel_SucursalEditar;
-    private javax.swing.JLabel JLabel_TipoFicha;
     private javax.swing.JLabel JLable_ImpresionVendedores;
-    private javax.swing.JList<Meta> JList_metas;
     private javax.swing.JMenuBar JMenuBar_PaginaPrincipal;
     private javax.swing.JMenu JMenu_Ficha;
     private javax.swing.JPanel JPanel_Base;
-    private javax.swing.JPanel JPanel_BuscarFicha;
     private javax.swing.JPanel JPanel_BuscarFicha1;
     private javax.swing.JPanel JPanel_EditarVendedor;
     private javax.swing.JPanel JPanel_NuevaCom;
     private javax.swing.JPanel JPanel_ReporteGerencial;
-    private javax.swing.JPanel JPanel_ReporteGerencialTotal;
     private javax.swing.JPanel JPanel_VendedoresImpresion;
     private javax.swing.JPanel JPanel_VentaIndirecta;
     private javax.swing.JToggleButton JTB_comisionVendido;
     private javax.swing.JToggleButton JTB_comisionVendido1;
     private javax.swing.JTabbedPane JTabPane_ComisionesExtras;
-    private javax.swing.JPanel JTabPane_FichaPorVendedor;
     private javax.swing.JTabbedPane JTabPane_Vendedores;
     private javax.swing.JTable JTable_CategoriaReporte;
-    private javax.swing.JTable JTable_CategoriaReporte1;
     private javax.swing.JTable JTable_ComisionCliente;
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTable JTable_Metas;
     private javax.swing.JTable JTable_Productos;
     private javax.swing.JTable JTable_Total;
     private javax.swing.JTable JTable_VentaIndirecta;
-    private javax.swing.JTable JTable_ficha;
     private javax.swing.JTextField JTextField_Bono;
     private javax.swing.JTextField JTextField_BuscarMeta;
     private javax.swing.JTextField JTextField_BuscarVendedorReporte;
-    private javax.swing.JTextField JTextField_BuscarVendedorReporte1;
-    private javax.swing.JTextField JTextField_ComisionTotalVendedor;
     private javax.swing.JTextField JTextField_Fecha1;
-    private javax.swing.JTextField JTextField_Fecha2;
     private javax.swing.JTextField JTextField_Meta;
     private javax.swing.JTextField JTextField_fecha2;
-    private javax.swing.JTextField JTextField_fecha3;
-    private javax.swing.JTextField JText_Base;
-    private javax.swing.JTextField JText_BuscarFicha;
     private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_ComisionIndirecta;
-    private javax.swing.JTextField JText_Contraseña;
-    private javax.swing.JTextField JText_Firma;
-    private javax.swing.JTextField JText_Puerto;
-    private javax.swing.JTextField JText_Servidor;
-    private javax.swing.JTextField JText_Usuario;
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
@@ -2805,11 +2313,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -2819,19 +2325,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2847,13 +2342,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
     //Variables Globales
@@ -3025,8 +2516,7 @@ public class Main extends javax.swing.JFrame {
             modeloLista.addElement(meta);
         }
 
-        JList_metas.setModel(modeloLista);
-
+        //JList_metas.setModel(modeloLista);
         tabla.setModel(modelo);
     }
 
@@ -3258,31 +2748,28 @@ public class Main extends javax.swing.JFrame {
             vendedores = (HashMap<String, Vendedor>) ois.readObject();
 
             for (Vendedor v : vendedores.values()) {
-                if (v.getSucursal() == null || v.getSucursal().isEmpty()) {
-                    continue; // Ignorar vendedor sin sucursales
-                }
 
                 for (Venta ve : v.getVentas()) {
                     switch (ve.getSucursal()) {
                         case "1":
-                            
-                                Kennedy += ve.getMonto();
-                            
+
+                            Kennedy += ve.getMonto();
+
                             break;
                         case "2":
-                           
-                                SanAngel += ve.getMonto();
-                            
+
+                            SanAngel += ve.getMonto();
+
                             break;
                         case "3":
-                          
-                                RubenDario += ve.getMonto();
-                            
+
+                            RubenDario += ve.getMonto();
+
                             break;
                         case "4":
-                           
-                                CityMall += ve.getMonto();
-                            
+
+                            CityMall += ve.getMonto();
+
                             break;
                         default:
                             break;
@@ -3338,9 +2825,8 @@ public class Main extends javax.swing.JFrame {
 
                             break;
                         case "Filtros de Aceite":
-                            for (Venta venta : v.getVentas()) {
-                                AceiteFiltros += venta.getMonto();
-                            }
+                            AceiteFiltros += ventas.getMonto();
+
                             break;
                         case "Filtros Otros":
                             otrosFiltros += ventas.getMonto();
