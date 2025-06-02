@@ -2138,7 +2138,7 @@ public class Main extends javax.swing.JFrame {
         ChartAdminPanel c1 = new ChartAdminPanel(jPanel2);
         c1.setNames("Mayor Comision", "Vendedor", "Cantidad");
         c1.showBarChart();
-
+        addExpandListener(c1, "Mayor Comision");
         //Ventas por sucursal
         ChartAdminPanel c2 = new ChartAdminPanel(jPanel3);
         c2.setNames("Ventas Por Sucursal", "Venta", "Sucursal");
@@ -2149,30 +2149,18 @@ public class Main extends javax.swing.JFrame {
         c2.showPieChart();
         addExpandListener(c2, "Ventas Por Sucursal");  // 👈 También aquí
         //Categorias de productos con mas ingresos
-        new Thread(() -> {
-            ChartAdminPanel c3 = new ChartAdminPanel(jPanel4);
-            c3.setNames("Categorias con Mas Ingresos", "Cateogrias", "Ingresos");
-            double[] valoresCategorias = obtnerVentasPorSCategorias("vendedores.bin");
-            String[] categorias = new String[]{"Accesorios", "Aceites y Lubricante", "Bujías", "Filtros de Aire",
-                "Equipo", "Filtros de Aceite", "Filtros Otros", "Fricciones pastilla", "Liquido y Aditivos", "Llantas Importadas",
-                "Fricciones en bloque"
-                + "Plomo"
-                + "Tubos y Protectores"
-                + "Remaches"
-                + "Repuestos"
-                + "Rines"
-                + "Servicios"
-                + "Fricciones en rollo"
-                + "Baterías" + "Llanta Local"
-                + "Combustible"
-                + "Alquiler"
-                + "Lubricantes Importad"
-            };
-            c3.setValues(valoresCategorias, categorias);
-            c3.setOrientacionVertical();
-            c3.showBarChart();
-        }).start();
+        
+        double[] x = {1000, 2000, 3000, 4000, 5000}; // ventas
+        String[] y = {"12", "15", "13", "17", "18"}; // comisiones (como texto para que encaje con el sistema actual)
 
+        ChartAdminPanel cScatter = new ChartAdminPanel(jPanel4);
+        cScatter.setNames("Ventas vs Comisión", "Ventas", "Comisión");
+        cScatter.setValues(x, y);
+        cScatter.setOrientacionVertical();
+        cScatter.showScatterPlot();
+        addExpandListener(cScatter, "Ventas vs Comisión");
+
+           
         // Ventas a lo largo del tiempo (ocupo la venta y su fecha)
         ChartAdminPanel c4 = new ChartAdminPanel(jPanel5);
         Map<String, Double> ventasPorFecha = obtnerVentasTiempo("vendedores.bin");
@@ -2193,10 +2181,12 @@ public class Main extends javax.swing.JFrame {
         ChartAdminPanel c5 = new ChartAdminPanel(jPanel6);
         c5.setNames("Vendedores vs Metas", "xname", "yname");
         c5.showHistogram();
+        addExpandListener(c5, "Vendedores vs Metas"); 
 
         ChartAdminPanel c6 = new ChartAdminPanel(jPanel7);
         c6.setNames("Como Sale Mas Rentable", "xname", "yname");
         c6.showPieChart();
+        addExpandListener(c6, "Como Sale Mas Rentable"); 
     }//GEN-LAST:event_JButton_InsertarPanelMouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked

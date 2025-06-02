@@ -18,6 +18,10 @@ import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.statistics.HistogramDataset;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 
 public class ChartAdminPanel {
 
@@ -163,6 +167,53 @@ public class ChartAdminPanel {
         Panel.add(chartPanel, BorderLayout.CENTER);
         Panel.validate();
     }
+    
+
+public void showScatterPlot() {
+    XYSeries series = new XYSeries("Datos");
+
+    // Convertir los arrays xvalues (double[]) y yvalues (String[]) a coordenadas XY
+    for (int i = 0; i < xvalues.length && i < yvalues.length; i++) {
+        try {
+            double y = Double.parseDouble(yvalues[i]);
+            series.add(xvalues[i], y);
+        } catch (NumberFormatException e) {
+            System.err.println("❌ Error al convertir yvalue a número: " + yvalues[i]);
+        }
+    }
+
+    XYSeriesCollection dataset = new XYSeriesCollection();
+    dataset.addSeries(series);
+
+    chart = ChartFactory.createScatterPlot(
+        title,
+        xname,
+        yname,
+        dataset,
+        orientacion,
+        false,
+        true,
+        false
+    );
+
+    XYPlot plot = chart.getXYPlot();
+    plot.setBackgroundPaint(background);
+    plot.setRangeGridlinePaint(colores[2]);
+
+    XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+    renderer.setSeriesLinesVisible(0, false); // Solo puntos, sin líneas
+    renderer.setSeriesShapesVisible(0, true);
+    renderer.setSeriesPaint(0, colores[0]);
+    plot.setRenderer(renderer);
+
+    chartPanel = new ChartPanel(chart);
+    Panel.removeAll();
+    Panel.add(chartPanel, BorderLayout.CENTER);
+    Panel.validate();
+}
+
+    
+    
 
     private Color colorselected(int i) {
         return colores[i % colores.length];

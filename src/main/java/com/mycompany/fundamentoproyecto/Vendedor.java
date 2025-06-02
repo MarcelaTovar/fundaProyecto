@@ -149,6 +149,37 @@ public class Vendedor implements Serializable {
 
     }
     
+    public ArrayList <Double>  obtenerTodo (){
+     String[] Categorias = {
+          "Aceites y Lubricante",
+          "Bujías",
+          "Filtros de Aire",
+          "Equipo",
+          "Filtros de Aceite",
+          "Filtros Otros",
+          "Fricciones pastilla",
+          "Liquido y Aditivos",
+          "Llantas Importadas",
+          "Fricciones en bloque",
+          "Plomo",
+          "Tubos y Protectores",
+          "Remaches",
+          "Repuestos",
+          "Rines",
+          "Servicios",
+          "Fricciones en rollo",
+          "Baterías",
+          "Llanta Local",
+          "Combustible",
+          "Alquiler",
+          "Lubricantes Importad"};
+    ArrayList <Double> montos = null;
+        for (String categoria : Categorias) {
+            montos.add(obtenerCantidadVentaPorCategoria(categoria,"Venta" ));
+        }        
+    return montos;
+    }
+    
     public double obtenerCantidadVentaPorCategoriaFiltrada(ArrayList <Venta> ventas,ArrayList<Cliente> clientes,String nombre, String clienteOVenta){
         //El arraylist cliente y el arraylist venta deben ser los del vendedorActivo
         double cantidadFinal = 0.0;
