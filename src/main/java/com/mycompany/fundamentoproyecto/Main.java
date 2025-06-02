@@ -186,7 +186,6 @@ public class Main extends javax.swing.JFrame {
         jLabel28 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         JTable_Metas = new javax.swing.JTable();
-        jLabel32 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -803,7 +802,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_NuevaCom.add(jButton1);
-        jButton1.setBounds(340, 410, 117, 30);
+        jButton1.setBounds(340, 410, 135, 30);
 
         jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel13.setText("Sucursal");
@@ -821,12 +820,12 @@ public class Main extends javax.swing.JFrame {
         jCheckBox1.setText("Comision Por Todo Lo Vendido");
         jCheckBox1.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox1);
-        jCheckBox1.setBounds(530, 50, 180, 23);
+        jCheckBox1.setBounds(530, 50, 180, 25);
 
         jCheckBox2.setText("Monto Total del Periodo");
         jCheckBox2.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox2);
-        jCheckBox2.setBounds(530, 20, 160, 23);
+        jCheckBox2.setBounds(530, 20, 160, 25);
 
         JTable_ComisionCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1009,11 +1008,6 @@ public class Main extends javax.swing.JFrame {
 
         JPanel_ReporteGerencial.add(jScrollPane8);
         jScrollPane8.setBounds(500, 160, 400, 160);
-
-        jLabel32.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel32.setText("Total Final a Pagar: ");
-        JPanel_ReporteGerencial.add(jLabel32);
-        jLabel32.setBounds(570, 130, 120, 19);
 
         JPanel_ReporteGerencial.add(jComboBox2);
         jComboBox2.setBounds(480, 90, 80, 30);
@@ -2662,12 +2656,16 @@ public class Main extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         ExportarExcel obj;
+        ExportarPDF obj2;
         try {
             obj = new ExportarExcel();
-            obj.exportarExcel(JTable_CategoriaReporte, JTable_Metas);
+            obj.exportarExcel(JTable_CategoriaReporte, JTable_Metas,JTable_Total);
         } catch (IOException ex) {
             System.out.println("Error: " + ex);
         }
+       
+            obj2 = new ExportarPDF();
+            obj2.exportarPDF(JTable_CategoriaReporte, JTable_Metas,JTable_Total);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void Button_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_IniciarSesionActionPerformed
@@ -2827,7 +2825,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -3270,27 +3267,27 @@ public class Main extends javax.swing.JFrame {
                     continue; // Ignorar vendedor sin sucursales
                 }
 
-                for (String sucursal : v.getSucursal()) {
-                    switch (sucursal) {
+                for (Venta ve : v.getVentas()) {
+                    switch (ve.getSucursal()) {
                         case "1":
-                            for (Venta venta : v.getVentas()) {
-                                Kennedy += venta.getMonto();
-                            }
+                            
+                                Kennedy += ve.getMonto();
+                            
                             break;
                         case "2":
-                            for (Venta venta : v.getVentas()) {
-                                SanAngel += venta.getMonto();
-                            }
+                           
+                                SanAngel += ve.getMonto();
+                            
                             break;
                         case "3":
-                            for (Venta venta : v.getVentas()) {
-                                RubenDario += venta.getMonto();
-                            }
+                          
+                                RubenDario += ve.getMonto();
+                            
                             break;
                         case "4":
-                            for (Venta venta : v.getVentas()) {
-                                CityMall += venta.getMonto();
-                            }
+                           
+                                CityMall += ve.getMonto();
+                            
                             break;
                         default:
                             break;

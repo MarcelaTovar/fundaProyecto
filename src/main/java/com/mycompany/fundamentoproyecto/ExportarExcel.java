@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook; // ✅ Importar esta clase
 
 public class ExportarExcel {
 
-    public void exportarExcel(JTable t1, JTable t2) throws IOException {
+    public void exportarExcel(JTable t1, JTable t2, JTable t3) throws IOException {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de Excel (.xlsx)", "xlsx");
         chooser.setFileFilter(filter);
@@ -45,8 +45,13 @@ public class ExportarExcel {
             // 🟢 Hoja 2
             Sheet hoja2 = libro.createSheet("Tabla 2");
             exportarTablaAHoja(t2, hoja2);
-
+            
+             // 🟢 Hoja 3
+            Sheet hoja3 = libro.createSheet("Tabla 3");
+            exportarTablaAHoja(t3, hoja3);
+            
             libro.write(archivo);
+            
             archivo.close();
             Desktop.getDesktop().open(archivoXLSX);
         }
