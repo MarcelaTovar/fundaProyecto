@@ -73,7 +73,6 @@ public class Main extends javax.swing.JFrame {
         ConectarBase = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         JMenu_Ficha = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
         JFrame_Base = new javax.swing.JFrame();
         JPanel_Base = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -185,20 +184,15 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         JTable_CategoriaReporte = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         JTable_Metas = new javax.swing.JTable();
         jLabel32 = new javax.swing.JLabel();
-        JText_ComisionesGeneradas = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        JText_VentasPeriodo = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        JTable_Total = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         JFrame_ReporteGerencialTotal = new javax.swing.JFrame();
         JPanel_ReporteGerencialTotal = new javax.swing.JPanel();
@@ -297,17 +291,6 @@ public class Main extends javax.swing.JFrame {
         });
         JMenuBar_PaginaPrincipal.add(JMenu_Ficha);
 
-        jMenu2.setText("Reporte Gerencial Total");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jMenu2MouseEntered(evt);
-            }
-        });
-        JMenuBar_PaginaPrincipal.add(jMenu2);
-
         JFrame_PaginaPrincipal.setJMenuBar(JMenuBar_PaginaPrincipal);
 
         javax.swing.GroupLayout JFrame_PaginaPrincipalLayout = new javax.swing.GroupLayout(JFrame_PaginaPrincipal.getContentPane());
@@ -320,8 +303,6 @@ public class Main extends javax.swing.JFrame {
             JFrame_PaginaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        JFrame_Base.setMaximumSize(new java.awt.Dimension(734, 394));
 
         JPanel_Base.setMaximumSize(new java.awt.Dimension(734, 394));
         JPanel_Base.setMinimumSize(new java.awt.Dimension(734, 394));
@@ -424,9 +405,7 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        JFrame_Ficha.setMaximumSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.setMinimumSize(new java.awt.Dimension(957, 569));
-        JFrame_Ficha.setPreferredSize(new java.awt.Dimension(957, 569));
         JFrame_Ficha.getContentPane().setLayout(null);
 
         JTabPane_Vendedores.setMaximumSize(new java.awt.Dimension(957, 569));
@@ -824,7 +803,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
         JPanel_NuevaCom.add(jButton1);
-        jButton1.setBounds(340, 410, 135, 30);
+        jButton1.setBounds(340, 410, 117, 30);
 
         jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel13.setText("Sucursal");
@@ -842,12 +821,12 @@ public class Main extends javax.swing.JFrame {
         jCheckBox1.setText("Comision Por Todo Lo Vendido");
         jCheckBox1.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox1);
-        jCheckBox1.setBounds(530, 50, 180, 25);
+        jCheckBox1.setBounds(530, 50, 180, 23);
 
         jCheckBox2.setText("Monto Total del Periodo");
         jCheckBox2.setToolTipText("");
         JPanel_NuevaCom.add(jCheckBox2);
-        jCheckBox2.setBounds(530, 20, 160, 25);
+        jCheckBox2.setBounds(530, 20, 160, 23);
 
         JTable_ComisionCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -957,7 +936,7 @@ public class Main extends javax.swing.JFrame {
         jLabel24.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
         jLabel24.setText("Cumplimiento de Metas");
         JPanel_ReporteGerencial.add(jLabel24);
-        jLabel24.setBounds(70, 50, 570, 33);
+        jLabel24.setBounds(70, 40, 570, 33);
 
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Lupa.png"))); // NOI18N
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1013,22 +992,7 @@ public class Main extends javax.swing.JFrame {
         jLabel28.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel28.setText("Total de Ventas");
         JPanel_ReporteGerencial.add(jLabel28);
-        jLabel28.setBounds(670, 130, 130, 24);
-
-        jLabel29.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel29.setText("Metas asignadas:");
-        JPanel_ReporteGerencial.add(jLabel29);
-        jLabel29.setBounds(500, 230, 130, 30);
-
-        jLabel30.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel30.setText("Ventas del Periodo: ");
-        JPanel_ReporteGerencial.add(jLabel30);
-        jLabel30.setBounds(560, 160, 130, 19);
-
-        jLabel31.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel31.setText("Comisiones Generadas:");
-        JPanel_ReporteGerencial.add(jLabel31);
-        jLabel31.setBounds(770, 150, 160, 30);
+        jLabel28.setBounds(640, 330, 130, 24);
 
         JTable_Metas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1044,32 +1008,12 @@ public class Main extends javax.swing.JFrame {
         jScrollPane8.setViewportView(JTable_Metas);
 
         JPanel_ReporteGerencial.add(jScrollPane8);
-        jScrollPane8.setBounds(510, 260, 400, 160);
+        jScrollPane8.setBounds(500, 160, 400, 160);
 
         jLabel32.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel32.setText("Total Final a Pagar: ");
         JPanel_ReporteGerencial.add(jLabel32);
-        jLabel32.setBounds(510, 450, 120, 19);
-
-        JText_ComisionesGeneradas.setBackground(new java.awt.Color(255, 181, 167));
-        JText_ComisionesGeneradas.setBorder(null);
-        JPanel_ReporteGerencial.add(JText_ComisionesGeneradas);
-        JText_ComisionesGeneradas.setBounds(770, 180, 140, 30);
-
-        jTextField5.setBackground(new java.awt.Color(255, 181, 167));
-        jTextField5.setBorder(null);
-        JPanel_ReporteGerencial.add(jTextField5);
-        jTextField5.setBounds(670, 450, 130, 30);
-
-        JText_VentasPeriodo.setBackground(new java.awt.Color(255, 181, 167));
-        JText_VentasPeriodo.setBorder(null);
-        JPanel_ReporteGerencial.add(JText_VentasPeriodo);
-        JText_VentasPeriodo.setBounds(550, 180, 130, 30);
-
-        jLabel33.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel33.setText("Firma de autorizacion:");
-        JPanel_ReporteGerencial.add(jLabel33);
-        jLabel33.setBounds(510, 500, 140, 19);
+        jLabel32.setBounds(570, 130, 120, 19);
 
         JPanel_ReporteGerencial.add(jComboBox2);
         jComboBox2.setBounds(480, 90, 80, 30);
@@ -1096,6 +1040,22 @@ public class Main extends javax.swing.JFrame {
         });
         JPanel_ReporteGerencial.add(jButton4);
         jButton4.setBounds(630, 30, 170, 40);
+
+        JTable_Total.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Comision Final", "Total A Pagar", "Numero de Productos Vendidos", "Firma de Autorizacion", "Gerente de Ventas"
+            }
+        ));
+        jScrollPane10.setViewportView(JTable_Total);
+
+        JPanel_ReporteGerencial.add(jScrollPane10);
+        jScrollPane10.setBounds(510, 360, 390, 60);
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ReporteGerencial.png"))); // NOI18N
         JPanel_ReporteGerencial.add(jLabel21);
@@ -1836,7 +1796,7 @@ public class Main extends javax.swing.JFrame {
 
                     //Calcular comisiones
                     String ventas = ventasFiltradas.size() + "";
-                    JText_VentasPeriodo.setText(ventas);
+                    
                     double comisiones = 0;
                     for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
                         Comision com = vendedorActivo.getComisiones().get(i);
@@ -1859,7 +1819,7 @@ public class Main extends javax.swing.JFrame {
 
                     }
                     String comisionFinal = comisiones + "";
-                    JText_ComisionesGeneradas.setText(comisionFinal);
+                    //JText_ComisionesGeneradas.setText(comisionFinal);
                     DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                     modelo2.setRowCount(0);
                     for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -1870,9 +1830,20 @@ public class Main extends javax.swing.JFrame {
                             vendedorActivo.cumplioMeta(m) ? "Sí" : "No"
                         });
                     }
-
                     double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
-                    jTextField5.setText(calculofinal + "");
+                    //jTextField5.setText(calculofinal + "");
+                    DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                    modelo3.setRowCount(0);
+                    modelo3.addRow(new Object[]{
+                            comisionFinal,
+                            calculofinal,
+                           ventas,
+                           "Mario Garcia",
+                           "Jordi Roig"
+                        });
+                    
+
+                    
 
                 } else {
                     String ventas = vendedorActivo.getVentas().size() + "";
@@ -1898,9 +1869,6 @@ public class Main extends javax.swing.JFrame {
 
                     }
                     String comisionFinal = comisiones + "";
-                    JText_ComisionesGeneradas.setText(comisionFinal);
-
-                    JText_VentasPeriodo.setText(ventas);
 
                     //Llenar la tabla 
                     DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
@@ -1944,7 +1912,16 @@ public class Main extends javax.swing.JFrame {
                     }
 
                     double calculofinal = calcularFinalAPagar();
-                    jTextField5.setText(calculofinal + "");
+                     DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                    modelo3.setRowCount(0);
+                    modelo3.addRow(new Object[]{
+                            comisionFinal,
+                            calculofinal,
+                           ventas,
+                           "Mario Garcia",
+                           "Jordi Roig"
+                        });
+                    
 
                 }
             });
@@ -2012,7 +1989,7 @@ public class Main extends javax.swing.JFrame {
 
                 //Calcular comisiones
                 String ventas = ventasFiltradas.size() + "";
-                JText_VentasPeriodo.setText(ventas);
+                //JText_VentasPeriodo.setText(ventas);
                 double comisiones = 0;
                 for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
                     Comision com = vendedorActivo.getComisiones().get(i);
@@ -2035,7 +2012,7 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = comisiones + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+                //JText_ComisionesGeneradas.setText(comisionFinal);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
                 for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -2048,7 +2025,17 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = OtrocalculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
-                jTextField5.setText(calculofinal + "");
+                //jTextField5.setText(calculofinal + "");
+                 DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                    modelo3.setRowCount(0);
+                    modelo3.addRow(new Object[]{
+                            comisionFinal,
+                            calculofinal,
+                           ventas,
+                           "Mario Garcia",
+                           "Jordi Roig"
+                        });
+                    
 
             } else {
                 String ventas = vendedorActivo.getVentas().size() + "";
@@ -2074,9 +2061,9 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = (comisiones) + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+                //JText_ComisionesGeneradas.setText(comisionFinal);
 
-                JText_VentasPeriodo.setText(ventas);
+                //JText_VentasPeriodo.setText(ventas);
 
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
@@ -2120,7 +2107,17 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = calcularFinalAPagar();
-                jTextField5.setText(calculofinal + "");
+                //jTextField5.setText(calculofinal + "");
+                 DefaultTableModel modelo3 = (DefaultTableModel) JTable_Total.getModel();
+                    modelo3.setRowCount(0);
+                    modelo3.addRow(new Object[]{
+                            comisionFinal,
+                            calculofinal,
+                           ventas,
+                           "Mario Garcia",
+                           "Jordi Roig"
+                        });
+                    
 
             }
         }
@@ -2297,7 +2294,7 @@ public class Main extends javax.swing.JFrame {
 
                 //Calcular comisiones
                 String ventas = ventasFiltradas.size() + "";
-                JText_VentasPeriodo.setText(ventas);
+                //JText_VentasPeriodo.setText(ventas);
                 double comisiones = 0;
                 for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
                     Comision com = vendedorActivo.getComisiones().get(i);
@@ -2320,7 +2317,7 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = (comisiones) + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+               // JText_ComisionesGeneradas.setText(comisionFinal);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
                 for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -2333,7 +2330,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = calculoFinalFiltrado(ventasFiltradas, clientesFiltrados, fecha1, fecha2, sucursal, tipo);
-                jTextField5.setText(calculofinal + "");
+                //jTextField5.setText(calculofinal + "");
 
             } else {
                 String ventas = vendedorActivo.getVentas().size() + "";
@@ -2358,10 +2355,10 @@ public class Main extends javax.swing.JFrame {
                     }
 
                 }
-                String comisionFinal = (comisiones / 2.0) + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+                String comisionFinal = comisiones + "";
+                //JText_ComisionesGeneradas.setText(comisionFinal);
 
-                JText_VentasPeriodo.setText(ventas);
+                //JText_VentasPeriodo.setText(ventas);
 
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
@@ -2405,7 +2402,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = calcularFinalAPagar();
-                jTextField5.setText(calculofinal + "");
+               // jTextField5.setText(calculofinal + "");
 
             }
         } else {
@@ -2480,7 +2477,7 @@ public class Main extends javax.swing.JFrame {
 
                 //Calcular comisiones
                 String ventas = ventasFiltradasSinSucural.size() + "";
-                JText_VentasPeriodo.setText(ventas);
+                //JText_VentasPeriodo.setText(ventas);
                 double comisiones = 0;
                 for (int i = 0; i < vendedorActivo.getComisiones().size(); i++) {
                     Comision com = vendedorActivo.getComisiones().get(i);
@@ -2503,7 +2500,7 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = comisiones / 1.15 + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+                //JText_ComisionesGeneradas.setText(comisionFinal);
                 DefaultTableModel modelo2 = (DefaultTableModel) JTable_Metas.getModel();
                 modelo2.setRowCount(0);
                 for (int i = 0; i < vendedorActivo.getMetas().size(); i++) {
@@ -2516,7 +2513,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = comisiones / 1.15;
-                jTextField5.setText(calculofinal + "");
+                //jTextField5.setText(calculofinal + "");
 
             } else {
                 String ventas = vendedorActivo.getVentas().size() + "";
@@ -2542,9 +2539,9 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 String comisionFinal = (comisiones) + "";
-                JText_ComisionesGeneradas.setText(comisionFinal);
+                //JText_ComisionesGeneradas.setText(comisionFinal);
 
-                JText_VentasPeriodo.setText(ventas);
+               // JText_VentasPeriodo.setText(ventas);
 
                 //Llenar la tabla 
                 DefaultTableModel modelo = (DefaultTableModel) JTable_CategoriaReporte.getModel();
@@ -2588,7 +2585,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 double calculofinal = calcularFinalAPagar();
-                jTextField5.setText(calculofinal + "");
+                //jTextField5.setText(calculofinal + "");
 
             }
         }
@@ -2661,22 +2658,6 @@ public class Main extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton3MouseClicked
-
-    private void jMenu2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2MouseEntered
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        // TODO add your handling code here:
-        JPanel_ReporteGerencialTotal.setSize(957, 548);
-
-        JFrame_ReporteGerencialTotal.setSize(957, 548);
-        JFrame_ReporteGerencialTotal.setLocationRelativeTo(null);
-        JFrame_ReporteGerencialTotal.setLayout(null);
-
-        JFrame_ReporteGerencialTotal.add(JPanel_ReporteGerencialTotal);
-        JFrame_ReporteGerencialTotal.setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
@@ -2791,6 +2772,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable JTable_ImpresionVendedores;
     private javax.swing.JTable JTable_Metas;
     private javax.swing.JTable JTable_Productos;
+    private javax.swing.JTable JTable_Total;
     private javax.swing.JTable JTable_VentaIndirecta;
     private javax.swing.JTable JTable_ficha;
     private javax.swing.JTextField JTextField_Bono;
@@ -2808,13 +2790,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField JText_BuscarFicha1;
     private javax.swing.JTextField JText_BuscarVendedor;
     private javax.swing.JTextField JText_ComisionIndirecta;
-    private javax.swing.JTextField JText_ComisionesGeneradas;
     private javax.swing.JTextField JText_Contraseña;
     private javax.swing.JTextField JText_Firma;
     private javax.swing.JTextField JText_Puerto;
     private javax.swing.JTextField JText_Servidor;
     private javax.swing.JTextField JText_Usuario;
-    private javax.swing.JTextField JText_VentasPeriodo;
     private javax.swing.JLabel PaginaInicio;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JButton jButton1;
@@ -2846,12 +2826,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -2868,7 +2844,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -2877,6 +2852,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2885,7 +2861,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
